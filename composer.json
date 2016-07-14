@@ -1,44 +1,29 @@
 {
     "name": "laravolt/epicentrum",
-    "description": ":package_description",
+    "description": "Epic central user management for Laravel",
     "keywords": [
         "laravel",
         "laravolt",
-        "epicentrum"
+        "epicentrum",
+        "user management"
     ],
     "homepage": "https://github.com/laravolt/epicentrum",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": ":author_website",
+            "name": "Bayu Hendra Winata",
+            "email": "uyab.exe@gmail.com",
+            "homepage": "id-laravel.com",
             "role": "Developer"
         }
     ],
     "require": {
-        "php" : ">=5.5.0",
+        "php" : ">=5.6.4",
         "illuminate/support": "~5.2"
-    },
-    "require-dev": {
-        "phpunit/phpunit" : "4.*"
     },
     "autoload": {
         "psr-4": {
             "Laravolt\\Epicentrum\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Laravolt\\Epicentrum\\Test\\": "tests"
-        }
-    },
-    "scripts": {
-        "test": "phpunit"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
         }
     }
 }
