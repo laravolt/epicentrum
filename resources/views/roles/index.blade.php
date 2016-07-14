@@ -3,7 +3,7 @@
     <div class="ui container">
         <div class="ui grid two column">
             <div class="column"><h2 class="ui header">@lang('roles.roles')</h2></div>
-            <div class="column right aligned"><a href="{{ route('admin.roles.create') }}" class="ui button primary"><i class="icon plus"></i> Tambah</a></div>
+            <div class="column right aligned"><a href="{{ route('epicentrum.roles.create') }}" class="ui button primary"><i class="icon plus"></i> Tambah</a></div>
         </div>
         <div class="ui grid">
             <div class="column sixteen wide">
@@ -18,7 +18,7 @@
                             <span class="right floated ui label basic"><i class="icon options"></i> {{ $role->permissions->count() }}</span>
                         </div>
                         <div class="extra content">
-                            <a href="{{ route('admin.roles.edit', $role['id']) }}" class="ui button fluid">Edit</a>
+                            <a href="{{ route('epicentrum.roles.edit', $role['id']) }}" class="ui button fluid">Edit</a>
                         </div>
                     </div>
                     @endforeach

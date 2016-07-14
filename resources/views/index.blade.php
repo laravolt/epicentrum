@@ -1,4 +1,5 @@
-@extends(config('modules.users.view.layout'))
+@extends(config('epicentrum.view.layout'))
+
 @section('content')
     <div class="ui container">
 
@@ -7,7 +8,7 @@
                 <h3>@lang('users.users')</h3>
             </div>
             <div class="column right aligned">
-                <a href="{{ route('admin.users.create') }}" class="ui button primary pull-right"><i class="icon plus"></i> Tambah</a>
+                <a href="{{ route('epicentrum.users.create') }}" class="ui button primary pull-right"><i class="icon plus"></i> Tambah</a>
             </div>
         </div>
 
@@ -32,10 +33,10 @@
             <table class="ui very compact table bottom small sortable">
                 <thead>
                 <tr>
-                    @sortby('name', trans('users.name'))
-                    @sortby('email', trans('users.email'))
+                    <th>@lang('users.name')</th>
+                    <th>@lang('users.email')</th>
                     <th>@lang('users.status')</th>
-                    @sortby('created_at', trans('users.registered_at'))
+                    <th>@lang('users.registered_at')</th>
                     <th>&nbsp;</th>
                 </tr>
                 </thead>
@@ -49,7 +50,7 @@
                         <td>{{ $user->present('status') }}</td>
                         <td>{{ $user->present('registered_at') }}</td>
                         <td class="right aligned">
-                            <a href="{{ route('admin.users.edit', $user['id']) }}" class="ui button basic mini">@lang('users.manage')</a>
+                            <a href="{{ route('epicentrum.users.edit', $user['id']) }}" class="ui button basic mini">@lang('users.manage')</a>
                         </td>
                     </tr>
                 @empty

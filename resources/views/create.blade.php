@@ -1,11 +1,11 @@
-@extends(config('modules.users.view.layout'))
+@extends(config('epicentrum.view.layout'))
 @section('content')
     <div class="ui container">
         <div class="ui segment very padded">
 
             <h3 class="ui header">Tambah Pengguna</h3>
 
-            {!! SemanticForm::open()->post()->action(route('admin.users.store')) !!}
+            {!! SemanticForm::open()->post()->action(route('epicentrum.users.store')) !!}
             {!! SemanticForm::text('name', old('name'))->label(trans('users.name'))->required() !!}
             {!! SemanticForm::text('email', old('email'))->label(trans('users.email'))->required() !!}
 
@@ -40,7 +40,7 @@
             <div class="ui divider hidden"></div>
 
             <button class="ui button primary" type="submit" name="submit" value="1">@lang('button.save')</button>
-            <a href="{{ route('admin.users.index') }}" class="ui button">@lang('button.cancel')</a>
+            <a href="{{ route('epicentrum.users.index') }}" class="ui button">@lang('button.cancel')</a>
             {!! SemanticForm::close() !!}
 
         </div>

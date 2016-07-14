@@ -31,7 +31,7 @@ class ProfileController extends UserController
     public function update(Request $request, $id)
     {
         $this->repository->updateProfile($request->except('_token'), $id);
-        \Notification::success('Profil berhasil diperbarui');
+        \Krucas\Notification\Facades\Notification::success('Profil berhasil diperbarui');
 
         return redirect()->back();
     }

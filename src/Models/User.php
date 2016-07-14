@@ -93,6 +93,7 @@ class User extends Authenticatable implements CanResetPassword,
 
     public function getAvatar()
     {
+        return '';
         return Avatar::create($this->name)->toBase64();
     }
 

@@ -8,7 +8,7 @@
 
                     <h2 class="ui header text centered"><span>Tambah</span> Role</h2>
 
-                    {!! SemanticForm::open()->post()->action(route('admin.roles.store')) !!}
+                    {!! SemanticForm::open()->post()->action(route('epicentrum.roles.store')) !!}
                     <div class="field required">
                         <label>@lang('roles.name')</label>
                         {!! SemanticForm::text('name', old('name')) !!}
@@ -42,7 +42,7 @@
                     <div class="ui divider hidden"></div>
 
                     <button class="ui button primary" type="submit" name="submit" value="1">@lang('button.save')</button>
-                    <a href="{{ route('admin.roles.index') }}" class="ui button">@lang('button.cancel')</a>
+                    <a href="{{ route('epicentrum.roles.index') }}" class="ui button">@lang('button.cancel')</a>
                     {!! SemanticForm::close() !!}
 
                 </div>

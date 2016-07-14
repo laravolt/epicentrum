@@ -6,6 +6,7 @@ use App\Enum\UserStatus;
 use App\Exceptions\SikapException;
 use Carbon\Carbon;
 use Illuminate\Contracts\Validation\ValidationException;
+use Laravolt\Epicentrum\Models\Profile;
 use Laravolt\Epicentrum\Presenter;
 use Laravolt\Epicentrum\Models\User;
 use Prettus\Repository\Eloquent\BaseRepository;

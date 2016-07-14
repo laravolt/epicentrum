@@ -3,6 +3,7 @@
 namespace Laravolt\Epicentrum;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use Laravolt\SemanticForm\Facade;
 
 /**
  * Class PackageServiceProvider
@@ -35,9 +36,15 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(realpath(__DIR__ . '/resources/views'), 'users');
+        $this->loadViewsFrom(realpath(__DIR__ . '/../resources/views'), 'users');
         $this->loadRoutes();
 
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/config.php', 'epicentrum'
+        );
+
+        $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+        $loader->alias('SemanticForm', Facade::class);
     }
 
     protected function loadRoutes()

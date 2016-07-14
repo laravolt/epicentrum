@@ -1,7 +1,7 @@
 @extends('users::edit')
 
 @section('content-user-edit')
-    {!! SemanticForm::open()->put()->action(route('admin.role.update', $user['id'])) !!}
+    {!! SemanticForm::open()->put()->action(route('epicentrum.role.update', $user['id'])) !!}
 
     <div class="grouped fields">
         <label>Role</label>
@@ -17,6 +17,6 @@
 
     <div class="ui divider hidden"></div>
     <button class="ui button primary" type="submit" name="submit" value="1">@lang('button.save')</button>
-    <a href="{{ route('admin.users.index') }}" class="ui button">@lang('button.cancel')</a>
+    <a href="{{ route('epicentrum.users.index') }}" class="ui button">@lang('button.cancel')</a>
     {!! SemanticForm::close() !!}
 @endsection
