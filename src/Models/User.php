@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravolt\Acl\Contracts\HasRoleAndPermission as HasRoleAndPermissionContract;
 use Laravolt\Acl\Traits\HasRoleAndPermission;
-use Laravolt\Auth\Traits\HasSocialAccount;
+//use Laravolt\Auth\Traits\HasSocialAccount;
 use Laravolt\Mural\Contracts\Commentator;
 use Laravolt\Password\CanChangePassword;
 use Laravolt\Password\CanChangePasswordContract;
@@ -21,7 +21,7 @@ class User extends Authenticatable implements CanResetPassword,
     Presentable,
     HasRoleAndPermissionContract
 {
-    use CanChangePassword, PresentableTrait, HasSocialAccount, HasRoleAndPermission, SoftDeletes;
+    use CanChangePassword, PresentableTrait, HasRoleAndPermission, SoftDeletes;
 
     /**
      * The database table used by the model.

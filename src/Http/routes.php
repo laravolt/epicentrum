@@ -3,51 +3,51 @@
 Route::group(
     [
         'namespace'  => '\Laravolt\Epicentrum\Http\Controllers',
-        'prefix'     => 'backoffice',
+        'prefix'     => 'epicentrum',
         'middleware' => ['web', 'auth']
     ],
     function () {
 
-        Route::group(['prefix' => 'users', 'namespace' => 'User'], function(){
+        Route::group(['namespace' => 'User'], function(){
 
             Route::resource('users', 'UserController', [
                 'names' => [
-                    'index'   => 'admin.users.index',
-                    'create'  => 'admin.users.create',
-                    'store'   => 'admin.users.store',
-                    'show'    => 'admin.users.show',
-                    'edit'    => 'admin.users.edit',
-                    'update'  => 'admin.users.update',
-                    'destroy' => 'admin.users.destroy'
+                    'index'   => 'epicentrum.users.index',
+                    'create'  => 'epicentrum.users.create',
+                    'store'   => 'epicentrum.users.store',
+                    'show'    => 'epicentrum.users.show',
+                    'edit'    => 'epicentrum.users.edit',
+                    'update'  => 'epicentrum.users.update',
+                    'destroy' => 'epicentrum.users.destroy'
                 ]
             ]);
 
             Route::resource('profile', 'ProfileController', [
                 'names' => [
-                    'index'   => 'admin.profile.index',
-                    'create'  => 'admin.profile.create',
-                    'store'   => 'admin.profile.store',
-                    'show'    => 'admin.profile.show',
-                    'edit'    => 'admin.profile.edit',
-                    'update'  => 'admin.profile.update',
-                    'destroy' => 'admin.profile.destroy'
+                    'index'   => 'epicentrum.profile.index',
+                    'create'  => 'epicentrum.profile.create',
+                    'store'   => 'epicentrum.profile.store',
+                    'show'    => 'epicentrum.profile.show',
+                    'edit'    => 'epicentrum.profile.edit',
+                    'update'  => 'epicentrum.profile.update',
+                    'destroy' => 'epicentrum.profile.destroy'
                 ]
             ]);
 
             Route::resource('password', 'PasswordController', [
                 'names' => [
-                    'edit' => 'admin.password.edit',
+                    'edit' => 'epicentrum.password.edit',
                 ]
             ]);
-            Route::post('password/{id}/reset', ['uses' => 'PasswordController@reset', 'as' => 'admin.password.reset']);
+            Route::post('password/{id}/reset', ['uses' => 'PasswordController@reset', 'as' => 'epicentrum.password.reset']);
             Route::post('password/{id}/generate',
-                ['uses' => 'PasswordController@generate', 'as' => 'admin.password.generate']);
+                ['uses' => 'PasswordController@generate', 'as' => 'epicentrum.password.generate']);
 
 
             Route::resource('account', 'AccountController', [
                 'names' => [
-                    'edit'   => 'admin.account.edit',
-                    'update' => 'admin.account.update',
+                    'edit'   => 'epicentrum.account.edit',
+                    'update' => 'epicentrum.account.update',
                 ]
             ]);
 
@@ -57,8 +57,8 @@ Route::group(
                 [
                     'only'  => ['edit', 'update'],
                     'names' => [
-                        'edit'   => 'admin.role.edit',
-                        'update' => 'admin.role.update',
+                        'edit'   => 'epicentrum.role.edit',
+                        'update' => 'epicentrum.role.update',
                     ]
                 ]
             );
@@ -66,13 +66,13 @@ Route::group(
 
         Route::resource('roles', 'RoleController', [
             'names' => [
-                'index'   => 'admin.roles.index',
-                'create'  => 'admin.roles.create',
-                'store'   => 'admin.roles.store',
-                'show'    => 'admin.roles.show',
-                'edit'    => 'admin.roles.edit',
-                'update'  => 'admin.roles.update',
-                'destroy' => 'admin.roles.destroy'
+                'index'   => 'epicentrum.roles.index',
+                'create'  => 'epicentrum.roles.create',
+                'store'   => 'epicentrum.roles.store',
+                'show'    => 'epicentrum.roles.show',
+                'edit'    => 'epicentrum.roles.edit',
+                'update'  => 'epicentrum.roles.update',
+                'destroy' => 'epicentrum.roles.destroy'
             ]
         ]);
     });
