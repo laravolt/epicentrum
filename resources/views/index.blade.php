@@ -3,7 +3,7 @@
 @section('content')
     <div class="ui container">
 
-        <div class="ui top attached segment secondary">
+        <div class="ui top attached block header">
             <div class="ui grid two column">
                 <div class="column middle aligned">
                     <h3 class="ui header">@lang('epicentrum::users.pages.index.header')</h3>
@@ -31,38 +31,36 @@
                 </div>
             </div>
         </div>
-        <div class="ui segment attached fitted">
-            <table class="ui very compact table bottom small sortable">
-                <thead>
+        <table class="ui table attached">
+            <thead>
+            <tr>
+                <th>@lang('epicentrum::users.name')</th>
+                <th>@lang('epicentrum::users.email')</th>
+                <th>@lang('epicentrum::users.status')</th>
+                <th>@lang('epicentrum::users.registered_at')</th>
+                <th>&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            @forelse($users as $user)
                 <tr>
-                    <th>@lang('epicentrum::users.name')</th>
-                    <th>@lang('epicentrum::users.email')</th>
-                    <th>@lang('epicentrum::users.status')</th>
-                    <th>@lang('epicentrum::users.registered_at')</th>
-                    <th>&nbsp;</th>
+                    <td>
+                        <img src="{{ $user->present('avatar') }}" alt="" class="ui image avatar">{{ $user->present('name') }}
+                    </td>
+                    <td>{{ $user->present('email') }}</td>
+                    <td>{{ $user->present('status') }}</td>
+                    <td>{{ $user->present('registered_at') }}</td>
+                    <td class="right aligned">
+                        <a href="{{ route('epicentrum.users.edit', $user['id']) }}" class="ui button basic mini">@lang('epicentrum::users.action.manage')</a>
+                    </td>
                 </tr>
-                </thead>
-                <tbody>
-                @forelse($users as $user)
-                    <tr>
-                        <td>
-                            <img src="{{ $user->present('avatar') }}" alt="" class="ui image avatar">{{ $user->present('name') }}
-                        </td>
-                        <td>{{ $user->present('email') }}</td>
-                        <td>{{ $user->present('status') }}</td>
-                        <td>{{ $user->present('registered_at') }}</td>
-                        <td class="right aligned">
-                            <a href="{{ route('epicentrum.users.edit', $user['id']) }}" class="ui button basic mini">@lang('epicentrum::users.action.manage')</a>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="4" class="warning center aligned" style="font-size: 1.5rem;padding:40px;font-style: italic">Data tidak tersedia</td>
-                    </tr>
-                @endforelse
-                </tbody>
-            </table>
-        </div>
+            @empty
+                <tr>
+                    <td colspan="4" class="warning center aligned" style="font-size: 1.5rem;padding:40px;font-style: italic">Data tidak tersedia</td>
+                </tr>
+            @endforelse
+            </tbody>
+        </table>
         <div class="ui menu bottom attached">
             <div class="item borderless">
                 <small>{!! sui_pagination($users)->pager() !!}</small>
