@@ -45,7 +45,7 @@ class UserController extends Controller
     public function index()
     {
         $users = $this->repository->skipPresenter()->paginate();
-        return view('users::index', compact('users'));
+        return view('epicentrum::index', compact('users'));
     }
 
     /**
@@ -58,7 +58,7 @@ class UserController extends Controller
         $statuses = $this->repository->availableStatus();
         $roles = Role::all()->pluck('name', 'id');
 
-        return view('users::create', compact('statuses', 'roles'));
+        return view('epicentrum::create', compact('statuses', 'roles'));
     }
 
     /**

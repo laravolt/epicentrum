@@ -19,7 +19,7 @@ class AccountController extends UserController
         $user = $this->repository->skipPresenter()->find($id);
         $statuses = $this->repository->availableStatus();
 
-        return view('users::account.edit', compact('user', 'statuses'));
+        return view('epicentrum::account.edit', compact('user', 'statuses'));
     }
 
     /**

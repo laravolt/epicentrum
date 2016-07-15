@@ -1,4 +1,4 @@
-@extends('users::edit')
+@extends('epicentrum::edit')
 
 @section('content-user-edit')
 

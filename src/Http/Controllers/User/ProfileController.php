@@ -18,7 +18,7 @@ class ProfileController extends UserController
         $user = $this->repository->skipPresenter()->find($id);
         $profile = $user->profile;
         $timezones = $this->timezone->lists();
-        return view('users::profile.edit', compact('user', 'profile', 'timezones'));
+        return view('epicentrum::profile.edit', compact('user', 'profile', 'timezones'));
     }
 
     /**

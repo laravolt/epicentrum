@@ -19,7 +19,7 @@ class RoleController extends UserController
     {
         $user = $this->repository->skipPresenter()->find($id);
         $roles = Role::all();
-        return view('users::role.edit', compact('user', 'roles'));
+        return view('epicentrum::role.edit', compact('user', 'roles'));
     }
 
     /**

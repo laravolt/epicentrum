@@ -1,4 +1,4 @@
-@extends('users::edit')
+@extends('epicentrum::edit')
 
 @section('content-user-edit')
     {!! SemanticForm::open()->put()->action(route('epicentrum.account.update', $user['id'])) !!}

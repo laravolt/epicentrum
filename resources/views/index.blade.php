@@ -33,10 +33,10 @@
             <table class="ui very compact table bottom small sortable">
                 <thead>
                 <tr>
-                    <th>@lang('users.name')</th>
-                    <th>@lang('users.email')</th>
-                    <th>@lang('users.status')</th>
-                    <th>@lang('users.registered_at')</th>
+                    <th>@lang('epicentrum::users.name')</th>
+                    <th>@lang('epicentrum::users.email')</th>
+                    <th>@lang('epicentrum::users.status')</th>
+                    <th>@lang('epicentrum::users.registered_at')</th>
                     <th>&nbsp;</th>
                 </tr>
                 </thead>

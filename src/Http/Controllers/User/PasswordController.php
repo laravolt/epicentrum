@@ -40,7 +40,7 @@ class PasswordController extends Controller
     public function edit($id)
     {
         $user = $this->repository->skipPresenter()->find($id);
-        return view('users::password.edit', compact('user'));
+        return view('epicentrum::password.edit', compact('user'));
     }
 
     public function reset($id)

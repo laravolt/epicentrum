@@ -24,7 +24,8 @@
         "league/fractal": "^0.13.0",
         "laravolt/password": "^1.0",
         "laravolt/acl": "^1.0",
-        "laravolt/support": "^1.0"
+        "laravolt/support": "^1.0",
+        "laravolt/avatar": "^1.4"
     },
     "autoload": {
         "psr-4": {

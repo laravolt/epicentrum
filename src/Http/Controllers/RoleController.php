@@ -28,7 +28,7 @@ class RoleController extends Controller
     {
         $roles = Role::all();
 
-        return view('users::roles.index', compact('roles'));
+        return view('epicentrum::roles.index', compact('roles'));
     }
 
     /**
@@ -40,7 +40,7 @@ class RoleController extends Controller
     {
         $permissions = Permission::all();
 
-        return view('users::roles.create', compact('permissions'));
+        return view('epicentrum::roles.create', compact('permissions'));
     }
 
     /**
@@ -69,7 +69,7 @@ class RoleController extends Controller
         $permissions = Permission::all();
         $assignedPermissions = old('permissions', $role->permissions()->lists('id')->toArray());
 
-        return view('users::roles.edit', compact('role', 'permissions', 'assignedPermissions'));
+        return view('epicentrum::roles.edit', compact('role', 'permissions', 'assignedPermissions'));
     }
 
     /**

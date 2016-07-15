@@ -8,12 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravolt\Acl\Contracts\HasRoleAndPermission as HasRoleAndPermissionContract;
 use Laravolt\Acl\Traits\HasRoleAndPermission;
 //use Laravolt\Auth\Traits\HasSocialAccount;
+use Laravolt\Avatar\Facade as Avatar;
 use Laravolt\Mural\Contracts\Commentator;
 use Laravolt\Password\CanChangePassword;
 use Laravolt\Password\CanChangePasswordContract;
 use Prettus\Repository\Contracts\Presentable;
 use Prettus\Repository\Traits\PresentableTrait;
-use Avatar;
 
 class User extends Authenticatable implements CanResetPassword,
     CanChangePasswordContract,
@@ -93,18 +93,7 @@ class User extends Authenticatable implements CanResetPassword,
 
     public function getAvatar()
     {
-        return '';
         return Avatar::create($this->name)->toBase64();
-    }
-
-    public function isAdmin()
-    {
-        return ! $this->isPenyedia();
-    }
-
-    public function isPenyedia()
-    {
-        return (int)$this->attributes['rkn_id'] > 0;
     }
 
     function __toString()
