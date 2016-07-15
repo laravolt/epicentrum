@@ -3,16 +3,18 @@
 @section('content')
     <div class="ui container">
 
-        <div class="ui grid two column">
-            <div class="column middle aligned">
-                <h3>@lang('users.users')</h3>
-            </div>
-            <div class="column right aligned">
-                <a href="{{ route('epicentrum.users.create') }}" class="ui button primary pull-right"><i class="icon plus"></i> Tambah</a>
+        <div class="ui top attached segment secondary">
+            <div class="ui grid two column">
+                <div class="column middle aligned">
+                    <h3 class="ui header">@lang('epicentrum::users.pages.index.header')</h3>
+                </div>
+                <div class="column right aligned">
+                    <a href="{{ route('epicentrum.users.create') }}" class="ui button primary pull-right"><i class="icon plus"></i> Tambah</a>
+                </div>
             </div>
         </div>
 
-        <div class="ui top attached menu">
+        <div class="ui attached menu">
             <div class="menu">
                 <div class="item borderless">
                     <small>{!! sui_pagination($users)->summary() !!}</small>
@@ -22,7 +24,7 @@
                 <div class="ui right aligned item">
                     <form action="">
                         <div class="ui transparent icon input">
-                            <input class="prompt" name="search" value="{{ request('search') }}" type="text" placeholder="@lang('users.search')">
+                            <input class="prompt" name="search" value="{{ request('search') }}" type="text" placeholder="@lang('epicentrum::users.action.search')">
                             <i class="search link icon"></i>
                         </div>
                     </form>
@@ -50,7 +52,7 @@
                         <td>{{ $user->present('status') }}</td>
                         <td>{{ $user->present('registered_at') }}</td>
                         <td class="right aligned">
-                            <a href="{{ route('epicentrum.users.edit', $user['id']) }}" class="ui button basic mini">@lang('users.manage')</a>
+                            <a href="{{ route('epicentrum.users.edit', $user['id']) }}" class="ui button basic mini">@lang('epicentrum::users.action.manage')</a>
                         </td>
                     </tr>
                 @empty
