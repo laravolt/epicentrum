@@ -25,7 +25,8 @@
         "laravolt/password": "^1.0",
         "laravolt/acl": "^1.0",
         "laravolt/support": "^1.0",
-        "laravolt/avatar": "^1.4"
+        "laravolt/avatar": "^1.4",
+        "laravolt/suitable": "^0.1"
     },
     "autoload": {
         "psr-4": {
