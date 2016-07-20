@@ -10,24 +10,12 @@ return [
     'registered_at'                      => 'Terdaftar',
     'bio'                                => 'Bio',
     'timezone'                           => 'Zona Waktu',
-    'menu'                               => [
-        'profile'  => 'Edit Profil',
-        'account'  => 'Akun',
-        'password' => 'Ganti Password',
-        'email'    => 'Email',
-        'role'     => 'Role',
-    ],
-    'action'                             => [
-        'search' => 'Cari user...',
-        'manage' => 'Edit',
-        'save'   => 'Simpan',
-        'cancel' => 'Batal',
-
-    ],
+    'roles'                              => 'Roles',
     'pages'                              => [
         'index' => [
             'header' => 'Manage Users',
         ]
     ],
     'send_account_information_via_email' => 'Kirim informasi akun dan password via email',
+    'change_password_on_first_login'     => 'Paksa untuk ganti password ketika pertama kali login',
 ];

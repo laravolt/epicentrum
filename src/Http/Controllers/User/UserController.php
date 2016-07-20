@@ -2,9 +2,6 @@
 
 namespace Laravolt\Epicentrum\Http\Controllers\User;
 
-use App\Enum\Permission;
-use App\Enum\UserStatus;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Laravolt\Acl\Models\Role;
 use Laravolt\Epicentrum\Http\Requests\CreateAccount;
