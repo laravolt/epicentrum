@@ -5,4 +5,5 @@ return [
     'manage' => 'Edit',
     'save'   => 'Simpan',
     'cancel' => 'Batal',
+    'back'   => 'Kembali',
 ];

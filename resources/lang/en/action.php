@@ -5,4 +5,5 @@ return [
     'manage' => 'Edit',
     'save'   => 'Save',
     'cancel' => 'Cancel',
+    'back'   => 'Back',
 ];

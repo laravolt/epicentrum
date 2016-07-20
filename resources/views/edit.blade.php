@@ -4,7 +4,7 @@
 
         <div class="ui list horizontal">
             <div class="item">
-                <a href="{{ route('epicentrum.users.index') }}" class="ui button basic"><i class="icon angle left"></i> Back to list</a>
+                <a href="{{ route('epicentrum.users.index') }}" class="ui button basic"><i class="icon angle left"></i> @lang('epicentrum::action.back')</a>
             </div>
             <div class="item">
                 <h3 class="ui header">
