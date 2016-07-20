@@ -3,6 +3,7 @@
 namespace Laravolt\Epicentrum\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Krucas\Notification\Facades\Notification;
 use Laravolt\Epicentrum\Http\Requests\Role\RoleRequest;
 
 use Laravolt\Acl\Models\Permission;
@@ -87,7 +88,7 @@ class RoleController extends Controller
 
         $role->syncPermission($request->get('permissions', []));
 
-        \Notification::success('acl.roles.update.success');
+        Notification::success('acl.roles.update.success');
         return redirect()->route('epicentrum.roles.index');
     }
 
@@ -101,6 +102,6 @@ class RoleController extends Controller
     {
         Role::findOrFail($id)->delete();
 
-        \Notification::success('acl.roles.delete.success');
+        Notification::success('acl.roles.delete.success');
         return redirect()->route('epicentrum.roles.index');    }
 }

@@ -1,8 +1,11 @@
 <?php
 
 return [
+    'add'               => 'Tambah',
+    'edit'              => 'Edit',
+    'delete'            => 'Hapus',
     'search'            => 'Search...',
-    'manage'            => 'Edit',
+    'manage'            => 'Kelola',
     'save'              => 'Simpan',
     'cancel'            => 'Batal',
     'back'              => 'Kembali',

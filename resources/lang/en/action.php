@@ -1,8 +1,11 @@
 <?php
 
 return [
+    'add'               => 'Add',
+    'edit'              => 'Edit',
+    'delete'            => 'Delete',
     'search'            => 'Cari user...',
-    'manage'            => 'Edit',
+    'manage'            => 'Manage',
     'save'              => 'Save',
     'cancel'            => 'Cancel',
     'back'              => 'Back',
