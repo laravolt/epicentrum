@@ -110,66 +110,7 @@ class EloquentRepository extends BaseRepository implements RepositoryInterface
 
     public function availableStatus()
     {
-        $status = [UserStatus::PENDING(), UserStatus::ACTIVE(), UserStatus::BLOCKED()];
-        return array_combine($status, $status);
-    }
-
-    /**
-     * Create local user when "Penyedia" login via sikap
-     *
-     * @throws ValidatorException
-     * @param array $attributes
-     * @return mixed
-     */
-    public function createViaSikap($rknId, $name, $email, $attributes)
-    {
-        parent::skipPresenter();
-
-        $this->validateEmail($email, $rknId, 'rkn_id');
-
-        $user = $this->model->updateOrCreate(
-            ['rkn_id' => $rknId],
-            [
-                'name'   => $name,
-                'email'  => $email,
-                'status' => UserStatus::PENYEDIA
-            ]
-        );
-
-        $user->profile->rekanan_data = $attributes;
-        $user->profile->save();
-
-        return $user;
-    }
-
-    /**
-     * Create local user when "User" login via centrum
-     *
-     * @throws ValidatorException
-     * @param array $attributes
-     * @return mixed
-     */
-    public function createViaCentrum($centrumUserId, $name, $email, $attributes, $roles)
-    {
-        parent::skipPresenter();
-
-        $this->validateEmail($email, $centrumUserId, 'centrum_user_id');
-
-        $user = $this->model->updateOrCreate(
-            ['centrum_user_id' => $centrumUserId],
-            [
-                'name'   => $name,
-                'email'  => $email,
-                'status' => UserStatus::CENTRUM
-            ]
-        );
-
-        $user->syncRoles($roles);
-
-        $user->profile->rekanan_data = $attributes;
-        $user->profile->save();
-
-        return $user;
+        return UserStatus::toArray();
     }
 
     protected function validateEmail($email, $rknId, $identifierColumn)

@@ -20,6 +20,9 @@ return [
     'action'                             => [
         'search' => 'Cari user...',
         'manage' => 'Edit',
+        'save'   => 'Simpan',
+        'cancel' => 'Batal',
+
     ],
     'pages'                              => [
         'index' => [

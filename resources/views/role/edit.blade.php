@@ -1,4 +1,4 @@
-@extends('epicentrum::edit')
+@extends('epicentrum::edit', ['tab' => 'role'])
 
 @section('content-user-edit')
     {!! SemanticForm::open()->put()->action(route('epicentrum.role.update', $user['id'])) !!}
@@ -16,7 +16,7 @@
     </div>
 
     <div class="ui divider hidden"></div>
-    <button class="ui button primary" type="submit" name="submit" value="1">@lang('button.save')</button>
-    <a href="{{ route('epicentrum.users.index') }}" class="ui button">@lang('button.cancel')</a>
+    <button class="ui button primary" type="submit" name="submit" value="1">@lang('epicentrum::action.save')</button>
+    <a href="{{ route('epicentrum.users.index') }}" class="ui button">@lang('epicentrum::action.cancel')</a>
     {!! SemanticForm::close() !!}
 @endsection

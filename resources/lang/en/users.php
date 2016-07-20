@@ -1,30 +1,26 @@
 <?php
 
 return [
-    'name'                               => 'Nama',
+    'name'                               => 'Name',
     'email'                              => 'Email',
     'password'                           => 'Password',
-    'password_new'                       => 'Password Baru',
-    'password_confirmation'              => 'Konfirmasi Password',
+    'password_new'                       => 'New Password',
+    'password_confirmation'              => 'Confirm Password',
     'status'                             => 'Status',
-    'registered_at'                      => 'Terdaftar',
+    'registered_at'                      => 'Registered',
     'bio'                                => 'Bio',
-    'timezone'                           => 'Zona Waktu',
+    'timezone'                           => 'Timezone',
     'menu'                               => [
-        'profile'  => 'Edit Profil',
-        'account'  => 'Akun',
-        'password' => 'Ganti Password',
+        'profile'  => 'Profile',
+        'account'  => 'Account',
+        'password' => 'Password',
         'email'    => 'Email',
         'role'     => 'Role',
-    ],
-    'action'                             => [
-        'search' => 'Cari user...',
-        'manage' => 'Edit',
     ],
     'pages'                              => [
         'index' => [
             'header' => 'Manage Users',
         ]
     ],
-    'send_account_information_via_email' => 'Kirim informasi akun dan password via email',
+    'send_account_information_via_email' => 'Send account information via email',
 ];
