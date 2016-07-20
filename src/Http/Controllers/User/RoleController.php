@@ -3,8 +3,7 @@
 namespace Laravolt\Epicentrum\Http\Controllers\User;
 
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use Krucas\Notification\Facades\Notification;
 use Laravolt\Acl\Models\Role;
 
 class RoleController extends UserController
@@ -33,7 +32,7 @@ class RoleController extends UserController
     {
         $user = $this->repository->skipPresenter()->find($id);
         $user->roles()->sync($request->get('roles', []));
-        \Notification::success('Role berhasil diperbarui');
+        Notification::success('Role berhasil diperbarui');
 
         return redirect()->back();
     }
