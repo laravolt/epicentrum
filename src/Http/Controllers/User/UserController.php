@@ -80,7 +80,7 @@ class UserController extends Controller
         }
 
         Notification::success(trans('users.creation_success'));
-        return redirect()->route('epicentrum.users.index');
+        return redirect()->route('epicentrum::users.index');
     }
 
     /**
@@ -91,13 +91,13 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return redirect(route('epicentrum.profile.edit', $id));
+        return redirect(route('epicentrum::profile.edit', $id));
     }
 
     public function destroy($id)
     {
         $this->repository->delete($id);
         Notification::warning('User berhasil dihapus');
-        return redirect(route('epicentrum.users.index'));
+        return redirect(route('epicentrum::users.index'));
     }
 }

@@ -5,13 +5,13 @@
 
             <div class="ui list horizontal">
                 <div class="item">
-                    <a href="{{ route('epicentrum.users.index') }}" class="ui button basic"><i class="icon angle left"></i> @lang('epicentrum::action.back')</a>
+                    <a href="{{ route('epicentrum::users.index') }}" class="ui button basic"><i class="icon angle left"></i> @lang('epicentrum::action.back')</a>
                 </div>
             </div>
 
             <h3 class="ui header">@lang('epicentrum::menu.add_user')</h3>
 
-            {!! SemanticForm::open()->post()->action(route('epicentrum.users.store')) !!}
+            {!! SemanticForm::open()->post()->action(route('epicentrum::users.store')) !!}
             {!! SemanticForm::text('name', old('name'))->label(trans('epicentrum::users.name'))->required() !!}
             {!! SemanticForm::text('email', old('email'))->label(trans('epicentrum::users.email'))->required() !!}
 
@@ -46,7 +46,7 @@
             <div class="ui divider hidden"></div>
 
             <button class="ui button primary" type="submit" name="submit" value="1">@lang('epicentrum::action.save')</button>
-            <a href="{{ route('epicentrum.users.index') }}" class="ui button">@lang('epicentrum::action.cancel')</a>
+            <a href="{{ route('epicentrum::users.index') }}" class="ui button">@lang('epicentrum::action.cancel')</a>
             {!! SemanticForm::close() !!}
 
         </div>

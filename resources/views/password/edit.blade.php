@@ -4,7 +4,7 @@
 
     <h4>Manual</h4>
     <p>User akan mendapat email yang berisi link untuk melakukan reset password. User harus mengisi sendiri password barunya.</p>
-    <form action="{{ route('epicentrum.password.reset', [$user['id']]) }}" method="POST">
+    <form action="{{ route('epicentrum::password.reset', [$user['id']]) }}" method="POST">
     {{ csrf_field() }}
     <button type="submit" class="ui button" href="">Send email reset password</button>
     </form>
@@ -13,7 +13,7 @@
 
     <h4>Otomatis</h4>
     <p>Generate password baru, dan kirim password tersebut via email. User bisa langsung login menggunakan password baru tersebut.</p>
-    {!! SemanticForm::open()->post()->action(route('epicentrum.password.generate', $user['id'])) !!}
+    {!! SemanticForm::open()->post()->action(route('epicentrum::password.generate', $user['id'])) !!}
     {{ csrf_field() }}
     <div class="field">
         <div class="ui checkbox">

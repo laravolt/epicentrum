@@ -13,7 +13,7 @@
         }],
         ['header' => trans('epicentrum::users.email'), 'field' => 'email'],
         ['header' => false, 'raw' => function($data){
-            return "<a href='".route('epicentrum.users.edit', $data->id)."'><i class='icon setting'></i></a>";
+            return "<a href='".route('epicentrum::users.edit', $data->id)."'><i class='icon setting'></i></a>";
         }],
     ])
     ->render() !!}

@@ -3,9 +3,12 @@
  * Set specific configuration variables here
  */
 return [
-    // automatic loading of routes through main service provider
-    'routes' => true,
-    'view' => [
+    'route' => [
+        'enable'     => true,
+        'middleware' => ['web', 'auth'],
+        'prefix'     => 'epicentrum'
+    ],
+    'view'  => [
         'layout' => 'layouts.base'
     ],
 ];

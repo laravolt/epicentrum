@@ -55,7 +55,7 @@ class RoleController extends Controller
         $role = Role::create($request->only('name'));
         $role->syncPermission($request->get('permissions', []));
 
-        return redirect()->route('epicentrum.roles.index');
+        return redirect()->route('epicentrum::roles.index');
     }
 
     /**
@@ -89,7 +89,7 @@ class RoleController extends Controller
         $role->syncPermission($request->get('permissions', []));
 
         Notification::success('acl.roles.update.success');
-        return redirect()->route('epicentrum.roles.index');
+        return redirect()->route('epicentrum::roles.index');
     }
 
     /**
@@ -103,5 +103,5 @@ class RoleController extends Controller
         Role::findOrFail($id)->delete();
 
         Notification::success('acl.roles.delete.success');
-        return redirect()->route('epicentrum.roles.index');    }
+        return redirect()->route('epicentrum::roles.index');    }
 }

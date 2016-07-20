@@ -5,7 +5,7 @@
 
         <h2 class="ui header text centered"><span>Edit</span> Role</h2>
 
-        {!! SemanticForm::open()->put()->action(route('epicentrum.roles.update', $role['id'])) !!}
+        {!! SemanticForm::open()->put()->action(route('epicentrum::roles.update', $role['id'])) !!}
         <div class="field required">
             <label>@lang('roles.name')</label>
             {!! SemanticForm::text('name', old('name', $role['name'])) !!}
@@ -41,7 +41,7 @@
         <div class="ui divider hidden"></div>
 
         <button class="ui button primary" type="submit" name="submit" value="1">@lang('epicentrum::action.save')</button>
-        <a href="{{ route('epicentrum.roles.index') }}" class="ui button">@lang('epicentrum::action.cancel')</a>
+        <a href="{{ route('epicentrum::roles.index') }}" class="ui button">@lang('epicentrum::action.cancel')</a>
         {!! SemanticForm::close() !!}
 
     </div>
@@ -51,7 +51,7 @@
         <p>Saat ini ada <strong>{{ $role->users->count() }} pengguna</strong> yang memiliki role
             <strong>{{ $role->name }}</strong>.</p>
         <p>Dengan menghapus role ini, maka para pengguna tersebut otomatis juga akan kehilangan hak akses yang dimilikinya dari role ini.</p>
-        {!! SemanticForm::open()->delete()->action(route('epicentrum.roles.destroy', $role['id'])) !!}
+        {!! SemanticForm::open()->delete()->action(route('epicentrum::roles.destroy', $role['id'])) !!}
         <button class="ui button red" type="submit" name="submit" value="1">@lang('epicentrum::action.delete')</button>
         {!! SemanticForm::close() !!}
     </div>

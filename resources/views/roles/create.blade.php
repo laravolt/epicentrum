@@ -5,7 +5,7 @@
 
         <h2 class="ui header"><span>Tambah</span> Role</h2>
 
-        {!! SemanticForm::open()->post()->action(route('epicentrum.roles.store')) !!}
+        {!! SemanticForm::open()->post()->action(route('epicentrum::roles.store')) !!}
         {!! SemanticForm::text('name', old('name'))->label(trans('epicentrum::roles.name'))->required() !!}
 
         <table class="ui table">
@@ -36,7 +36,7 @@
         <div class="ui divider hidden"></div>
 
         <button class="ui button primary" type="submit" name="submit" value="1">@lang('epicentrum::action.save')</button>
-        <a href="{{ route('epicentrum.roles.index') }}" class="ui button">@lang('epicentrum::action.cancel')</a>
+        <a href="{{ route('epicentrum::roles.index') }}" class="ui button">@lang('epicentrum::action.cancel')</a>
         {!! SemanticForm::close() !!}
 
     </div>
