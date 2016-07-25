@@ -113,20 +113,4 @@ class EloquentRepository extends BaseRepository implements RepositoryInterface
         return UserStatus::toArray();
     }
 
-    protected function validateEmail($email, $rknId, $identifierColumn)
-    {
-        // validate email format
-        $validEmail = filter_var($email, FILTER_VALIDATE_EMAIL);
-        if (!$validEmail) {
-            throw new SikapException('Maaf, Anda belum bisa login karena alamat email tidak terbaca.');
-        }
-
-        // validate if email already used
-        $exists = $this->model->whereEmail($email)->where($identifierColumn, '<>', $rknId)->exists();
-        if($exists) {
-            throw new SikapException('Maaf, login gagal karena alamat email Anda sudah terdaftar atas nama pengguna lain.');
-        }
-
-        return true;
-    }
 }
