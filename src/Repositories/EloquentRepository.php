@@ -3,7 +3,6 @@
 namespace Laravolt\Epicentrum\Repositories;
 
 use App\Enum\UserStatus;
-use App\Exceptions\SikapException;
 use Carbon\Carbon;
 use Illuminate\Contracts\Validation\ValidationException;
 use Laravolt\Epicentrum\Models\Profile;
