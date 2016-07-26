@@ -7,9 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravolt\Acl\Contracts\HasRoleAndPermission as HasRoleAndPermissionContract;
 use Laravolt\Acl\Traits\HasRoleAndPermission;
-//use Laravolt\Auth\Traits\HasSocialAccount;
 use Laravolt\Avatar\Facade as Avatar;
-use Laravolt\Mural\Contracts\Commentator;
 use Laravolt\Password\CanChangePassword;
 use Laravolt\Password\CanChangePasswordContract;
 use Prettus\Repository\Contracts\Presentable;
@@ -17,7 +15,6 @@ use Prettus\Repository\Traits\PresentableTrait;
 
 class User extends Authenticatable implements CanResetPassword,
     CanChangePasswordContract,
-    Commentator,
     Presentable,
     HasRoleAndPermissionContract
 {
@@ -35,7 +32,7 @@ class User extends Authenticatable implements CanResetPassword,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'status', 'rkn_id', 'centrum_user_id'];
+    protected $fillable = ['name', 'email', 'password', 'status'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -60,26 +57,6 @@ class User extends Authenticatable implements CanResetPassword,
     public function profile()
     {
         return $this->hasOne(Profile::class);
-    }
-
-    public function getCommentatorNameAttribute()
-    {
-        return $this['name'];
-    }
-
-    public function getCommentatorAvatarAttribute()
-    {
-        return Avatar::create($this->attributes['name'])->toBase64();
-    }
-
-    public function getCommentatorPermalinkAttribute()
-    {
-        return url('users/' . $this->id);
-    }
-
-    public function canModerateComment()
-    {
-        return true;
     }
 
     public function getTimezoneAttribute()

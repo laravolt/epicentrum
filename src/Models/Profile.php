@@ -13,11 +13,7 @@ class Profile extends Model
         'bio',
         'timezone',
     ];
-
-    protected $casts = [
-        'rekanan_data' => 'array'
-    ];
-
+    
     public function user()
     {
         return $this->belongsTo(User::class);
