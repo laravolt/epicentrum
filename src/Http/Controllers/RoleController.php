@@ -68,7 +68,7 @@ class RoleController extends Controller
     {
         $role = Role::findOrFail($id);
         $permissions = Permission::all();
-        $assignedPermissions = old('permissions', $role->permissions()->lists('id')->toArray());
+        $assignedPermissions = old('permissions', $role->permissions()->pluck('id')->toArray());
 
         return view('epicentrum::roles.edit', compact('role', 'permissions', 'assignedPermissions'));
     }
