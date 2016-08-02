@@ -32,7 +32,7 @@ class User extends Authenticatable implements CanResetPassword,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'status'];
+    protected $fillable = ['name', 'email', 'password', 'status', 'timezone'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -43,39 +43,9 @@ class User extends Authenticatable implements CanResetPassword,
 
     protected $dates = ['password_last_set', 'deleted_at'];
 
-    protected $with = ['profile'];
-
-    protected static function boot()
-    {
-        static::created(function ($user) {
-            $user->profile()->save(new Profile());
-        });
-
-        parent::boot();
-    }
-
-    public function profile()
-    {
-        return $this->hasOne(Profile::class);
-    }
-
-    public function getTimezoneAttribute()
-    {
-        if ($this->profile) {
-            return $this->profile->timezone;
-        }
-
-        return config('app.timezone');
-    }
-
     public function getAvatar()
     {
         return Avatar::create($this->name)->toBase64();
-    }
-
-    function __toString()
-    {
-        return $this->name;
     }
 
 }

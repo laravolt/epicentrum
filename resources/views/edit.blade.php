@@ -15,8 +15,7 @@
 
         <div class="ui divider section hidden"></div>
 
-        <div class="ui tabular menu top attached four item">
-            <a class="item {{ ($tab == 'profile')?'active':'' }}" href="{{ route('epicentrum::profile.edit', $user['id']) }}">@lang('epicentrum::menu.profile')</a>
+        <div class="ui tabular menu top attached">
             <a class="item {{ ($tab == 'account')?'active':'' }}" href="{{ route('epicentrum::account.edit', $user['id']) }}">@lang('epicentrum::menu.account')</a>
             <a class="item {{ ($tab == 'password')?'active':'' }}" href="{{ route('epicentrum::password.edit', $user['id']) }}">@lang('epicentrum::menu.password')</a>
             <a class="item {{ ($tab == 'role')?'active':'' }}" href="{{ route('epicentrum::role.edit', $user['id']) }}">@lang('epicentrum::menu.role')</a>

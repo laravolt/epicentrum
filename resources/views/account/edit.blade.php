@@ -13,7 +13,11 @@
     </div>
     <div class="field">
         <label>@lang('epicentrum::users.status')</label>
-        {!! SemanticForm::select('status', $statuses, old('status', $user['status'])) !!}
+        {!! SemanticForm::select('status', $statuses, old('status', $user['status']))->addClass('search') !!}
+    </div>
+    <div class="field">
+        <label>@lang('epicentrum::users.timezone')</label>
+        {!! SemanticForm::select('timezone', $timezones, old('timezone', $user['timezone']))->addClass('search') !!}
     </div>
 
     <div class="ui divider hidden"></div>
@@ -27,11 +31,10 @@
 
     <div class="ui basic segment">
         <h3>Hapus Akun</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aperiam autem delectus ea earum error et ex, facere, labore, laudantium magnam minus officia perferendis provident quae quam quo temporibus voluptate.</p>
 
         {!! SemanticForm::open()->delete()->action(route('epicentrum::users.destroy', $user['id'])) !!}
 
-        <button class="ui button red" type="submit" name="submit" value="1">@lang('epicentrum::button.delete')</button>
+        <button class="ui button red" type="submit" name="submit" value="1">@lang('epicentrum::action.delete')</button>
         {!! SemanticForm::close() !!}
     </div>
 

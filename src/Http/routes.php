@@ -23,18 +23,6 @@ Route::group(
                 ]
             ]);
 
-            Route::resource('profile', 'ProfileController', [
-                'names' => [
-                    'index'   => 'profile.index',
-                    'create'  => 'profile.create',
-                    'store'   => 'profile.store',
-                    'show'    => 'profile.show',
-                    'edit'    => 'profile.edit',
-                    'update'  => 'profile.update',
-                    'destroy' => 'profile.destroy'
-                ]
-            ]);
-
             Route::resource('password', 'PasswordController', [
                 'names' => [
                     'edit' => 'password.edit',

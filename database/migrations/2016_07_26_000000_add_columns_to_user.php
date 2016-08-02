@@ -15,6 +15,7 @@ class AddStatusAndSoftDeleteToUser extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->softDeletes();
             $table->string('status');
+            $table->string('timezone')->default(config('app.timezone'));
         });
     }
 
@@ -28,6 +29,7 @@ class AddStatusAndSoftDeleteToUser extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropSoftDeletes();
             $table->dropColumn('status');
+            $table->dropColumn('timezone');
         });
     }
 }

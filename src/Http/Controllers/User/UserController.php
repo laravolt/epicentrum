@@ -91,7 +91,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return redirect(route('epicentrum::profile.edit', $id));
+        return redirect(route('epicentrum::account.edit', $id));
     }
 
     public function destroy($id)

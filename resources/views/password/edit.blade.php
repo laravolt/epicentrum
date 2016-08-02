@@ -6,7 +6,7 @@
     <p>User akan mendapat email yang berisi link untuk melakukan reset password. User harus mengisi sendiri password barunya.</p>
     <form action="{{ route('epicentrum::password.reset', [$user['id']]) }}" method="POST">
     {{ csrf_field() }}
-    <button type="submit" class="ui button" href="">Send email reset password</button>
+    <button type="submit" class="ui button" href="">@lang('epicentrum::action.send_reset_password_link')</button>
     </form>
 
     <div class="ui divider"></div>
@@ -21,6 +21,6 @@
             <label>@lang('epicentrum::users.change_password_on_first_login')</label>
         </div>
     </div>
-    <button type="submit" class="ui button" href="">Send new password</button>
+    <button type="submit" class="ui button" href="">@lang('epicentrum::action.send_new_password')</button>
     {!! SemanticForm::close() !!}
 @endsection

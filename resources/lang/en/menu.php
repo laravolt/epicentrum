@@ -1,6 +1,5 @@
 <?php
 return [
-    'profile'  => 'Profile',
     'account'  => 'Account',
     'password' => 'Password',
     'email'    => 'Email',

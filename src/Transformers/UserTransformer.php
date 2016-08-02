@@ -19,6 +19,7 @@ class UserTransformer extends TransformerAbstract
             'name'       => $model->name,
             'email'      => $model->email,
             'status'     => $model->status,
+            'timezone'   => $model->timezone,
             'created_at' => format_localized($model->created_at),
             'updated_at' => format_localized($model->updated_at),
             'avatar'     => $model->getAvatar(),
