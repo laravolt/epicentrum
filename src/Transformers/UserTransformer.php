@@ -1,8 +1,8 @@
 <?php
 namespace Laravolt\Epicentrum\Transformers;
 
+use Illuminate\Database\Eloquent\Model;
 use League\Fractal\TransformerAbstract;
-use Laravolt\Epicentrum\Models\User;
 
 class UserTransformer extends TransformerAbstract
 {
@@ -12,7 +12,7 @@ class UserTransformer extends TransformerAbstract
      * @param User $model
      * @return array
      */
-    public function transform(User $model)
+    public function transform(Model $model)
     {
         return [
             'id'         => (int)$model->id,
@@ -22,9 +22,7 @@ class UserTransformer extends TransformerAbstract
             'timezone'   => $model->timezone,
             'created_at' => format_localized($model->created_at),
             'updated_at' => format_localized($model->updated_at),
-            'avatar'     => $model->getAvatar(),
-
-            'keterangan' => $model->profile->keterangan ?? '',
+            'avatar'     => $model->getAvatar()
         ];
     }
 

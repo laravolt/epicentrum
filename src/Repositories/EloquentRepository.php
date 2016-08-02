@@ -4,10 +4,7 @@ namespace Laravolt\Epicentrum\Repositories;
 
 use App\Enum\UserStatus;
 use Carbon\Carbon;
-use Illuminate\Contracts\Validation\ValidationException;
-use Laravolt\Epicentrum\Models\Profile;
 use Laravolt\Epicentrum\Presenter;
-use Laravolt\Epicentrum\Models\User;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 
@@ -33,7 +30,7 @@ class EloquentRepository extends BaseRepository implements RepositoryInterface
      */
     public function model()
     {
-        return User::class;
+        return config('auth.providers.users.model');
     }
 
     /**
