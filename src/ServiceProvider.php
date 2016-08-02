@@ -56,6 +56,8 @@ class ServiceProvider extends BaseServiceProvider
 
         $this->loadRequiredProviders();
 
+        $this->registerMenu();
+
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
         $loader->alias('SemanticForm', \Laravolt\SemanticForm\Facade::class);
         $loader->alias('Suitable', \Laravolt\Suitable\Facade::class);
@@ -65,7 +67,7 @@ class ServiceProvider extends BaseServiceProvider
     {
         $loadedProviders = $this->app->getLoadedProviders();
 
-        foreach($this->requiredProviders as $class) {
+        foreach ($this->requiredProviders as $class) {
             if (!isset($loadedProviders[$class])) {
                 $this->app->register($class);
             }
@@ -76,5 +78,13 @@ class ServiceProvider extends BaseServiceProvider
     {
         $router = $this->app['router'];
         require __DIR__.'/Http/routes.php';
+    }
+
+    protected function registerMenu()
+    {
+        if ($this->app->bound('laravolt.menu')) {
+            $this->app['laravolt.menu']->add('User Management', route('epicentrum::users.index'));
+            $this->app['laravolt.menu']->add('Role Management', route('epicentrum::roles.index'));
+        }
     }
 }
