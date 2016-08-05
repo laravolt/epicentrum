@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddStatusAndSoftDeleteToUser extends Migration
+class EpicentrumMigration extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddStatusAndSoftDeleteToUser extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->softDeletes();
-            $table->string('status');
+            $table->string('status')->index();
             $table->string('timezone')->default(config('app.timezone'));
+            $table->softDeletes();
         });
     }
 
