@@ -87,8 +87,7 @@ class RoleController extends Controller
 
         $role->syncPermission($request->get('permissions', []));
 
-        Notification::success('acl.roles.update.success');
-        return redirect()->route('epicentrum::roles.index');
+        return redirect()->route('epicentrum::roles.index')->withSuccess('acl.roles.update.success');
     }
 
     /**

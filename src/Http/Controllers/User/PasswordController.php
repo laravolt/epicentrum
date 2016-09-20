@@ -44,9 +44,10 @@ class PasswordController extends Controller
 
     public function reset($id)
     {
-        $this->password->sendResetLink(['id' => $id]);
-        Notification::success('Email reset password telah dikirimkan.');
-        return redirect()->back();
+        $user = $this->repository->skipPresenter()->find($id);
+        $this->password->sendResetLink($user);
+
+        return redirect()->back()->withSuccess('Email reset password telah dikirimkan.');
     }
 
     public function generate(Request $request, $id)

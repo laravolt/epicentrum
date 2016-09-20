@@ -79,8 +79,7 @@ class UserController extends Controller
             });
         }
 
-        Notification::success(trans('users.creation_success'));
-        return redirect()->route('epicentrum::users.index');
+        return redirect()->route('epicentrum::users.index')->withSuccess('users.creation_success');
     }
 
     /**
