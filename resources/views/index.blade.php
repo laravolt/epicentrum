@@ -1,4 +1,4 @@
-@extends(config('epicentrum.view.layout'))
+@extends(config('laravolt.epicentrum.view.layout'))
 
 @section('content')
 

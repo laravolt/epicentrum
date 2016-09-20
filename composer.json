@@ -24,7 +24,6 @@
         "league/fractal": "^0.13.0",
         "laravolt/password": "^1.0",
         "laravolt/acl": "^2.0",
-        "laravolt/support": "^1.0",
         "laravolt/avatar": "^1.4",
         "laravolt/suitable": "^2.0",
         "laravolt/semantic-form": "^1.3"

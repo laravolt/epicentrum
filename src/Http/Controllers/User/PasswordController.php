@@ -6,7 +6,6 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use Laravolt\Password\Password;
 use App\Http\Controllers\Controller;
-use Krucas\Notification\Facades\Notification;
 use Laravolt\Epicentrum\Repositories\RepositoryInterface;
 
 class PasswordController extends Controller
@@ -55,7 +54,6 @@ class PasswordController extends Controller
         $user = $this->repository->skipPresenter()->find($id);
         $this->password->sendNewPassword($user, $request->has('must_change_password'));
 
-        Notification::success('Password berhasil diganti dan telah dikirim ke email.');
-        return redirect()->back();
+        return redirect()->back()->withSuccess('Password berhasil diganti dan telah dikirim ke email.');
     }
 }

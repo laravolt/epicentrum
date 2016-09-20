@@ -7,7 +7,7 @@ use Laravolt\Acl\Models\Role;
 use Laravolt\Epicentrum\Http\Requests\CreateAccount;
 use Laravolt\Epicentrum\Repositories\RepositoryInterface;
 use Illuminate\Support\Facades\Mail;
-use Krucas\Notification\Facades\Notification;
+use Laravolt\Epicentrum\Repositories\TimezoneRepository;
 
 
 class UserController extends Controller
@@ -27,7 +27,7 @@ class UserController extends Controller
      * @param UserRepositoryEloquent $repository
      * @param TimezoneRepositoryArray $timezone
      */
-    public function __construct(RepositoryInterface $repository, \Laravolt\Support\Repositories\TimezoneRepositoryArray $timezone)
+    public function __construct(RepositoryInterface $repository, TimezoneRepository $timezone)
     {
         $this->repository = $repository;
         $this->timezone = $timezone;
@@ -97,7 +97,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         $this->repository->delete($id);
-        Notification::warning('User berhasil dihapus');
-        return redirect(route('epicentrum::users.index'));
+
+        return redirect(route('epicentrum::users.index'))->withSuccess('User berhasil dihapus');
     }
 }

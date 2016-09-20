@@ -3,9 +3,9 @@
 Route::group(
     [
         'namespace'  => '\Laravolt\Epicentrum\Http\Controllers',
-        'prefix'     => config('epicentrum.route.prefix'),
+        'prefix'     => config('laravolt.epicentrum.route.prefix'),
         'as'         => 'epicentrum::',
-        'middleware' => config('epicentrum.route.middleware')
+        'middleware' => config('laravolt.epicentrum.route.middleware')
     ],
     function () {
 

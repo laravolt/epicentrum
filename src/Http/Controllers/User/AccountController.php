@@ -2,7 +2,7 @@
 
 namespace Laravolt\Epicentrum\Http\Controllers\User;
 
-use Illuminate\Http\Request;
+use Laravolt\Epicentrum\Http\Requests\EditAccount;
 
 class AccountController extends UserController
 {
@@ -29,12 +29,11 @@ class AccountController extends UserController
      * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditAccount $request, $id)
     {
         $this->repository->update($request->except('_token'), $id);
-        \Krucas\Notification\Facades\Notification::success('Data akun berhasil diperbarui');
 
-        return redirect()->back();
+        return redirect()->back()->withSuccess('Data akun berhasil diperbarui');
     }
 
 }

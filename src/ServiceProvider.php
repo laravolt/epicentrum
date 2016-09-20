@@ -31,6 +31,9 @@ class ServiceProvider extends BaseServiceProvider
     {
         $this->app->bind(\Laravolt\Epicentrum\Repositories\RepositoryInterface::class,
             \Laravolt\Epicentrum\Repositories\EloquentRepository::class);
+
+        $this->app->bind(\Laravolt\Epicentrum\Repositories\TimezoneRepository::class,
+            \Laravolt\Epicentrum\Repositories\DefaultTimezoneRepository::class);
     }
 
     /**
@@ -41,7 +44,7 @@ class ServiceProvider extends BaseServiceProvider
     public function boot()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/config.php', 'epicentrum'
+            __DIR__.'/../config/config.php', 'laravolt.epicentrum'
         );
 
         $this->loadViewsFrom(realpath(__DIR__.'/../resources/views'), 'epicentrum');
@@ -50,7 +53,7 @@ class ServiceProvider extends BaseServiceProvider
 
         $this->loadMigrationsFrom(realpath(__DIR__.'/../database/migrations'));
 
-        if (config('epicentrum.route.enable')) {
+        if (config('laravolt.epicentrum.route.enable')) {
             $this->loadRoutes();
         }
 

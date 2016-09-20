@@ -4,7 +4,7 @@ namespace Laravolt\Epicentrum\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatePassword extends FormRequest
+class EditAccount extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,10 @@ class UpdatePassword extends FormRequest
     public function rules()
     {
         return [
-            'password'   => 'required|min:6|confirmed',
+            'name'     => 'required|max:255',
+            'email'    => 'required|email|unique:users,id,'.auth()->user()->getAuthIdentifier(),
+            'status'   => 'required',
+            'timezone' => 'required',
         ];
     }
 }
