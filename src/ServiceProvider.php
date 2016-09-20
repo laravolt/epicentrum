@@ -20,6 +20,7 @@ class ServiceProvider extends BaseServiceProvider
     protected $requiredProviders = [
         \Laravolt\Suitable\ServiceProvider::class,
         \Laravolt\SemanticForm\ServiceProvider::class,
+        \Laravolt\Password\ServiceProvider::class,
     ];
 
     /**
