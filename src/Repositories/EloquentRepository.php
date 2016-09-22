@@ -68,33 +68,9 @@ class EloquentRepository extends BaseRepository implements RepositoryInterface
 
         $user->roles()->sync($roles);
 
-        $this->updateProfile($attributes, $user['id']);
-
         return $user;
     }
 
-
-    /**
-     * Update a entity in repository by id
-     *
-     * @throws ValidatorException
-     * @param array $attributes
-     * @param       $id
-     * @return mixed
-     */
-    public function updateProfile(array $attributes, $id)
-    {
-        $this->skipPresenter();
-        $user = $this->find($id);
-
-        $profile = $user->profile;
-        if (!$profile) {
-            $profile = new Profile();
-        }
-        $profile->fill(array_only($attributes, ['bio', 'timezone']));
-
-        return $user->profile()->save($profile);
-    }
 
     public function updatePassword($password, $id)
     {
