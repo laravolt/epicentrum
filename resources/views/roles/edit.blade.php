@@ -1,14 +1,16 @@
 @extends(config('laravolt.epicentrum.view.layout'))
 
 @section('content')
+
+    <a href="{{ route('epicentrum::roles.index') }}" class="ui button mini"><i class="icon angle left"></i> @lang('epicentrum::label.back_to_roles_index')</a>
+
     <div class="ui segment very padded">
 
-        <h2 class="ui header text centered"><span>Edit</span> Role</h2>
+        <h2 class="ui header">Edit Role</h2>
 
         {!! SemanticForm::open()->put()->action(route('epicentrum::roles.update', $role['id'])) !!}
         <div class="field required">
-            <label>@lang('roles.name')</label>
-            {!! SemanticForm::text('name', old('name', $role['name'])) !!}
+            {!! SemanticForm::text('name', old('name', $role['name']))->label(trans('epicentrum::attributes.roles.name')) !!}
         </div>
 
         <table class="ui table">

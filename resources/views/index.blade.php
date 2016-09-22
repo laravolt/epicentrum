@@ -2,6 +2,13 @@
 
 @section('content')
 
+    <div class="ui grid two column">
+        <div class="column"><h2 class="ui header">@lang('epicentrum::label.users')</h2></div>
+        <div class="column right aligned"><a href="{{ route('epicentrum::users.create') }}" class="ui button primary"><i class="icon plus"></i> @lang('epicentrum::action.add')</a></div>
+    </div>
+
+    <div class="ui divider hidden"></div>
+
     {!! Suitable::source($users)
     ->title(trans('epicentrum::users.pages.index.header'))
     ->columns([
@@ -12,7 +19,7 @@
         ['header' => trans('epicentrum::users.email'), 'field' => 'email'],
         ['header' => trans('epicentrum::users.status'), 'field' => 'status'],
         ['header' => false, 'raw' => function($data){
-            return "<a href='".route('epicentrum::users.edit', $data->id)."'><i class='icon setting'></i></a>";
+            return "<a href='".route('epicentrum::users.edit', $data->id)."'><i class='icon ellipsis setting'></i></a>";
         }],
     ])
     ->render() !!}

@@ -1,11 +1,10 @@
 @extends(config('laravolt.epicentrum.view.layout'))
 @section('content')
-    <div class="ui segment very padded">
 
+    <a href="{{ route('epicentrum::users.index') }}" class="ui button mini"><i class="icon angle left"></i> @lang('epicentrum::action.back')</a>
+
+    <div class="ui segment very padded">
         <div class="ui list horizontal">
-            <div class="item">
-                <a href="{{ route('epicentrum::users.index') }}" class="ui button basic"><i class="icon angle left"></i> @lang('epicentrum::action.back')</a>
-            </div>
             <div class="item">
                 <h3 class="ui header">
                     <img class="ui image avatar" src="{{ $user->present('avatar') }}" alt=""> {{ $user->present('name') }}

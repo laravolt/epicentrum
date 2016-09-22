@@ -1,12 +1,15 @@
 @extends(config('laravolt.epicentrum.view.layout'))
 
 @section('content')
+
+    <a href="{{ route('epicentrum::roles.index') }}" class="ui button mini"><i class="icon angle left"></i> @lang('epicentrum::label.back_to_roles_index')</a>
+
     <div class="ui segment very padded">
 
-        <h2 class="ui header"><span>Tambah</span> Role</h2>
+        <h2 class="ui header">@lang('epicentrum::label.add_role')</h2>
 
         {!! SemanticForm::open()->post()->action(route('epicentrum::roles.store')) !!}
-        {!! SemanticForm::text('name', old('name'))->label(trans('epicentrum::roles.name'))->required() !!}
+        {!! SemanticForm::text('name', old('name'))->label(trans('epicentrum::attributes.roles.name'))->required() !!}
 
         <table class="ui table">
             <thead>
@@ -14,7 +17,7 @@
                 <th>
                     <div class="ui checkbox" data-toggle="checkall" data-selector=".checkbox[data-type='check-all-child']">
                         <input type="checkbox">
-                        <label><strong>Hak Akses</strong></label>
+                        <label><strong>@lang('epicentrum::label.permissions')</strong></label>
                     </div>
                 </th>
             </tr>
