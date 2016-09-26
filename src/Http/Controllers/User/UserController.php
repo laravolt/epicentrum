@@ -4,6 +4,7 @@ namespace Laravolt\Epicentrum\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Laravolt\Acl\Models\Role;
+use Laravolt\Epicentrum\Mail\AccountInformation;
 use Laravolt\Epicentrum\Http\Requests\CreateAccount;
 use Laravolt\Epicentrum\Repositories\RepositoryInterface;
 use Illuminate\Support\Facades\Mail;
@@ -73,10 +74,11 @@ class UserController extends Controller
 
         // send account info to email
         if($request->has('send_account_information')) {
-            Mail::send('emails.account_information', compact('user', 'password'), function($message) use ($user) {
-                $message->subject('Your Account Information');
-                $message->to($user->email);
-            });
+            Mail::to($user)->send(new AccountInformation($user, $password));
+            //Mail::send('emails.account_information', compact('user', 'password'), function($message) use ($user) {
+            //    $message->subject('Your Account Information');
+            //    $message->to($user->email);
+            //});
         }
 
         return redirect()->route('epicentrum::users.index')->withSuccess('users.creation_success');
