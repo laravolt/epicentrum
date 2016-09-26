@@ -87,8 +87,9 @@ class ServiceProvider extends BaseServiceProvider
     protected function registerMenu()
     {
         if ($this->app->bound('laravolt.menu')) {
-            $this->app['laravolt.menu']->add('User Management', route('epicentrum::users.index'));
-            $this->app['laravolt.menu']->add('Role Management', route('epicentrum::roles.index'));
+            $menu = $this->app['laravolt.menu']->add('Epicentrum')->data('icon', 'users');
+            $menu->add(trans('epicentrum::label.users'), route('epicentrum::users.index'));
+            $menu->add(trans('epicentrum::label.roles'), route('epicentrum::roles.index'));
         }
     }
 }
