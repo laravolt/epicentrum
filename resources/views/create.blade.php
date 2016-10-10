@@ -17,7 +17,7 @@
             <label>@lang('epicentrum::users.password')</label>
             <div class="ui action input">
                 {!! SemanticForm::text('password', old('password'))->id('password') !!}
-                <button class="ui button small" type="button" onclick="document.getElementById('password').setAttribute('value', Math.random().toString(36).substr(2,8))">@lang('epicentrum::action.generate_password')</button>
+                <button class="ui button small" type="button" data-role="randomize-password">@lang('epicentrum::action.generate_password')</button>
             </div>
         </div>
 
@@ -49,3 +49,13 @@
 
     </div>
 @endsection
+
+@push('body')
+<script>
+    $(function(){
+        $('[data-role="randomize-password"]').on('click', function(){
+            document.getElementById('password').setAttribute('value', Math.random().toString(36).substr(2,8));
+        });
+    });
+</script>
+@endpush
