@@ -56,11 +56,10 @@ class ServiceProvider extends BaseServiceProvider
 
         if (config('laravolt.epicentrum.route.enable')) {
             $this->loadRoutes();
+            $this->registerMenu();
         }
 
         $this->loadRequiredProviders();
-
-        $this->registerMenu();
 
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
         $loader->alias('SemanticForm', \Laravolt\SemanticForm\Facade::class);
