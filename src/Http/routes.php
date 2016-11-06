@@ -9,6 +9,8 @@ Route::group(
     ],
     function () {
 
+        Route::get('/', ['uses' => 'DefaultController@index', 'as' => 'index']);
+
         Route::group(['namespace' => 'User'], function () {
 
             Route::resource('users', 'UserController', [
