@@ -56,6 +56,9 @@ class ServiceProvider extends BaseServiceProvider
 
         if (config('laravolt.epicentrum.route.enable')) {
             $this->loadRoutes();
+        }
+
+        if (config('laravolt.epicentrum.menu.enable')) {
             $this->registerMenu();
         }
 

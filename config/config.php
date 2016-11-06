@@ -11,4 +11,7 @@ return [
     'view'  => [
         'layout' => 'layouts.base'
     ],
+    'menu'  => [
+        'enable' => true
+    ],
 ];
