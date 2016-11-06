@@ -33,7 +33,7 @@ class AccountController extends UserController
     {
         $this->repository->update($request->except('_token'), $id);
 
-        return redirect()->back()->withSuccess('Data akun berhasil diperbarui');
+        return redirect()->back()->withSuccess(trans('epicentrum::message.account_updated'));
     }
 
 }

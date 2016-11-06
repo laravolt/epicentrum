@@ -32,6 +32,6 @@ class RoleController extends UserController
         $user = $this->repository->skipPresenter()->find($id);
         $user->roles()->sync($request->get('roles', []));
 
-        return redirect()->back()->withSuccess('Role berhasil diperbarui');
+        return redirect()->back()->withSuccess(trans('epicentrum::message.role_updated'));
     }
 }

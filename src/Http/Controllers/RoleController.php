@@ -27,7 +27,6 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
-
         return view('epicentrum::roles.index', compact('roles'));
     }
 
@@ -54,7 +53,7 @@ class RoleController extends Controller
         $role = Role::create($request->only('name'));
         $role->syncPermission($request->get('permissions', []));
 
-        return redirect()->route('epicentrum::roles.index');
+        return redirect()->route('epicentrum::roles.index')->withSuccess(trans('epicentrum::message.role_created'));
     }
 
     /**
@@ -87,7 +86,7 @@ class RoleController extends Controller
 
         $role->syncPermission($request->get('permissions', []));
 
-        return redirect()->route('epicentrum::roles.index')->withSuccess('acl.roles.update.success');
+        return redirect()->route('epicentrum::roles.index')->withSuccess(trans('epicentrum::message.role_updated'));
     }
 
     /**
@@ -100,6 +99,6 @@ class RoleController extends Controller
     {
         Role::findOrFail($id)->delete();
 
-        return redirect()->route('epicentrum::roles.index')->withSuccess('acl.roles.delete.success');
+        return redirect()->route('epicentrum::roles.index')->withSuccess(trans('epicentrum::message.role_deleted'));
     }
 }

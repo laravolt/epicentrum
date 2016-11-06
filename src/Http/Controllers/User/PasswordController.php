@@ -47,7 +47,7 @@ class PasswordController extends Controller
         $user = $this->repository->skipPresenter()->find($id);
         $this->password->sendResetLink($user);
 
-        return redirect()->back()->withSuccess('Email reset password telah dikirimkan.');
+        return redirect()->back()->withSuccess(trans('epicentrum::message.password_reset_sent'));
     }
 
     public function generate(Request $request, $id)
@@ -55,6 +55,6 @@ class PasswordController extends Controller
         $user = $this->repository->skipPresenter()->find($id);
         $this->password->sendNewPassword($user, $request->has('must_change_password'));
 
-        return redirect()->back()->withSuccess('Password berhasil diganti dan telah dikirim ke email.');
+        return redirect()->back()->withSuccess(trans('epicentrum::message.password_changed_and_sent_to_email'));
     }
 }

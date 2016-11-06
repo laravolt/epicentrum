@@ -81,7 +81,7 @@ class UserController extends Controller
             //});
         }
 
-        return redirect()->route('epicentrum::users.index')->withSuccess('users.creation_success');
+        return redirect()->route('epicentrum::users.index')->withSuccess(trans('epicentrum::message.user_created'));
     }
 
     /**
@@ -99,6 +99,6 @@ class UserController extends Controller
     {
         $this->repository->delete($id);
 
-        return redirect(route('epicentrum::users.index'))->withSuccess('User berhasil dihapus');
+        return redirect(route('epicentrum::users.index'))->withSuccess(trans('epicentrum::message.user_deleted'));
     }
 }
