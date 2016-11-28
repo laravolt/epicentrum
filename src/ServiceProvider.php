@@ -2,17 +2,17 @@
 
 namespace Laravolt\Epicentrum;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 /**
  * Class PackageServiceProvider
- *
+
  */
 class ServiceProvider extends BaseServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
-     *
      * @var bool
      */
     protected $defer = false;
@@ -25,7 +25,6 @@ class ServiceProvider extends BaseServiceProvider
 
     /**
      * Register the service provider.
-     *
      * @return void
      */
     public function register()
@@ -39,7 +38,6 @@ class ServiceProvider extends BaseServiceProvider
 
     /**
      * Application is booting
-     *
      * @return void
      */
     public function boot()
@@ -67,6 +65,8 @@ class ServiceProvider extends BaseServiceProvider
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
         $loader->alias('SemanticForm', \Laravolt\SemanticForm\Facade::class);
         $loader->alias('Suitable', \Laravolt\Suitable\Facade::class);
+
+        $this->registerBlade();
     }
 
     protected function loadRequiredProviders()
@@ -93,5 +93,16 @@ class ServiceProvider extends BaseServiceProvider
             $menu->add(trans('epicentrum::label.users'), route('epicentrum::users.index'));
             $menu->add(trans('epicentrum::label.roles'), route('epicentrum::roles.index'));
         }
+    }
+
+    protected function registerBlade()
+    {
+        Blade::directive('role', function ($expression) {
+            return "<?php if(auth()->check() && auth()->user()->hasRole($expression)): ?>";
+        });
+
+        Blade::directive('endrole', function () {
+            return "<?php endif; ?>";
+        });
     }
 }
