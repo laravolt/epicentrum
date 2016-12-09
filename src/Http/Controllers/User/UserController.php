@@ -4,6 +4,7 @@ namespace Laravolt\Epicentrum\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Laravolt\Acl\Models\Role;
+use Laravolt\Epicentrum\Http\Requests\DeleteAccount;
 use Laravolt\Epicentrum\Mail\AccountInformation;
 use Laravolt\Epicentrum\Http\Requests\CreateAccount;
 use Laravolt\Epicentrum\Repositories\RepositoryInterface;
@@ -95,7 +96,7 @@ class UserController extends Controller
         return redirect(route('epicentrum::account.edit', $id));
     }
 
-    public function destroy($id)
+    public function destroy(DeleteAccount $request, $id)
     {
         $this->repository->delete($id);
 

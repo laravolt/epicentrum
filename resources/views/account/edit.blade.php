@@ -30,12 +30,15 @@
     <div class="ui divider"></div>
 
     <div class="ui basic segment">
-        <h3>Hapus Akun</h3>
+        <h3>@lang('epicentrum::users.delete_account')</h3>
 
-        {!! SemanticForm::open()->delete()->action(route('epicentrum::users.destroy', $user['id'])) !!}
-
-        <button class="ui button red" type="submit" name="submit" value="1">@lang('epicentrum::action.delete')</button>
-        {!! SemanticForm::close() !!}
+        @if($user['id'] == auth()->id())
+            <div class="ui message warning">@lang('epicentrum::message.cannot_delete_yourself')</div>
+        @else
+            {!! SemanticForm::open()->delete()->action(route('epicentrum::users.destroy', $user['id'])) !!}
+            <button class="ui button red" type="submit" name="submit" value="1">@lang('epicentrum::action.delete')</button>
+            {!! SemanticForm::close() !!}
+        @endif
     </div>
 
 @endsection

@@ -9,4 +9,5 @@ return [
     'role_created'                       => 'New role created',
     'role_updated'                       => 'Role updated',
     'role_deleted'                       => 'Role deleted',
+    'cannot_delete_yourself'             => 'You are not permitted to delete yourself. Please ask another admin to do it.',
 ];

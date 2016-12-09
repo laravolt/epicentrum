@@ -9,4 +9,5 @@ return [
     'role_created'                       => 'Role berhasil dibuat',
     'role_updated'                       => 'Role berhasil diperbarui',
     'role_deleted'                       => 'Role berhasil dihapus',
+    'cannot_delete_yourself'             => 'Anda tidak bisa menghapus akun sendiri. Silakan minta admin yang lain untuk melakukannya.',
 ];

@@ -18,4 +18,5 @@ return [
     ],
     'send_account_information_via_email' => 'Send account information via email',
     'change_password_on_first_login'     => 'Force to change password on first login',
+    'delete_account'                     => 'Delete Account',
 ];

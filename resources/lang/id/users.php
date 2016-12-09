@@ -18,4 +18,5 @@ return [
     ],
     'send_account_information_via_email' => 'Kirim informasi akun dan password via email',
     'change_password_on_first_login'     => 'Paksa untuk ganti password ketika pertama kali login',
+    'delete_account'                     => 'Hapus Akun',
 ];
