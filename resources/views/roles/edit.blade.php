@@ -54,7 +54,7 @@
             <strong>{{ $role->name }}</strong>.</p>
         <p>Dengan menghapus role ini, maka para pengguna tersebut otomatis juga akan kehilangan hak akses yang dimilikinya dari role ini.</p>
         {!! SemanticForm::open()->delete()->action(route('epicentrum::roles.destroy', $role['id'])) !!}
-        <button class="ui button red" type="submit" name="submit" value="1">@lang('epicentrum::action.delete')</button>
+        <button class="ui button red" type="submit" name="submit" value="1" onclick="return confirm('@lang('epicentrum::message.role_deletion_confirmation')')">@lang('epicentrum::action.delete')</button>
         {!! SemanticForm::close() !!}
     </div>
 @endsection
