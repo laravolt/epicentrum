@@ -10,4 +10,5 @@ return [
     'role_updated'                       => 'Role updated',
     'role_deleted'                       => 'Role deleted',
     'cannot_delete_yourself'             => 'You are not permitted to delete yourself. Please ask another admin to do it.',
+    'account_deletion_confirmation'      => 'Are you sure to delete this account?',
 ];

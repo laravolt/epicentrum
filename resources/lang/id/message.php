@@ -10,4 +10,5 @@ return [
     'role_updated'                       => 'Role berhasil diperbarui',
     'role_deleted'                       => 'Role berhasil dihapus',
     'cannot_delete_yourself'             => 'Anda tidak bisa menghapus akun sendiri. Silakan minta admin yang lain untuk melakukannya.',
+    'account_deletion_confirmation'      => 'Anda yakin ingin menghapus akun ini?',
 ];

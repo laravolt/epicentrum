@@ -36,7 +36,7 @@
             <div class="ui message warning">@lang('epicentrum::message.cannot_delete_yourself')</div>
         @else
             {!! SemanticForm::open()->delete()->action(route('epicentrum::users.destroy', $user['id'])) !!}
-            <button class="ui button red" type="submit" name="submit" value="1">@lang('epicentrum::action.delete')</button>
+            <button class="ui button red" type="submit" name="submit" value="1" onclick="return confirm('@lang('epicentrum::message.account_deletion_confirmation')')">@lang('epicentrum::action.delete')</button>
             {!! SemanticForm::close() !!}
         @endif
     </div>
