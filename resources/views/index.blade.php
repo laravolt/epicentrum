@@ -16,7 +16,9 @@
             return "<img class='ui image avatar' src='" . Laravolt\Avatar\Facade::create($data->name)->toBase64() . "'>" . " " . $data->name;
         }],
         ['header' => trans('epicentrum::users.email'), 'field' => 'email'],
-        ['header' => trans('epicentrum::users.status'), 'field' => 'status'],
+        ['header' => trans('epicentrum::users.status'), 'raw' => function($data){
+            return $data->getStatusLabel();
+        }],
         ['header' => false, 'raw' => function($data){
             return "<a class='ui button mini' href='".route('epicentrum::users.edit', $data->id)."'>".trans('epicentrum::action.edit')."</a>";
         }],

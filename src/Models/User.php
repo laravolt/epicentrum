@@ -2,6 +2,7 @@
 
 namespace Laravolt\Epicentrum\Models;
 
+use App\Enum\UserStatus;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -22,21 +23,18 @@ class User extends Authenticatable implements CanResetPassword,
 
     /**
      * The database table used by the model.
-     *
      * @var string
      */
     protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = ['name', 'email', 'password', 'status', 'timezone'];
 
     /**
      * The attributes excluded from the model's JSON form.
-     *
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
@@ -46,6 +44,15 @@ class User extends Authenticatable implements CanResetPassword,
     public function getAvatar()
     {
         return Avatar::create($this->name)->toBase64();
+    }
+
+    public function getStatusLabel()
+    {
+        if (UserStatus::isValidKey($status = $this->status)) {
+            return UserStatus::$status();
+        }
+
+        return $this->status;
     }
 
 }
