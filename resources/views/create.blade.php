@@ -21,7 +21,11 @@
             </div>
         </div>
 
-        {!! SemanticForm::checkboxGroup('roles', $roles)->label(trans('epicentrum::users.roles')) !!}
+        @if($multipleRole)
+            {!! SemanticForm::checkboxGroup('roles', $roles)->label(trans('epicentrum::users.roles')) !!}
+        @else
+            {!! SemanticForm::radioGroup('roles', $roles)->label(trans('epicentrum::users.roles')) !!}
+        @endif
 
         <div class="field required">
             <label>@lang('epicentrum::users.status')</label>

@@ -14,4 +14,7 @@ return [
     'menu'  => [
         'enable' => true
     ],
+    'role'  => [
+        'multiple' => true
+    ],
 ];

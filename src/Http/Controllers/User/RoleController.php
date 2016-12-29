@@ -17,7 +17,9 @@ class RoleController extends UserController
     {
         $user = $this->repository->skipPresenter()->find($id);
         $roles = Role::all();
-        return view('epicentrum::role.edit', compact('user', 'roles'));
+        $multipleRole = config('laravolt.epicentrum.role.multiple');
+
+        return view('epicentrum::role.edit', compact('user', 'roles', 'multipleRole'));
     }
 
     /**

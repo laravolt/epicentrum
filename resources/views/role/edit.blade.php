@@ -7,8 +7,8 @@
         <label>Role</label>
         @foreach($roles as $role)
         <div class="field">
-            <div class="ui checkbox">
-                <input type="checkbox" name="roles[]" value="{{ $role->id }}" {{ ($user->hasRole($role))?'checked=checked':'' }}>
+            <div class="ui checkbox {{ $multipleRole?'':'radio' }}">
+                <input type="{{ $multipleRole?'checkbox':'radio' }}" name="roles[]" value="{{ $role->id }}" {{ ($user->hasRole($role))?'checked=checked':'' }}>
                 <label>{{ $role->name }}</label>
             </div>
         </div>

@@ -56,8 +56,9 @@ class UserController extends Controller
     {
         $statuses = $this->repository->availableStatus();
         $roles = Role::all()->pluck('name', 'id');
+        $multipleRole = config('laravolt.epicentrum.role.multiple');
 
-        return view('epicentrum::create', compact('statuses', 'roles'));
+        return view('epicentrum::create', compact('statuses', 'roles', 'multipleRole'));
     }
 
     /**
