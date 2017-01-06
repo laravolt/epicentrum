@@ -66,7 +66,7 @@ class EloquentRepository extends BaseRepository implements RepositoryInterface
 
         $user = parent::create($attributes);
 
-        $user->roles()->sync($roles);
+        $user->syncRoles($roles);
 
         return $user;
     }
