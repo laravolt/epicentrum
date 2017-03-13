@@ -11,6 +11,19 @@
         <label>@lang('epicentrum::users.email')</label>
         {!! SemanticForm::text('email', old('email', $user['email'])) !!}
     </div>
+
+    <div class="grouped fields">
+        <label>Role</label>
+        @foreach($roles as $role)
+            <div class="field">
+                <div class="ui checkbox {{ $multipleRole?'':'radio' }}">
+                    <input type="{{ $multipleRole?'checkbox':'radio' }}" name="roles[]" value="{{ $role->id }}" {{ ($user->hasRole($role))?'checked=checked':'' }}>
+                    <label>{{ $role->name }}</label>
+                </div>
+            </div>
+        @endforeach
+    </div>
+
     <div class="field">
         <label>@lang('epicentrum::users.status')</label>
         {!! SemanticForm::select('status', $statuses, old('status', $user['status']))->addClass('search') !!}
