@@ -23,8 +23,10 @@ class RoleRequest extends FormRequest
      */
     public function rules()
     {
+        $table = app(\Laravolt\Acl\Models\Role::class)->getTable();
+
         return [
-            'name'        => 'required',
+            'name'        => "required|unique:$table",
         ];
     }
 }
