@@ -3,10 +3,10 @@
 namespace Laravolt\Epicentrum\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Laravolt\Epicentrum\Http\Requests\Role\RoleRequest;
-
 use Laravolt\Acl\Models\Permission;
 use Laravolt\Acl\Models\Role;
+use Laravolt\Epicentrum\Http\Requests\Role\Store;
+use Laravolt\Epicentrum\Http\Requests\Role\Update;
 
 class RoleController extends Controller
 {
@@ -48,7 +48,7 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RoleRequest $request)
+    public function store(Store $request)
     {
         $role = Role::create($request->only('name'));
         $role->syncPermission($request->get('permissions', []));
@@ -78,7 +78,7 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(RoleRequest $request, $id)
+    public function update(Update $request, $id)
     {
         $role = Role::findOrFail($id);
         $role->name = $request->get('name');

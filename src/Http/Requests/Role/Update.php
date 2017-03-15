@@ -3,8 +3,9 @@
 namespace Laravolt\Epicentrum\Http\Requests\Role;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class RoleRequest extends FormRequest
+class Update extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +25,10 @@ class RoleRequest extends FormRequest
     public function rules()
     {
         $table = app(\Laravolt\Acl\Models\Role::class)->getTable();
+        $id = $this->route()->getParameter('role');
 
         return [
-            'name'        => "required|unique:$table",
+            'name'        => "required|unique:$table,name,$id",
         ];
     }
 }
