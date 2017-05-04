@@ -16,8 +16,14 @@
             return "<img class='ui image avatar' src='" . Laravolt\Avatar\Facade::create($data->name)->toBase64() . "'>" . " " . $data->name;
         }],
         ['header' => trans('epicentrum::users.email'), 'field' => 'email'],
+        ['header' => trans('epicentrum::users.roles'), 'raw' => function($data){
+            return $data->roles->implode('name', ', ');
+        }],
         ['header' => trans('epicentrum::users.status'), 'raw' => function($data){
-            return $data->getStatusLabel();
+            return sprintf('<div class="ui label basic mini">%s</div>', $data->getStatusLabel());
+        }],
+        ['header' => trans('epicentrum::users.registered_at'), 'raw' => function($data){
+            return sprintf('%s', $data->created_at->format('j F Y'));
         }],
         ['header' => false, 'raw' => function($data){
             return "<a class='ui button mini' href='".route('epicentrum::users.edit', $data->id)."'>".trans('epicentrum::action.edit')."</a>";

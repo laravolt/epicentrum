@@ -43,7 +43,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = $this->repository->skipPresenter()->paginate();
+        $users = $this->repository->scopeQuery(function($query){
+            return $query->orderBy('name');
+        })->skipPresenter()->paginate();
         return view('epicentrum::index', compact('users'));
     }
 
