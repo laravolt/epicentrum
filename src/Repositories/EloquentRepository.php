@@ -38,7 +38,9 @@ class EloquentRepository extends BaseRepository implements RepositoryInterface
      */
     public function boot()
     {
-        $this->pushCriteria(app(RequestCriteria::class));
+        foreach(config('laravolt.epicentrum.repository.criteria', []) as $criteria) {
+            $this->pushCriteria(app($criteria));
+        }
     }
 
     public function presenter()

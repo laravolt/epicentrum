@@ -17,4 +17,9 @@ return [
     'role'  => [
         'multiple' => true
     ],
+    'repository' => [
+        'criteria' => [
+            \Prettus\Repository\Criteria\RequestCriteria::class,
+        ],
+    ],
 ];
