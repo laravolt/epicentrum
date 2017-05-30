@@ -12,7 +12,6 @@ use Laravolt\Epicentrum\Repositories\RepositoryInterface;
 use Illuminate\Support\Facades\Mail;
 use Laravolt\Epicentrum\Repositories\TimezoneRepository;
 
-
 class UserController extends Controller
 {
     use AuthorizesRequests;
@@ -48,7 +47,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = $this->repository->scopeQuery(function($query){
+        $users = $this->repository->scopeQuery(function ($query) {
             return $query->orderBy('name');
         })->skipPresenter()->paginate();
         return view('epicentrum::index', compact('users'));
@@ -82,7 +81,7 @@ class UserController extends Controller
         $password = $request->get('password');
 
         // send account info to email
-        if($request->has('send_account_information')) {
+        if ($request->has('send_account_information')) {
             Mail::to($user)->send(new AccountInformation($user, $password));
             //Mail::send('emails.account_information', compact('user', 'password'), function($message) use ($user) {
             //    $message->subject('Your Account Information');

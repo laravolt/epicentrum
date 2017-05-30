@@ -38,7 +38,7 @@ class EloquentRepository extends BaseRepository implements RepositoryInterface
      */
     public function boot()
     {
-        foreach(config('laravolt.epicentrum.repository.criteria', []) as $criteria) {
+        foreach (config('laravolt.epicentrum.repository.criteria', []) as $criteria) {
             $this->pushCriteria(app($criteria));
         }
     }
@@ -86,5 +86,4 @@ class EloquentRepository extends BaseRepository implements RepositoryInterface
     {
         return UserStatus::toArray();
     }
-
 }

@@ -14,7 +14,8 @@ use Laravolt\Password\CanChangePasswordContract;
 use Prettus\Repository\Contracts\Presentable;
 use Prettus\Repository\Traits\PresentableTrait;
 
-class User extends Authenticatable implements CanResetPassword,
+class User extends Authenticatable implements
+    CanResetPassword,
     CanChangePasswordContract,
     Presentable,
     HasRoleAndPermissionContract
@@ -54,5 +55,4 @@ class User extends Authenticatable implements CanResetPassword,
 
         return $this->status;
     }
-
 }

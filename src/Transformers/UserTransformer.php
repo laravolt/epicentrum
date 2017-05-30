@@ -25,5 +25,4 @@ class UserTransformer extends TransformerAbstract
             'avatar'     => $model->getAvatar()
         ];
     }
-
 }

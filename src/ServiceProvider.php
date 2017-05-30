@@ -29,11 +29,15 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
-        $this->app->bind(\Laravolt\Epicentrum\Repositories\RepositoryInterface::class,
-            \Laravolt\Epicentrum\Repositories\EloquentRepository::class);
+        $this->app->bind(
+            \Laravolt\Epicentrum\Repositories\RepositoryInterface::class,
+            \Laravolt\Epicentrum\Repositories\EloquentRepository::class
+        );
 
-        $this->app->bind(\Laravolt\Epicentrum\Repositories\TimezoneRepository::class,
-            \Laravolt\Epicentrum\Repositories\DefaultTimezoneRepository::class);
+        $this->app->bind(
+            \Laravolt\Epicentrum\Repositories\TimezoneRepository::class,
+            \Laravolt\Epicentrum\Repositories\DefaultTimezoneRepository::class
+        );
     }
 
     /**
@@ -43,7 +47,8 @@ class ServiceProvider extends BaseServiceProvider
     public function boot()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/config.php', 'laravolt.epicentrum'
+            __DIR__.'/../config/config.php',
+            'laravolt.epicentrum'
         );
 
         $this->loadViewsFrom(realpath(__DIR__.'/../resources/views'), 'epicentrum');

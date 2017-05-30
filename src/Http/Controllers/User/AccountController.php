@@ -39,5 +39,4 @@ class AccountController extends UserController
 
         return redirect()->back()->withSuccess(trans('epicentrum::message.account_updated'));
     }
-
 }

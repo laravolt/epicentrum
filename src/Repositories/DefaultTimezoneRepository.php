@@ -12,8 +12,7 @@ class DefaultTimezoneRepository implements TimezoneRepository
         $timezones = DateTimeZone::listIdentifiers(DateTimeZone::ALL);
 
         $offsets = array();
-        foreach( $timezones as $timezone )
-        {
+        foreach ($timezones as $timezone) {
             $tz = new DateTimeZone($timezone);
             $offsets[$timezone] = $tz->getOffset(new DateTime);
         }
@@ -22,10 +21,9 @@ class DefaultTimezoneRepository implements TimezoneRepository
         asort($offsets);
 
         $lists = array();
-        foreach( $offsets as $timezone => $offset )
-        {
+        foreach ($offsets as $timezone => $offset) {
             $offset_prefix = $offset < 0 ? '-' : '+';
-            $offset_formatted = gmdate( 'H:i', abs($offset) );
+            $offset_formatted = gmdate('H:i', abs($offset));
 
             $pretty_offset = "UTC${offset_prefix}${offset_formatted}";
 

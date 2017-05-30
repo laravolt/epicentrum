@@ -31,8 +31,10 @@ Route::group(
                 ]
             ]);
             Route::post('password/{id}/reset', ['uses' => 'PasswordController@reset', 'as' => 'password.reset']);
-            Route::post('password/{id}/generate',
-                ['uses' => 'PasswordController@generate', 'as' => 'password.generate']);
+            Route::post(
+                'password/{id}/generate',
+                ['uses' => 'PasswordController@generate', 'as' => 'password.generate']
+            );
 
 
             Route::resource('account', 'AccountController', [
@@ -66,4 +68,5 @@ Route::group(
                 'destroy' => 'roles.destroy'
             ]
         ]);
-    });
+    }
+);
