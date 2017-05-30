@@ -2,7 +2,8 @@
 
 namespace Laravolt\Epicentrum\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Routing\Controller;
 use Laravolt\Acl\Models\Permission;
 use Laravolt\Acl\Models\Role;
 use Laravolt\Epicentrum\Http\Requests\Role\Store;
@@ -10,12 +11,14 @@ use Laravolt\Epicentrum\Http\Requests\Role\Update;
 
 class RoleController extends Controller
 {
+    use AuthorizesRequests;
+
     /**
      * RoleController constructor.
      */
     public function __construct()
     {
-        //$this->authorize(\App\Enum\Permission::MANAGE_ROLE);
+        $this->authorize('manage-role');
     }
 
 

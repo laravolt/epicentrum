@@ -2,7 +2,6 @@
 
 namespace Laravolt\Epicentrum\Http\Controllers\User;
 
-use App\Http\Requests;
 use Illuminate\Http\Request;
 use Laravolt\Password\Password;
 use App\Http\Controllers\Controller;
