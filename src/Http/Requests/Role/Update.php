@@ -25,7 +25,7 @@ class Update extends FormRequest
     public function rules()
     {
         $table = app(\Laravolt\Acl\Models\Role::class)->getTable();
-        $id = $this->route()->getParameter('role');
+        $id = $this->route()->parameter('role');
 
         return [
             'name'        => "required|unique:$table,name,$id",
