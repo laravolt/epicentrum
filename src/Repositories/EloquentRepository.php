@@ -2,11 +2,9 @@
 
 namespace Laravolt\Epicentrum\Repositories;
 
-use App\Enum\UserStatus;
 use Carbon\Carbon;
 use Laravolt\Epicentrum\Presenter;
 use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
 
 /**
  * Class UserRepositoryEloquent
@@ -84,6 +82,6 @@ class EloquentRepository extends BaseRepository implements RepositoryInterface
 
     public function availableStatus()
     {
-        return UserStatus::toArray();
+        return config('laravolt.epicentrum.user_available_status');
     }
 }

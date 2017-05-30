@@ -2,7 +2,6 @@
 
 namespace Laravolt\Epicentrum\Models;
 
-use App\Enum\UserStatus;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -49,10 +48,6 @@ class User extends Authenticatable implements
 
     public function getStatusLabel()
     {
-        if (UserStatus::isValidKey($status = $this->status)) {
-            return UserStatus::$status();
-        }
-
         return $this->status;
     }
 }

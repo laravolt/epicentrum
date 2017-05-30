@@ -3,23 +3,27 @@
  * Set specific configuration variables here
  */
 return [
-    'route' => [
+    'route'                 => [
         'enable'     => true,
         'middleware' => ['web', 'auth'],
-        'prefix'     => 'epicentrum'
+        'prefix'     => 'epicentrum',
     ],
-    'view'  => [
-        'layout' => 'layouts.base'
+    'view'                  => [
+        'layout' => 'layouts.base',
     ],
-    'menu'  => [
-        'enable' => true
+    'menu'                  => [
+        'enable' => true,
     ],
-    'role'  => [
-        'multiple' => true
+    'role'                  => [
+        'multiple' => true,
     ],
-    'repository' => [
+    'repository'            => [
         'criteria' => [
             \Prettus\Repository\Criteria\RequestCriteria::class,
         ],
+    ],
+    'user_available_status' => [
+        'PENDING' => 'PENDING',
+        'ACTIVE'  => 'ACTIVE',
     ],
 ];
