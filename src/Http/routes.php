@@ -1,63 +1,64 @@
 <?php
 
-Route::group(
+$router->group(
     [
         'namespace'  => '\Laravolt\Epicentrum\Http\Controllers',
         'prefix'     => config('laravolt.epicentrum.route.prefix'),
         'as'         => 'epicentrum::',
-        'middleware' => config('laravolt.epicentrum.route.middleware')
+        'middleware' => config('laravolt.epicentrum.route.middleware'),
     ],
-    function () {
+    function ($router) {
 
-        Route::get('/', ['uses' => 'DefaultController@index', 'as' => 'index']);
+        $router->get('/', ['uses' => 'DefaultController@index', 'as' => 'index']);
 
-        Route::group(['namespace' => 'User'], function () {
+        $router->group(['namespace' => 'User'], function ($router) {
 
-            Route::resource('users', 'UserController', [
-                'names' => [
-                    'index'   => 'users.index',
-                    'create'  => 'users.create',
-                    'store'   => 'users.store',
-                    'show'    => 'users.show',
-                    'edit'    => 'users.edit',
-                    'update'  => 'users.update',
-                    'destroy' => 'users.destroy'
-                ]
-            ]);
-
-            Route::resource('password', 'PasswordController', [
-                'names' => [
-                    'edit' => 'password.edit',
-                ]
-            ]);
-            Route::post('password/{id}/reset', ['uses' => 'PasswordController@reset', 'as' => 'password.reset']);
-            Route::post(
-                'password/{id}/generate',
-                ['uses' => 'PasswordController@generate', 'as' => 'password.generate']
-            );
-
-
-            Route::resource('account', 'AccountController', [
-                'names' => [
-                    'edit'   => 'account.edit',
-                    'update' => 'account.update',
-                ]
-            ]);
-
-            Route::resource(
-                'role',
-                'RoleController',
-                [
-                    'only'  => ['edit', 'update'],
+            $router->group(['middleware' => 'can:manage-user'], function ($router) {
+                $router->resource('users', 'UserController', [
                     'names' => [
-                        'edit'   => 'role.edit',
-                        'update' => 'role.update',
+                        'index'   => 'users.index',
+                        'create'  => 'users.create',
+                        'store'   => 'users.store',
+                        'show'    => 'users.show',
+                        'edit'    => 'users.edit',
+                        'update'  => 'users.update',
+                        'destroy' => 'users.destroy',
+                    ],
+                ]);
+
+                $router->resource('password', 'PasswordController', [
+                    'names' => [
+                        'edit' => 'password.edit',
+                    ],
+                ]);
+                $router->post('password/{id}/reset', ['uses' => 'PasswordController@reset', 'as' => 'password.reset']);
+                $router->post(
+                    'password/{id}/generate',
+                    ['uses' => 'PasswordController@generate', 'as' => 'password.generate']
+                );
+
+                $router->resource('account', 'AccountController', [
+                    'names' => [
+                        'edit'   => 'account.edit',
+                        'update' => 'account.update',
+                    ],
+                ]);
+
+                $router->resource(
+                    'role',
+                    'RoleController',
+                    [
+                        'only'  => ['edit', 'update'],
+                        'names' => [
+                            'edit'   => 'role.edit',
+                            'update' => 'role.update',
+                        ],
                     ]
-                ]
-            );
+                );
+            });
         });
 
-        Route::resource('roles', 'RoleController', [
+        $router->resource('roles', 'RoleController', [
             'names' => [
                 'index'   => 'roles.index',
                 'create'  => 'roles.create',
@@ -65,8 +66,9 @@ Route::group(
                 'show'    => 'roles.show',
                 'edit'    => 'roles.edit',
                 'update'  => 'roles.update',
-                'destroy' => 'roles.destroy'
-            ]
+                'destroy' => 'roles.destroy',
+            ],
+            'middleware' => 'can:manage-role',
         ]);
     }
 );

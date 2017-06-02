@@ -2,7 +2,6 @@
 
 namespace Laravolt\Epicentrum\Http\Controllers\User;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Routing\Controller;
 use Laravolt\Acl\Models\Role;
 use Laravolt\Epicentrum\Http\Requests\DeleteAccount;
@@ -14,7 +13,6 @@ use Laravolt\Epicentrum\Repositories\TimezoneRepository;
 
 class UserController extends Controller
 {
-    use AuthorizesRequests;
 
     /**
      * @var UserRepositoryEloquent
@@ -33,8 +31,6 @@ class UserController extends Controller
      */
     public function __construct(RepositoryInterface $repository, TimezoneRepository $timezone)
     {
-        $this->authorize('manage-user');
-
         $this->repository = $repository;
         $this->timezone = $timezone;
     }

@@ -2,7 +2,6 @@
 
 namespace Laravolt\Epicentrum\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Routing\Controller;
 use Laravolt\Acl\Models\Permission;
 use Laravolt\Acl\Models\Role;
@@ -11,17 +10,6 @@ use Laravolt\Epicentrum\Http\Requests\Role\Update;
 
 class RoleController extends Controller
 {
-    use AuthorizesRequests;
-
-    /**
-     * RoleController constructor.
-     */
-    public function __construct()
-    {
-        $this->authorize('manage-role');
-    }
-
-
     /**
      * Display a listing of the resource.
      *
@@ -30,6 +18,7 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
+
         return view('epicentrum::roles.index', compact('roles'));
     }
 
@@ -48,7 +37,7 @@ class RoleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Store $request)
@@ -62,7 +51,7 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -77,8 +66,8 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function update(Update $request, $id)
@@ -95,7 +84,7 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
