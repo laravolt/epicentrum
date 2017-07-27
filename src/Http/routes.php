@@ -13,7 +13,7 @@ $router->group(
 
         $router->group(['namespace' => 'User'], function ($router) {
 
-            $router->group(['middleware' => 'can:manage-user'], function ($router) {
+            $router->group(['middleware' => 'can:'.\Laravolt\Epicentrum\Permission::MANAGE_USER], function ($router) {
                 $router->resource('users', 'UserController', [
                     'names' => [
                         'index'   => 'users.index',
@@ -59,7 +59,7 @@ $router->group(
         });
 
         $router->resource('roles', 'RoleController', [
-            'names' => [
+            'names'      => [
                 'index'   => 'roles.index',
                 'create'  => 'roles.create',
                 'store'   => 'roles.store',
@@ -68,7 +68,7 @@ $router->group(
                 'update'  => 'roles.update',
                 'destroy' => 'roles.destroy',
             ],
-            'middleware' => 'can:manage-role',
+            'middleware' => 'can:'.\Laravolt\Epicentrum\Permission::MANAGE_ROLE,
         ]);
     }
 );

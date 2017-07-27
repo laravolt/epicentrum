@@ -22,6 +22,7 @@
         "illuminate/support": "~5.2",
         "prettus/l5-repository": "^2.6",
         "league/fractal": "^0.13.0",
+        "myclabs/php-enum": "^1.4",
         "laravolt/password": "^1.0",
         "laravolt/acl": "^2.0",
         "laravolt/avatar": "^1.4",

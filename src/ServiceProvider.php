@@ -72,6 +72,11 @@ class ServiceProvider extends BaseServiceProvider
         $loader->alias('Suitable', \Laravolt\Suitable\Facade::class);
 
         $this->registerBlade();
+
+        if ($this->app->bound('laravolt.acl')) {
+            $this->app['laravolt.acl']->registerPermission(Permission::values());
+        }
+
     }
 
     protected function loadRequiredProviders()
