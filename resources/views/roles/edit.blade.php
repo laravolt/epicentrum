@@ -49,10 +49,9 @@
     </div>
 
     <div class="ui segment very padded red">
-        <h3 class="">Hapus Role</h3>
-        <p>Saat ini ada <strong>{{ $role->users->count() }} pengguna</strong> yang memiliki role
-            <strong>{{ $role->name }}</strong>.</p>
-        <p>Dengan menghapus role ini, maka para pengguna tersebut otomatis juga akan kehilangan hak akses yang dimilikinya dari role ini.</p>
+        <h3 class="">@lang('epicentrum::label.delete_role')</h3>
+        <p>@lang('epicentrum::message.delete_role_intro', ['count' => $role->users->count()])
+
         {!! SemanticForm::open()->delete()->action(route('epicentrum::roles.destroy', $role['id'])) !!}
         <button class="ui button red" type="submit" name="submit" value="1" onclick="return confirm('@lang('epicentrum::message.role_deletion_confirmation')')">@lang('epicentrum::action.delete')</button>
         {!! SemanticForm::close() !!}

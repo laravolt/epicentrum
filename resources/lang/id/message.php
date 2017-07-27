@@ -12,4 +12,7 @@ return [
     'cannot_delete_yourself'             => 'Anda tidak bisa menghapus akun sendiri. Silakan minta admin yang lain untuk melakukannya.',
     'account_deletion_confirmation'      => 'Anda yakin ingin menghapus akun ini?',
     'role_deletion_confirmation'         => 'Anda yakin ingin menghapus role ini?',
+    'delete_role_intro'                  => 'Akan ada :count pengguna yang terkena dampak.',
+    'reset_password_manual_intro'        => 'User akan mendapat email yang berisi link untuk melakukan reset password. User harus mengisi sendiri password barunya.',
+    'reset_password_automatic_intro'     => 'Generate password baru, dan kirim password tersebut via email. User bisa langsung login menggunakan password baru tersebut.',
 ];

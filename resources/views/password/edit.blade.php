@@ -2,8 +2,8 @@
 
 @section('content-user-edit')
 
-    <h4>Manual</h4>
-    <p>User akan mendapat email yang berisi link untuk melakukan reset password. User harus mengisi sendiri password barunya.</p>
+    <h4>@lang('epicentrum::label.reset_password_manual')</h4>
+    <p>@lang('epicentrum::message.reset_password_manual_intro')</p>
     <form action="{{ route('epicentrum::password.reset', [$user['id']]) }}" method="POST">
     {{ csrf_field() }}
     <button type="submit" class="ui button" href="">@lang('epicentrum::action.send_reset_password_link')</button>
@@ -11,8 +11,8 @@
 
     <div class="ui divider"></div>
 
-    <h4>Otomatis</h4>
-    <p>Generate password baru, dan kirim password tersebut via email. User bisa langsung login menggunakan password baru tersebut.</p>
+    <h4>@lang('epicentrum::label.reset_password_automatic')</h4>
+    <p>@lang('epicentrum::message.reset_password_automatic_intro')</p>
     {!! SemanticForm::open()->post()->action(route('epicentrum::password.generate', $user['id'])) !!}
     {{ csrf_field() }}
     <div class="field">
