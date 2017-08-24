@@ -5,6 +5,19 @@ use Illuminate\Database\Migrations\Migration;
 
 class EpicentrumMigration extends Migration
 {
+    protected $table;
+
+    protected $columnExists;
+
+    /**
+     * AddStatusToUsers constructor.
+     */
+    public function __construct()
+    {
+        $this->table = app(config('auth.providers.users.model'))->getTable();
+        $this->columnExists = Schema::hasColumn($this->table, 'status');
+    }
+
     /**
      * Run the migrations.
      *
@@ -13,7 +26,9 @@ class EpicentrumMigration extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('status')->index();
+            if (!$this->columnExists) {
+                $table->string('status')->index()->nullable();
+            }
             $table->string('timezone')->default(config('app.timezone'));
             $table->softDeletes();
         });
@@ -28,7 +43,9 @@ class EpicentrumMigration extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropSoftDeletes();
-            $table->dropColumn('status');
+            if ($this->columnExists) {
+                $table->dropColumn('status');
+            }
             $table->dropColumn('timezone');
         });
     }
