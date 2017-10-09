@@ -38,6 +38,10 @@ class ServiceProvider extends BaseServiceProvider
             \Laravolt\Epicentrum\Repositories\TimezoneRepository::class,
             \Laravolt\Epicentrum\Repositories\DefaultTimezoneRepository::class
         );
+
+        $this->app->bind('laravolt.epicentrum.role', function(){
+            return app(config('laravolt.epicentrum.models.role'));
+        });
     }
 
     /**

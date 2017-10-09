@@ -3,7 +3,6 @@
 namespace Laravolt\Epicentrum\Http\Controllers\User;
 
 use Laravolt\Epicentrum\Http\Requests\EditAccount;
-use Laravolt\Acl\Models\Role;
 
 class AccountController extends UserController
 {
@@ -19,7 +18,7 @@ class AccountController extends UserController
         $user = $this->repository->skipPresenter()->find($id);
         $statuses = $this->repository->availableStatus();
         $timezones = $this->timezone->lists();
-        $roles = Role::all();
+        $roles = app('laravolt.epicentrum.role')->all();
         $multipleRole = config('laravolt.epicentrum.role.multiple');
 
         return view('epicentrum::account.edit', compact('user', 'statuses', 'timezones', 'roles', 'multipleRole'));

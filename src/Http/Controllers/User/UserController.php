@@ -3,7 +3,6 @@
 namespace Laravolt\Epicentrum\Http\Controllers\User;
 
 use Illuminate\Routing\Controller;
-use Laravolt\Acl\Models\Role;
 use Laravolt\Epicentrum\Http\Requests\DeleteAccount;
 use Laravolt\Epicentrum\Mail\AccountInformation;
 use Laravolt\Epicentrum\Http\Requests\CreateAccount;
@@ -57,7 +56,7 @@ class UserController extends Controller
     public function create()
     {
         $statuses = $this->repository->availableStatus();
-        $roles = Role::all()->pluck('name', 'id');
+        $roles = app('laravolt.epicentrum.role')->all()->pluck('name', 'id');
         $multipleRole = config('laravolt.epicentrum.role.multiple');
 
         return view('epicentrum::create', compact('statuses', 'roles', 'multipleRole'));

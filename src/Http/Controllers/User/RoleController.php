@@ -3,7 +3,6 @@
 namespace Laravolt\Epicentrum\Http\Controllers\User;
 
 use Illuminate\Http\Request;
-use Laravolt\Acl\Models\Role;
 
 class RoleController extends UserController
 {
@@ -16,7 +15,7 @@ class RoleController extends UserController
     public function edit($id)
     {
         $user = $this->repository->skipPresenter()->find($id);
-        $roles = Role::all();
+        $roles = app('laravolt.epicentrum.role')->all();
         $multipleRole = config('laravolt.epicentrum.role.multiple');
 
         return view('epicentrum::role.edit', compact('user', 'roles', 'multipleRole'));

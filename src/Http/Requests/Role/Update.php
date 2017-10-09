@@ -24,7 +24,7 @@ class Update extends FormRequest
      */
     public function rules()
     {
-        $table = app(\Laravolt\Acl\Models\Role::class)->getTable();
+        $table = app(config('laravolt.epicentrum.models.role'))->getTable();
         $id = $this->route()->parameter('role');
 
         return [

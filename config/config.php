@@ -26,4 +26,7 @@ return [
         'PENDING' => 'PENDING',
         'ACTIVE'  => 'ACTIVE',
     ],
+    'models' => [
+        'role'  => \Laravolt\Acl\Models\Role::class,
+    ],
 ];

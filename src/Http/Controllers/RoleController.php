@@ -4,7 +4,6 @@ namespace Laravolt\Epicentrum\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Laravolt\Acl\Models\Permission;
-use Laravolt\Acl\Models\Role;
 use Laravolt\Epicentrum\Http\Requests\Role\Store;
 use Laravolt\Epicentrum\Http\Requests\Role\Update;
 
@@ -17,7 +16,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
+        $roles = app('laravolt.epicentrum.role')->all();
 
         return view('epicentrum::roles.index', compact('roles'));
     }
@@ -42,7 +41,7 @@ class RoleController extends Controller
      */
     public function store(Store $request)
     {
-        $role = Role::create($request->only('name'));
+        $role = app('laravolt.epicentrum.role')->create($request->only('name'));
         $role->syncPermission($request->get('permissions', []));
 
         return redirect()->route('epicentrum::roles.index')->withSuccess(trans('epicentrum::message.role_created'));
@@ -58,7 +57,7 @@ class RoleController extends Controller
     {
         app('laravolt.acl')->syncPermission();
 
-        $role = Role::findOrFail($id);
+        $role = app('laravolt.epicentrum.role')->findOrFail($id);
         $permissions = Permission::all();
         $assignedPermissions = old('permissions', $role->permissions()->pluck('id')->toArray());
 
@@ -74,7 +73,7 @@ class RoleController extends Controller
      */
     public function update(Update $request, $id)
     {
-        $role = Role::findOrFail($id);
+        $role = app('laravolt.epicentrum.role')->findOrFail($id);
         $role->name = $request->get('name');
         $role->save();
 
@@ -91,7 +90,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        Role::findOrFail($id)->delete();
+        app('laravolt.epicentrum.role')->findOrFail($id)->delete();
 
         return redirect()->route('epicentrum::roles.index')->withSuccess(trans('epicentrum::message.role_deleted'));
     }
