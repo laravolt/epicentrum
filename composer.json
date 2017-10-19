@@ -40,8 +40,14 @@
         },
         "laravel": {
             "providers": [
-                "Laravolt\\Epicentrum\\ServiceProvider"
-            ]
+                "Laravolt\\Epicentrum\\ServiceProvider",
+                "Laravolt\\SemanticForm\\ServiceProvider",
+                "Laravolt\\Password\\ServiceProvider"
+            ],
+            "aliases": {
+                "Suitable": "Laravolt\\Suitable\\Facade",
+                "SemanticForm": "Laravolt\\SemanticForm\\Facade"
+            }
         }
     }
 }

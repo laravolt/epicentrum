@@ -69,11 +69,13 @@ class ServiceProvider extends BaseServiceProvider
             $this->registerMenu();
         }
 
-        $this->loadRequiredProviders();
+        if (!$this->supportAutoDiscovery()) {
+            $this->loadRequiredProviders();
 
-        $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-        $loader->alias('SemanticForm', \Laravolt\SemanticForm\Facade::class);
-        $loader->alias('Suitable', \Laravolt\Suitable\Facade::class);
+            $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+            $loader->alias('SemanticForm', \Laravolt\SemanticForm\Facade::class);
+            $loader->alias('Suitable', \Laravolt\Suitable\Facade::class);
+        }
 
         $this->registerBlade();
 
@@ -103,9 +105,9 @@ class ServiceProvider extends BaseServiceProvider
     protected function registerMenu()
     {
         if ($this->app->bound('laravolt.menu')) {
-            $menu = $this->app['laravolt.menu']->add(trans('epicentrum::menu.epicentrum'))->data('icon', 'users');
-            $menu->add(trans('epicentrum::label.users'), route('epicentrum::users.index'));
-            $menu->add(trans('epicentrum::label.roles'), route('epicentrum::roles.index'));
+            $menu = $this->app['laravolt.menu']->add(trans('epicentrum::menu.epicentrum'));
+            $menu->add(trans('epicentrum::label.users'), route('epicentrum::users.index'))->data('icon', 'users');
+            $menu->add(trans('epicentrum::label.roles'), route('epicentrum::roles.index'))->data('icon', 'spy');
         }
     }
 
@@ -118,5 +120,10 @@ class ServiceProvider extends BaseServiceProvider
         Blade::directive('endrole', function () {
             return "<?php endif; ?>";
         });
+    }
+
+    protected function supportAutoDiscovery()
+    {
+        return version_compare($this->app->version(), '5.5') >= 0;
     }
 }
