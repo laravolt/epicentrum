@@ -27,9 +27,9 @@ class EpicentrumMigration extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             if (!$this->columnExists) {
-                $table->string('status')->index()->nullable();
+                $table->string('status')->after('email')->index()->nullable();
             }
-            $table->string('timezone')->default(config('app.timezone'));
+            $table->string('timezone')->default(config('app.timezone'))->after('status');
             $table->softDeletes();
         });
     }
