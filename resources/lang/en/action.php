@@ -4,6 +4,7 @@ return [
     'add'                      => 'Add',
     'edit'                     => 'Edit',
     'delete'                   => 'Delete',
+    'delete_permanent'         => 'Delete Forever',
     'search'                   => 'Cari user...',
     'manage'                   => 'Manage',
     'save'                     => 'Save',

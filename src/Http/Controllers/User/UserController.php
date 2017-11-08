@@ -42,10 +42,13 @@ class UserController extends Controller
      */
     public function index()
     {
+        $trashed = request('trashed');
+
         $users = $this->repository->scopeQuery(function ($query) {
             return $query->orderBy('name');
         })->skipPresenter()->paginate();
-        return view('epicentrum::index', compact('users'));
+
+        return view('epicentrum::index', compact('users', 'trashed'));
     }
 
     /**
@@ -100,8 +103,18 @@ class UserController extends Controller
 
     public function destroy(DeleteAccount $request, $id)
     {
-        $this->repository->delete($id);
+        try {
+            if ($request->get('mode') == 'force') {
+                $this->repository->forceDelete($id);
+                $route = route('epicentrum::users.index', ['trashed' => '1']);
+            } else {
+                $this->repository->delete($id);
+                $route = route('epicentrum::users.index');
+            }
 
-        return redirect(route('epicentrum::users.index'))->withSuccess(trans('epicentrum::message.user_deleted'));
+            return redirect($route)->withSuccess(trans('epicentrum::message.user_deleted'));
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        }
     }
 }

@@ -4,6 +4,7 @@ return [
     'add'                      => 'Tambah',
     'edit'                     => 'Edit',
     'delete'                   => 'Hapus',
+    'delete_permanent'         => 'Hapus Selamanya',
     'search'                   => 'Search...',
     'manage'                   => 'Kelola',
     'save'                     => 'Simpan',

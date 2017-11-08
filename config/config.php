@@ -20,6 +20,7 @@ return [
     'repository'            => [
         'criteria' => [
             \Prettus\Repository\Criteria\RequestCriteria::class,
+            \Laravolt\Epicentrum\Repositories\Criteria\WithTrashedCriteria::class,
         ],
     ],
     'user_available_status' => [

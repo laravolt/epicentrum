@@ -89,6 +89,16 @@ class EloquentRepository extends BaseRepository implements RepositoryInterface
         return parent::delete($id);
     }
 
+    public function forceDelete($id)
+    {
+        $model = $this->makeModel()->withTrashed()->find($id);
+        if ($model) {
+            return $model->forceDelete();
+        }
+
+        return false;
+    }
+
     public function availableStatus()
     {
         return config('laravolt.epicentrum.user_available_status');
