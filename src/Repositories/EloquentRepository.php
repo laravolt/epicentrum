@@ -18,7 +18,7 @@ class EloquentRepository extends BaseRepository implements RepositoryInterface
      */
     protected $fieldSearchable = [
         'name'  => 'like',
-        'email' => 'like'
+        'email' => 'like',
     ];
 
     /**
@@ -78,6 +78,15 @@ class EloquentRepository extends BaseRepository implements RepositoryInterface
         $user->setPassword($password);
 
         return $user->save();
+    }
+
+    public function delete($id)
+    {
+        $model = $this->skipPresenter()->find($id);
+        $model->email = sprintf("[deleted-%s]%s", $model->id, $model->email);
+        $model->save();
+
+        return parent::delete($id);
     }
 
     public function availableStatus()
