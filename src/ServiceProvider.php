@@ -99,7 +99,7 @@ class ServiceProvider extends BaseServiceProvider
     protected function loadRoutes()
     {
         $router = $this->app['router'];
-        require __DIR__.'/Http/routes.php';
+        require __DIR__.'/../routes/web.php';
     }
 
     protected function registerMenu()
