@@ -9,7 +9,7 @@ return [
         'prefix'     => 'epicentrum',
     ],
     'view'                  => [
-        'layout' => 'layouts.base',
+        'layout' => 'ui::layouts.app',
     ],
     'menu'                  => [
         'enable' => true,
