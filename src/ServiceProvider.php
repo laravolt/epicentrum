@@ -4,6 +4,8 @@ namespace Laravolt\Epicentrum;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use Laravolt\Epicentrum\Console\Commands\ManageRole;
+use Laravolt\Epicentrum\Console\Commands\ManageUser;
 
 /**
  * Class PackageServiceProvider
@@ -83,6 +85,10 @@ class ServiceProvider extends BaseServiceProvider
             $this->app['laravolt.acl']->registerPermission(Permission::values());
         }
 
+        if ($this->app->runningInConsole()) {
+            $this->registerCommand();
+        }
+
     }
 
     protected function loadRequiredProviders()
@@ -120,6 +126,16 @@ class ServiceProvider extends BaseServiceProvider
         Blade::directive('endrole', function () {
             return "<?php endif; ?>";
         });
+    }
+
+    protected function registerCommand()
+    {
+        $this->commands(
+            [
+                ManageUser::class,
+                ManageRole::class,
+            ]
+        );
     }
 
     protected function supportAutoDiscovery()
