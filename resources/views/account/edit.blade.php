@@ -40,9 +40,9 @@
     </div>
     {!! SemanticForm::close() !!}
 
-    <div class="ui divider"></div>
+    {{--<div class="ui divider"></div>--}}
 
-    <div class="ui basic segment">
+    <div class="ui basic p-1 segment">
         <h3>@lang('epicentrum::users.delete_account')</h3>
 
         @if($user['id'] == auth()->id())

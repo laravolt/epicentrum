@@ -1,14 +1,13 @@
 @extends(config('laravolt.epicentrum.view.layout'))
 @section('content')
-    <a href="{{ route('epicentrum::users.index') }}" class="ui button mini">
-        <i class="icon angle left"></i>
-        @lang('epicentrum::action.back')
-    </a>
+    <div class="ui menu top attached">
+        <a href="{{ route('epicentrum::users.index') }}" class="item">
+            <i class="icon angle left"></i>
+        </a>
+        <h3 class="ui header item">@lang('epicentrum::menu.add_user')</h3>
+    </div>
 
-    <div class="ui segment very padded">
-
-        <h2 class="ui header">@lang('epicentrum::menu.add_user')</h2>
-
+    <div class="ui segment very padded bottom attached">
         {!! SemanticForm::open()->post()->action(route('epicentrum::users.store')) !!}
         {!! SemanticForm::text('name', old('name'))->label(trans('epicentrum::users.name'))->required() !!}
         {!! SemanticForm::text('email', old('email'))->label(trans('epicentrum::users.email'))->required() !!}
