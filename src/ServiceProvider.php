@@ -112,8 +112,8 @@ class ServiceProvider extends BaseServiceProvider
     {
         if ($this->app->bound('laravolt.menu')) {
             $menu = $this->app['laravolt.menu']->add(trans('epicentrum::menu.epicentrum'));
-            $menu->add(trans('epicentrum::label.users'), route('epicentrum::users.index'))->data('icon', 'users');
-            $menu->add(trans('epicentrum::label.roles'), route('epicentrum::roles.index'))->data('icon', 'spy');
+            $menu->add(trans('epicentrum::label.users'), route('epicentrum::users.index'))->data('icon', 'users')->data('permission', \Laravolt\Epicentrum\Permission::MANAGE_USER);
+            $menu->add(trans('epicentrum::label.roles'), route('epicentrum::roles.index'))->data('icon', 'spy')->data('permission', \Laravolt\Epicentrum\Permission::MANAGE_ROLE);
         }
     }
 
