@@ -111,9 +111,17 @@ class ServiceProvider extends BaseServiceProvider
     protected function registerMenu()
     {
         if ($this->app->bound('laravolt.menu')) {
-            $menu = $this->app['laravolt.menu']->add(trans('epicentrum::menu.epicentrum'));
-            $menu->add(trans('epicentrum::label.users'), route('epicentrum::users.index'))->data('icon', 'users')->data('permission', \Laravolt\Epicentrum\Permission::MANAGE_USER);
-            $menu->add(trans('epicentrum::label.roles'), route('epicentrum::roles.index'))->data('icon', 'spy')->data('permission', \Laravolt\Epicentrum\Permission::MANAGE_ROLE);
+            $menu = $this->systemMenu();
+            $menu = $menu->add('User Management')->data('icon', 'users');
+            $menu->add(trans('epicentrum::label.users'), route('epicentrum::users.index'))
+                ->data('icon', 'users')
+                ->data('permission', \Laravolt\Epicentrum\Permission::MANAGE_USER)
+                ->active(config('laravolt.epicentrum.route.prefix').'/users/*');
+
+            $menu->add(trans('epicentrum::label.roles'), route('epicentrum::roles.index'))
+                ->data('icon', 'spy')
+                ->data('permission', \Laravolt\Epicentrum\Permission::MANAGE_ROLE)
+                ->active(config('laravolt.epicentrum.route.prefix').'/roles/*');;
         }
     }
 
@@ -142,4 +150,15 @@ class ServiceProvider extends BaseServiceProvider
     {
         return version_compare($this->app->version(), '5.5') >= 0;
     }
+
+    protected function systemMenu()
+    {
+        $menu = $this->app['laravolt.menu']->system;
+        if (!$menu) {
+            $menu = $this->app['laravolt.menu']->add('System');
+        }
+
+        return $menu;
+    }
+
 }
