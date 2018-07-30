@@ -3,6 +3,7 @@
 namespace Laravolt\Epicentrum\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class EditAccount extends FormRequest
 {
@@ -23,9 +24,14 @@ class EditAccount extends FormRequest
      */
     public function rules()
     {
+        $id = request()->route('account');
         return [
             'name'     => 'required|max:255',
-            'email'    => 'required|email|unique:users,id,'.auth()->user()->getAuthIdentifier(),
+            'email'    => [
+                'required',
+                'email',
+                Rule::unique(auth()->user()->getTable())->ignore($id)
+            ],
             'status'   => 'required',
             'timezone' => 'required',
         ];
