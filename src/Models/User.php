@@ -42,6 +42,8 @@ class User extends Authenticatable implements
 
     protected $dates = ['password_last_set', 'deleted_at'];
 
+    protected $with = ['roles'];
+
     public function getAvatar()
     {
         return Avatar::create($this->name)->toBase64();
