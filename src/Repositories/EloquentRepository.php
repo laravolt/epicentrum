@@ -16,10 +16,7 @@ class EloquentRepository extends BaseRepository implements RepositoryInterface
     /**
      * @var array
      */
-    protected $fieldSearchable = [
-        'name'  => 'like',
-        'email' => 'like',
-    ];
+    protected $fieldSearchable = [];
 
     /**
      * Specify Model class name
@@ -39,6 +36,8 @@ class EloquentRepository extends BaseRepository implements RepositoryInterface
         foreach (config('laravolt.epicentrum.repository.criteria', []) as $criteria) {
             $this->pushCriteria(app($criteria));
         }
+
+        $this->fieldSearchable = config('laravolt.epicentrum.repository.searchable', []);
     }
 
     public function presenter()

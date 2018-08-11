@@ -22,6 +22,10 @@ return [
             \Prettus\Repository\Criteria\RequestCriteria::class,
             \Laravolt\Epicentrum\Repositories\Criteria\WithTrashedCriteria::class,
         ],
+        'searchable' => [
+            'name'  => 'like',
+            'email' => 'like',
+        ],
     ],
     'user_available_status' => [
         'PENDING' => 'PENDING',
