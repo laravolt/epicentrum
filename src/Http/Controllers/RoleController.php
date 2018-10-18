@@ -55,8 +55,6 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        app('laravolt.acl')->syncPermission();
-
         $role = app('laravolt.epicentrum.role')->findOrFail($id);
         $permissions = Permission::all();
         $assignedPermissions = old('permissions', $role->permissions()->pluck('id')->toArray());
