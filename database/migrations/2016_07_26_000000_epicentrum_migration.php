@@ -25,7 +25,7 @@ class EpicentrumMigration extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table($this->table, function (Blueprint $table) {
             if (!$this->columnExists) {
                 $table->string('status')->after('email')->index()->nullable();
             }
@@ -41,7 +41,7 @@ class EpicentrumMigration extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table($this->table, function (Blueprint $table) {
             $table->dropSoftDeletes();
             if ($this->columnExists) {
                 $table->dropColumn('status');
