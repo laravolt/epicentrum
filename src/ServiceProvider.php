@@ -112,7 +112,6 @@ class ServiceProvider extends BaseServiceProvider
     {
         if ($this->app->bound('laravolt.menu')) {
             $menu = $this->systemMenu();
-            $menu = $menu->add('User Management')->data('icon', 'users');
             $menu->add(trans('epicentrum::label.users'), route('epicentrum::users.index'))
                 ->data('icon', 'users')
                 ->data('permission', \Laravolt\Epicentrum\Permission::MANAGE_USER)
