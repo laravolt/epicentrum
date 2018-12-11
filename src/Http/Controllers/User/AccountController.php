@@ -6,7 +6,6 @@ use Laravolt\Epicentrum\Http\Requests\EditAccount;
 
 class AccountController extends UserController
 {
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -28,14 +27,17 @@ class AccountController extends UserController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int                      $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(EditAccount $request, $id)
     {
-        $user = $this->repository->skipPresenter()->update($request->except('_token'), $id);
-        $user->roles()->sync($request->get('roles', []));
+        try {
+            $this->repository->updateAccount($id, $request->except('_token'), $request->get('roles', []));
 
-        return redirect()->back()->withSuccess(trans('epicentrum::message.account_updated'));
+            return redirect()->back()->withSuccess(trans('epicentrum::message.account_updated'));
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        }
     }
 }

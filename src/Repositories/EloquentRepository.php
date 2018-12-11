@@ -70,6 +70,13 @@ class EloquentRepository extends BaseRepository implements RepositoryInterface
         return $user;
     }
 
+    public function updateAccount($id, $account, $roles)
+    {
+        $user = $this->skipPresenter()->update($account, $id);
+        $user->roles()->sync($roles);
+
+        return $user;
+    }
 
     public function updatePassword($password, $id)
     {

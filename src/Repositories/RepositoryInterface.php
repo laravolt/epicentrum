@@ -10,5 +10,15 @@ use Prettus\Repository\Contracts\RepositoryInterface as BaseInterface;
  */
 interface RepositoryInterface extends BaseInterface
 {
-    //
+    public function createByAdmin(array $attributes, $roles = null);
+
+    public function updateAccount($id, $account, $roles);
+
+    public function updatePassword($password, $id);
+
+    public function delete($id);
+
+    public function forceDelete($id);
+
+    public function availableStatus();
 }
