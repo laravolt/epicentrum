@@ -24,10 +24,10 @@
         "league/fractal": "^0.13.0",
         "myclabs/php-enum": "^1.4",
         "laravolt/password": "^1.0",
-        "laravolt/acl": "dev-master",
+        "laravolt/acl": "^3.3",
         "laravolt/avatar": "^2.0",
-        "laravolt/suitable": "dev-master",
-        "laravolt/semantic-form": "dev-master"
+        "laravolt/suitable": "^2.6",
+        "laravolt/semantic-form": "^1.11"
     },
     "autoload": {
         "psr-4": {
