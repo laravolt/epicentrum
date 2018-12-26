@@ -10,7 +10,7 @@
     <div class="ui segment very padded bottom attached">
 
         {!! SemanticForm::open()->post()->action(route('epicentrum::roles.store')) !!}
-        {!! SemanticForm::text('name', old('name'))->label(trans('epicentrum::attributes.roles.name'))->required() !!}
+        {!! SemanticForm::text('name', old('name'))->label(trans('epicentrum::roles.name'))->required() !!}
 
         <table class="ui table">
             <thead>
