@@ -18,6 +18,8 @@ return [
         'multiple' => true,
     ],
     'repository'            => [
+        'user' => \Laravolt\Epicentrum\Repositories\EloquentRepository::class,
+        'timezone' => \Laravolt\Epicentrum\Repositories\DefaultTimezoneRepository::class,
         'criteria' => [
             \Prettus\Repository\Criteria\RequestCriteria::class,
             \Laravolt\Epicentrum\Repositories\Criteria\WithTrashedCriteria::class,
