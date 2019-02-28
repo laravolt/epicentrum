@@ -4,6 +4,7 @@ namespace Laravolt\Epicentrum\Console\Commands;
 
 use Illuminate\Console\Command;
 use Laravolt\Acl\Models\Role;
+use Laravolt\Epicentrum\Repositories\RepositoryInterface;
 
 class ManageUser extends Command
 {
@@ -26,6 +27,17 @@ class ManageUser extends Command
         2 => 'Change Password',
     ];
 
+    protected $repository;
+
+    /**
+     * ManageUser constructor.
+     */
+    public function __construct(RepositoryInterface $repository)
+    {
+        parent::__construct();
+        $this->repository = $repository;
+    }
+
     /**
      * Execute the console command.
      *
@@ -38,7 +50,6 @@ class ManageUser extends Command
         if ($user) {
             $this->chooseAction($user);
         }
-
     }
 
     protected function validateUser($identifier)
@@ -53,8 +64,19 @@ class ManageUser extends Command
             $user = app(config('auth.providers.users.model'))->whereEmail($identifier)->first();
         }
 
-        if(!$user) {
-            $this->error('User not found');
+        if (!$user) {
+
+            $this->warn('User not found');
+
+            if ($this->confirm('Do you want to creaate new user?')) {
+                $user = $this->repository->createByAdmin(
+                    [
+                        'email'    => $this->ask('Email', $identifier),
+                        'name'     => $this->ask('Name', 'Fulan'),
+                        'password' => $this->ask('Password', 'asdf1234'),
+                    ]
+                );
+            }
         }
 
         return $user;
@@ -84,6 +106,5 @@ class ManageUser extends Command
 
     protected function actionChangePassword()
     {
-
     }
 }
