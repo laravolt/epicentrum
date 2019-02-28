@@ -35,7 +35,9 @@ class ManageUser extends Command
     {
         $user = $this->validateUser($this->argument('user'));
 
-        $this->chooseAction($user);
+        if ($user) {
+            $this->chooseAction($user);
+        }
 
     }
 
