@@ -24,7 +24,7 @@
         "league/fractal": "^0.13.0",
         "myclabs/php-enum": "^1.4",
         "laravolt/password": "^1.0",
-        "laravolt/acl": "^3.3",
+        "laravolt/acl": "^3.3||^4.0",
         "laravolt/avatar": "^2.0",
         "laravolt/suitable": "^2.6",
         "laravolt/semantic-form": "^1.11||^2.0"
