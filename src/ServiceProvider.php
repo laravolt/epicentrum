@@ -108,7 +108,7 @@ class ServiceProvider extends BaseServiceProvider
     protected function registerMenu()
     {
         if ($this->app->bound('laravolt.menu')) {
-            $menu = $this->systemMenu();
+            $menu = app('laravolt.menu')->system;
             $menu->add(trans('epicentrum::label.users'), route('epicentrum::users.index'))
                 ->data('icon', 'users')
                 ->data('permission', \Laravolt\Epicentrum\Permission::MANAGE_USER)
@@ -146,15 +146,4 @@ class ServiceProvider extends BaseServiceProvider
     {
         return version_compare($this->app->version(), '5.5') >= 0;
     }
-
-    protected function systemMenu()
-    {
-        $menu = $this->app['laravolt.menu']->system;
-        if (!$menu) {
-            $menu = $this->app['laravolt.menu']->add('System');
-        }
-
-        return $menu;
-    }
-
 }
