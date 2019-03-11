@@ -11,6 +11,10 @@ $router->group(
 
         $router->get('/', ['uses' => 'DefaultController@index', 'as' => 'index']);
 
+        // My Password
+        $router->get('my/password', ['uses' => 'My\PasswordController@edit', 'as' => 'my.password.edit']);
+        $router->post('my/password', ['uses' => 'My\PasswordController@update', 'as' => 'my.password.update']);
+
         $router->group(['namespace' => 'User'], function ($router) {
 
             $router->group(['middleware' => 'can:'.\Laravolt\Epicentrum\Permission::MANAGE_USER], function ($router) {
@@ -55,6 +59,7 @@ $router->group(
                         ],
                     ]
                 );
+
             });
         });
 
