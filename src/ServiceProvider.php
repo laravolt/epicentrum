@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Laravolt\Epicentrum\Console\Commands\ManageRole;
 use Laravolt\Epicentrum\Console\Commands\ManageUser;
+use Laravolt\Epicentrum\Contracts\Requests\Account\Delete;
+use Laravolt\Epicentrum\Contracts\Requests\Account\Store;
+use Laravolt\Epicentrum\Contracts\Requests\Account\Update;
 
 /**
  * Class PackageServiceProvider
@@ -46,6 +49,10 @@ class ServiceProvider extends BaseServiceProvider
         $this->app->bind('laravolt.epicentrum.role', function(){
             return app(config('laravolt.epicentrum.models.role'));
         });
+
+        $this->app->bind(Store::class, config('laravolt.epicentrum.requests.account.store'));
+        $this->app->bind(Update::class, config('laravolt.epicentrum.requests.account.update'));
+        $this->app->bind(Delete::class, config('laravolt.epicentrum.requests.account.delete'));
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace Laravolt\Epicentrum\Http\Controllers\User;
 
-use Laravolt\Epicentrum\Http\Requests\EditAccount;
+use Laravolt\Epicentrum\Contracts\Requests\Account\Update;
 
 class AccountController extends UserController
 {
@@ -30,7 +30,7 @@ class AccountController extends UserController
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EditAccount $request, $id)
+    public function update(Update $request, $id)
     {
         try {
             $this->repository->updateAccount($id, $request->except('_token'), $request->get('roles', []));

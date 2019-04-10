@@ -27,7 +27,8 @@
         "laravolt/acl": "^3.3||^4.0",
         "laravolt/avatar": "^2.0",
         "laravolt/suitable": "^2.6|^3.0",
-        "laravolt/semantic-form": "^1.11||^2.0"
+        "laravolt/semantic-form": "^1.11||^2.0",
+        "laravolt/ui": "^0.3.0"
     },
     "autoload": {
         "psr-4": {

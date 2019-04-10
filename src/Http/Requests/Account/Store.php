@@ -1,11 +1,10 @@
 <?php
 
-namespace Laravolt\Epicentrum\Http\Requests;
+namespace Laravolt\Epicentrum\Http\Requests\Account;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class EditAccount extends FormRequest
+class Store extends FormRequest implements \Laravolt\Epicentrum\Contracts\Requests\Account\Store
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +23,11 @@ class EditAccount extends FormRequest
      */
     public function rules()
     {
-        $id = request()->route('account');
         return [
             'name'     => 'required|max:255',
-            'email'    => [
-                'required',
-                'email',
-                Rule::unique(auth()->user()->getTable())->ignore($id)
-            ],
-            'status'   => 'required',
-            'timezone' => 'required',
+            'email'    => 'required|email|unique:users',
+            'password' => 'required|min:6|max:255',
+            'status'   => 'required'
         ];
     }
 }

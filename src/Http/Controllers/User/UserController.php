@@ -3,9 +3,9 @@
 namespace Laravolt\Epicentrum\Http\Controllers\User;
 
 use Illuminate\Routing\Controller;
-use Laravolt\Epicentrum\Http\Requests\DeleteAccount;
+use Laravolt\Epicentrum\Contracts\Requests\Account\Delete;
+use Laravolt\Epicentrum\Contracts\Requests\Account\Store;
 use Laravolt\Epicentrum\Mail\AccountInformation;
-use Laravolt\Epicentrum\Http\Requests\CreateAccount;
 use Laravolt\Epicentrum\Repositories\RepositoryInterface;
 use Illuminate\Support\Facades\Mail;
 use Laravolt\Epicentrum\Repositories\TimezoneRepository;
@@ -68,10 +68,10 @@ class UserController extends Controller
     /**
      * Store the specified resource.
      *
-     * @param CreateAccount $request
+     * @param Store $request
      * @return Response
      */
-    public function store(CreateAccount $request)
+    public function store(Store $request)
     {
         // save to db
         $roles = $request->get('roles', []);
@@ -101,7 +101,7 @@ class UserController extends Controller
         return redirect(route('epicentrum::account.edit', $id));
     }
 
-    public function destroy(DeleteAccount $request, $id)
+    public function destroy(Delete $request, $id)
     {
         try {
             if ($request->get('mode') == 'force') {

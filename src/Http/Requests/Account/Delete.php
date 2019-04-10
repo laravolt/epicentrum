@@ -1,10 +1,10 @@
 <?php
 
-namespace Laravolt\Epicentrum\Http\Requests;
+namespace Laravolt\Epicentrum\Http\Requests\Account;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DeleteAccount extends FormRequest
+class Delete extends FormRequest implements \Laravolt\Epicentrum\Contracts\Requests\Account\Delete
 {
     /**
      * Determine if the user is authorized to make this request.
