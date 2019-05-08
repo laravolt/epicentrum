@@ -6,6 +6,10 @@
 * For Laravel 5.4 or below, add `Laravolt\Epicentrum\ServiceProvider::class` as service providers
 
 ## Configuration
+publish configuration file
+`php artisan vendor:publish --provider='Laravolt\Epicentrum\ServiceProvider'`
+there will be file `config/laravolt/epicentrum.php` and example code inside it.
+
 ```php
 <?php
 return [

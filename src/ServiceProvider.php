@@ -34,7 +34,12 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'laravolt.epicentrum');
+        $this->mergeConfigFrom($this->packagePath('config/config.php'), 'laravolt.epicentrum');
+
+        $this->publishes(
+            [$this->packagePath('config/config.php') => config_path('laravolt/epicentrum.php')],
+            'config'
+        );
 
         $this->app->bind(
             \Laravolt\Epicentrum\Repositories\RepositoryInterface::class,
@@ -152,5 +157,10 @@ class ServiceProvider extends BaseServiceProvider
     protected function supportAutoDiscovery()
     {
         return version_compare($this->app->version(), '5.5') >= 0;
+    }
+
+    protected function packagePath($path = '')
+    {
+        return sprintf("%s/../%s", __DIR__, $path);
     }
 }
