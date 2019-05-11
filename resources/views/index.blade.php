@@ -10,42 +10,28 @@
 
     <div class="ui divider hidden"></div>
 
-    <div class="ui horizontal list">
-        @if($trashed)
-            <a class="item" href="{{ route('epicentrum::users.index') }}">Hide Trashed</a>
-        @else
-            <a class="item" href="{{ route('epicentrum::users.index', ['trashed' => 1]) }}">Show Trashed</a>
-        @endif
-    </div>
-
-
     {!! Suitable::source($users)
+    ->title(trans('epicentrum::label.users'))
+    ->search(true)
     ->columns([
-        //new \Laravolt\Suitable\Columns\Checkall(),
-        ['header' => trans('epicentrum::users.name'), 'raw' => function($data){
-            return "<img class='ui image avatar' src='" . Laravolt\Avatar\Facade::create($data->name)->toBase64() . "'>" . " " . $data->name;
-        }],
-        ['header' => trans('epicentrum::users.email'), 'field' => 'email'],
-        ['header' => trans('epicentrum::users.roles'), 'raw' => function($data){
-            return $data->roles->implode('name', ', ');
-        }],
-        ['header' => trans('epicentrum::users.status'), 'raw' => function($data){
-            return sprintf('<div class="ui label basic mini">%s</div>', $data->getStatusLabel());
-        }],
-        ['header' => trans('epicentrum::users.registered_at'), 'raw' => function($data){
-            return sprintf('%s', $data->created_at->format('j F Y'));
-        }],
-        ['header' => false, 'raw' => function($data){
-            if ($data->trashed()) {
-                $output =  SemanticForm::open()->delete()->action(route('epicentrum::users.destroy', ['id' => $data['id'], 'mode' => 'force']));
-                $output .= '<button class="ui button mini red" type="submit" name="submit" value="1" onclick="return confirm(\''.trans('epicentrum::message.account_deletion_confirmation').'\')">Delete Forever</button>';
-                $output .= SemanticForm::close();
-
-                return $output;
-            } else {
-                return "<a class='ui button mini' href='".route('epicentrum::users.edit', $data->id)."'>".trans('epicentrum::action.edit')."</a>";
-            }
-        }],
+        \Laravolt\Suitable\Columns\Numbering::make('No'),
+        \Laravolt\Suitable\Columns\Avatar::make('name', ''),
+        \Laravolt\Suitable\Columns\Text::make('name', trans('epicentrum::users.name')),
+        \Laravolt\Suitable\Columns\Text::make('email', trans('epicentrum::users.email')),
+        \Laravolt\Suitable\Columns\Raw::make(
+            function($data) {
+                return $data->roles->implode('name', ', ');
+            },
+            trans('epicentrum::users.roles')
+        ),
+        \Laravolt\Suitable\Columns\Raw::make(
+            function($data) {
+                return sprintf('<div class="ui label basic mini">%s</div>', $data->getStatusLabel());
+            },
+            trans('epicentrum::users.status')
+        ),
+        \Laravolt\Suitable\Columns\Date::make('created_at', trans('epicentrum::users.registered_at')),
+        \Laravolt\Suitable\Columns\RestfulButton::make('epicentrum::users')->only('edit', 'delete')
     ])
     ->render() !!}
 
