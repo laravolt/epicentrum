@@ -29,5 +29,12 @@ $router->group(
         $router
             ->middleware('can:'.\Laravolt\Epicentrum\Permission::MANAGE_ROLE)
             ->resource('roles', 'RoleController');
+
+        $router
+            ->middleware('can:'.\Laravolt\Epicentrum\Permission::MANAGE_PERMISSION)
+            ->group(function ($router) {
+                $router->get('permissions', ['uses' => "PermissionController@edit", 'as' => 'permissions.edit']);
+                $router->put('permissions', ['uses' => "PermissionController@update", 'as' => 'permissions.update']);
+            });
     }
 );

@@ -127,9 +127,14 @@ class ServiceProvider extends BaseServiceProvider
                 ->active(config('laravolt.epicentrum.route.prefix').'/users/*');
 
             $menu->add(trans('epicentrum::label.roles'), route('epicentrum::roles.index'))
-                ->data('icon', 'spy')
+                ->data('icon', 'mask')
                 ->data('permission', \Laravolt\Epicentrum\Permission::MANAGE_ROLE)
                 ->active(config('laravolt.epicentrum.route.prefix').'/roles/*');;
+
+            $menu->add(trans('epicentrum::label.permissions'), route('epicentrum::permissions.edit'))
+                ->data('icon', 'shield')
+                ->data('permission', \Laravolt\Epicentrum\Permission::MANAGE_PERMISSION)
+                ->active(config('laravolt.epicentrum.route.prefix').'/permissions/*');;
         }
     }
 
