@@ -11,7 +11,6 @@
     <div class="ui divider hidden"></div>
 
     {!! Suitable::source($users)
-    ->title(trans('epicentrum::label.users'))
     ->search(true)
     ->columns([
         \Laravolt\Suitable\Columns\Numbering::make('No'),
