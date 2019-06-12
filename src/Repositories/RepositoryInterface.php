@@ -2,14 +2,18 @@
 
 namespace Laravolt\Epicentrum\Repositories;
 
-use Prettus\Repository\Contracts\RepositoryInterface as BaseInterface;
+use Illuminate\Http\Request;
 
 /**
  * Interface UserRepository
  * @package namespace App\Repositories;
  */
-interface RepositoryInterface extends BaseInterface
+interface RepositoryInterface
 {
+    public function findById(int $id);
+
+    public function paginate(Request $request);
+
     public function createByAdmin(array $attributes, $roles = null);
 
     public function updateAccount($id, $account, $roles);

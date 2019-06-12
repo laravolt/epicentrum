@@ -24,10 +24,7 @@ return [
         'criteria' => [
             \Prettus\Repository\Criteria\RequestCriteria::class,
         ],
-        'searchable' => [
-            'name'  => 'like',
-            'email' => 'like',
-        ],
+        'searchable' => ['name', 'email', 'status'],
     ],
     'requests' => [
         'account' => [

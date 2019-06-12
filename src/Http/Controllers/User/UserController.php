@@ -3,6 +3,7 @@
 namespace Laravolt\Epicentrum\Http\Controllers\User;
 
 use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Laravolt\Epicentrum\Contracts\Requests\Account\Delete;
 use Laravolt\Epicentrum\Contracts\Requests\Account\Store;
@@ -39,11 +40,9 @@ class UserController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = $this->repository->scopeQuery(function ($query) {
-            return $query->orderBy('name');
-        })->skipPresenter()->paginate();
+        $users = $this->repository->paginate($request);
 
         return view('epicentrum::index', compact('users'));
     }

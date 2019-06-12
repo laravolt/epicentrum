@@ -20,7 +20,6 @@ $router->group(
             ->group(function ($router) {
                 $router->resource('users', 'UserController');
                 $router->resource('account', 'AccountController')->only('edit', 'update');
-                $router->resource('role', 'RoleController')->only('edit', 'update');
                 $router->resource('password', 'Password\\PasswordController')->only('edit');
                 $router->post('password/{id}/reset', 'Password\\Reset')->name('password.reset');
                 $router->post('password/{id}/generate', 'Password\\Generate')->name('password.generate');

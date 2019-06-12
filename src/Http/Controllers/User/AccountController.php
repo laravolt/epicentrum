@@ -14,7 +14,7 @@ class AccountController extends UserController
      */
     public function edit($id)
     {
-        $user = $this->repository->skipPresenter()->find($id);
+        $user = $this->repository->findById($id);
         $statuses = $this->repository->availableStatus();
         $timezones = $this->timezone->lists();
         $roles = app('laravolt.epicentrum.role')->all();
