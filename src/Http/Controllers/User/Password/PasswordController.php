@@ -2,7 +2,7 @@
 
 namespace Laravolt\Epicentrum\Http\Controllers\User\Password;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use Laravolt\Epicentrum\Repositories\RepositoryInterface;
 
 class PasswordController extends Controller
