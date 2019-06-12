@@ -25,7 +25,7 @@
         ),
         \Laravolt\Suitable\Columns\Raw::make(
             function($data) {
-                return sprintf('<div class="ui label basic mini">%s</div>', $data->getStatusLabel());
+                return sprintf('<div class="ui label basic mini">%s</div>', $data->status);
             },
             trans('epicentrum::users.status')
         ),

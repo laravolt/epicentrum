@@ -40,13 +40,8 @@ class User extends Authenticatable implements
 
     protected $with = ['roles'];
 
-    public function getAvatar()
+    public function getAvatarAttribute()
     {
         return Avatar::create($this->name)->toBase64();
-    }
-
-    public function getStatusLabel()
-    {
-        return $this->status;
     }
 }

@@ -19,22 +19,24 @@
                 <th>
                     <div class="ui checkbox" data-toggle="checkall" data-selector=".checkbox[data-type='check-all-child']">
                         <input type="checkbox">
-                        <label><strong>Hak Akses</strong></label>
+                        <label>@lang('epicentrum::label.permissions')</label>
                         <input type="hidden" name="permissions[]" value="0">
                     </div>
                 </th>
+                <th>@lang('epicentrum::permissions.description')</th>
             </tr>
             </thead>
             <tbody>
 
             @foreach($permissions as $permission)
                 <tr>
-                    <td>
+                    <td style="width: 300px">
                         <div class="ui checkbox" data-type="check-all-child">
                             <input type="checkbox" name="permissions[]" value="{{ $permission->id }}" {{ (in_array($permission->id, $assignedPermissions))?'checked=checked':'' }}>
                             <label>{{ $permission->name }}</label>
                         </div>
                     </td>
+                    <td>{{ $permission->description }}</td>
                 </tr>
             @endforeach
             </tbody>

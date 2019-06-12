@@ -10,7 +10,7 @@
             <div class="ui list horizontal">
                 <div class="item">
                     <h3 class="ui header">
-                        <img class="ui image avatar" src="{{ $user->present('avatar') }}" alt=""> {{ $user->present('name') }}
+                        <img class="ui image avatar" src="{{ $user->avatar }}" alt=""> {{ $user->name }}
                     </h3>
                 </div>
             </div>
