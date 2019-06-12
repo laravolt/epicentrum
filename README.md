@@ -40,7 +40,6 @@ return [
 		// change the criteria on searching feature
 		'criteria' => [
 			\Prettus\Repository\Criteria\RequestCriteria::class,
-			\Laravolt\Epicentrum\Repositories\Criteria\WithTrashedCriteria::class,
 		],
 		// specify column that can searchable
 		'searchable' => [

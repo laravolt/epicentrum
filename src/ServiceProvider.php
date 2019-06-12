@@ -22,12 +22,6 @@ class ServiceProvider extends BaseServiceProvider
      */
     protected $defer = false;
 
-    protected $requiredProviders = [
-        \Laravolt\Suitable\ServiceProvider::class,
-        \Laravolt\SemanticForm\ServiceProvider::class,
-        \Laravolt\Password\ServiceProvider::class,
-    ];
-
     /**
      * Register the service provider.
      * @return void
@@ -80,14 +74,6 @@ class ServiceProvider extends BaseServiceProvider
             $this->registerMenu();
         }
 
-        if (!$this->supportAutoDiscovery()) {
-            $this->loadRequiredProviders();
-
-            $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-            $loader->alias('SemanticForm', \Laravolt\SemanticForm\Facade::class);
-            $loader->alias('Suitable', \Laravolt\Suitable\Facade::class);
-        }
-
         $this->registerBlade();
 
         if ($this->app->bound('laravolt.acl')) {
@@ -98,17 +84,6 @@ class ServiceProvider extends BaseServiceProvider
             $this->registerCommand();
         }
 
-    }
-
-    protected function loadRequiredProviders()
-    {
-        $loadedProviders = $this->app->getLoadedProviders();
-
-        foreach ($this->requiredProviders as $class) {
-            if (!isset($loadedProviders[$class])) {
-                $this->app->register($class);
-            }
-        }
     }
 
     protected function loadRoutes()
@@ -127,9 +102,14 @@ class ServiceProvider extends BaseServiceProvider
                 ->active(config('laravolt.epicentrum.route.prefix').'/users/*');
 
             $menu->add(trans('epicentrum::label.roles'), route('epicentrum::roles.index'))
-                ->data('icon', 'spy')
+                ->data('icon', 'mask')
                 ->data('permission', \Laravolt\Epicentrum\Permission::MANAGE_ROLE)
                 ->active(config('laravolt.epicentrum.route.prefix').'/roles/*');;
+
+            $menu->add(trans('epicentrum::label.permissions'), route('epicentrum::permissions.edit'))
+                ->data('icon', 'shield')
+                ->data('permission', \Laravolt\Epicentrum\Permission::MANAGE_PERMISSION)
+                ->active(config('laravolt.epicentrum.route.prefix').'/permissions/*');;
         }
     }
 
@@ -152,11 +132,6 @@ class ServiceProvider extends BaseServiceProvider
                 ManageRole::class,
             ]
         );
-    }
-
-    protected function supportAutoDiscovery()
-    {
-        return version_compare($this->app->version(), '5.5') >= 0;
     }
 
     protected function packagePath($path = '')

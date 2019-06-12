@@ -2,6 +2,8 @@
 
 namespace Laravolt\Epicentrum\Http\Controllers\User;
 
+use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Laravolt\Epicentrum\Contracts\Requests\Account\Delete;
 use Laravolt\Epicentrum\Contracts\Requests\Account\Store;
@@ -12,7 +14,6 @@ use Laravolt\Epicentrum\Repositories\TimezoneRepository;
 
 class UserController extends Controller
 {
-
     /**
      * @var UserRepositoryEloquent
      */
@@ -25,8 +26,8 @@ class UserController extends Controller
 
     /**
      * UserController constructor.
-     * @param UserRepositoryEloquent $repository
-     * @param TimezoneRepositoryArray $timezone
+     * @param  UserRepositoryEloquent  $repository
+     * @param  TimezoneRepositoryArray  $timezone
      */
     public function __construct(RepositoryInterface $repository, TimezoneRepository $timezone)
     {
@@ -34,21 +35,16 @@ class UserController extends Controller
         $this->timezone = $timezone;
     }
 
-
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $trashed = request('trashed');
+        $users = $this->repository->paginate($request);
 
-        $users = $this->repository->scopeQuery(function ($query) {
-            return $query->orderBy('name');
-        })->skipPresenter()->paginate();
-
-        return view('epicentrum::index', compact('users', 'trashed'));
+        return view('epicentrum::index', compact('users'));
     }
 
     /**
@@ -68,7 +64,7 @@ class UserController extends Controller
     /**
      * Store the specified resource.
      *
-     * @param Store $request
+     * @param  Store  $request
      * @return Response
      */
     public function store(Store $request)
@@ -81,10 +77,6 @@ class UserController extends Controller
         // send account info to email
         if ($request->has('send_account_information')) {
             Mail::to($user)->send(new AccountInformation($user, $password));
-            //Mail::send('emails.account_information', compact('user', 'password'), function($message) use ($user) {
-            //    $message->subject('Your Account Information');
-            //    $message->to($user->email);
-            //});
         }
 
         return redirect()->route('epicentrum::users.index')->withSuccess(trans('epicentrum::message.user_created'));
@@ -104,16 +96,10 @@ class UserController extends Controller
     public function destroy(Delete $request, $id)
     {
         try {
-            if ($request->get('mode') == 'force') {
-                $this->repository->forceDelete($id);
-                $route = route('epicentrum::users.index', ['trashed' => '1']);
-            } else {
-                $this->repository->delete($id);
-                $route = route('epicentrum::users.index');
-            }
+            $this->repository->delete($id);
 
-            return redirect($route)->withSuccess(trans('epicentrum::message.user_deleted'));
-        } catch (\Exception $e) {
+            return redirect(route('epicentrum::users.index'))->withSuccess(trans('epicentrum::message.user_deleted'));
+        } catch (QueryException $e) {
             return redirect()->back()->withError($e->getMessage());
         }
     }

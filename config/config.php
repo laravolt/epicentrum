@@ -15,19 +15,16 @@ return [
         'enable' => true,
     ],
     'role'                  => [
-        'multiple' => true,
+        'multiple' => false,
+        'editable' => false,
     ],
     'repository'            => [
         'user' => \Laravolt\Epicentrum\Repositories\EloquentRepository::class,
         'timezone' => \Laravolt\Epicentrum\Repositories\DefaultTimezoneRepository::class,
         'criteria' => [
             \Prettus\Repository\Criteria\RequestCriteria::class,
-            \Laravolt\Epicentrum\Repositories\Criteria\WithTrashedCriteria::class,
         ],
-        'searchable' => [
-            'name'  => 'like',
-            'email' => 'like',
-        ],
+        'searchable' => ['name', 'email', 'status'],
     ],
     'requests' => [
         'account' => [

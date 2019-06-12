@@ -3,15 +3,21 @@
 namespace Laravolt\Epicentrum\Repositories;
 
 use Carbon\Carbon;
-use Laravolt\Epicentrum\Presenter;
-use Prettus\Repository\Eloquent\BaseRepository;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Http\Request;
 
 /**
  * Class UserRepositoryEloquent
  * @package namespace App\Repositories;
  */
-class EloquentRepository extends BaseRepository implements RepositoryInterface
+class EloquentRepository implements RepositoryInterface
 {
+    /**
+     * @var Model
+     */
+    protected $model;
 
     /**
      * @var array
@@ -19,43 +25,39 @@ class EloquentRepository extends BaseRepository implements RepositoryInterface
     protected $fieldSearchable = [];
 
     /**
-     * Specify Model class name
-     *
-     * @return string
-     */
-    public function model()
-    {
-        return config('auth.providers.users.model');
-    }
-
-    /**
      * Boot up the repository, pushing criteria
      */
-    public function boot()
+    public function __construct()
     {
-        foreach (config('laravolt.epicentrum.repository.criteria', []) as $criteria) {
-            $this->pushCriteria(app($criteria));
-        }
-
+        $this->model = app(config('auth.providers.users.model'));
         $this->fieldSearchable = config('laravolt.epicentrum.repository.searchable', []);
     }
 
-    public function presenter()
+    public function findById(int $id)
     {
-        return Presenter::class;
+        return $this->model->query()->findOrFail($id);
+    }
+
+    public function paginate(Request $request)
+    {
+        $query = $this->model->latest();
+        if (($search = $request->get('search')) !== null) {
+            $query->whereLike($this->fieldSearchable, $search);
+        }
+
+        return $query->paginate();
     }
 
     /**
      * Save a new entity in repository
      *
-     * @throws ValidatorException
-     * @param array $attributes
+     * @param  array  $attributes
+     * @param  null  $roles
      * @return mixed
+     * @throws \Exception
      */
     public function createByAdmin(array $attributes, $roles = null)
     {
-        parent::skipPresenter();
-
         $attributes['password_last_set'] = new Carbon();
         if (array_has($attributes, 'must_change_password')) {
             $attributes['password_last_set'] = null;
@@ -63,8 +65,8 @@ class EloquentRepository extends BaseRepository implements RepositoryInterface
 
         $attributes['password'] = bcrypt($attributes['password']);
 
-        $user = parent::create($attributes);
-
+        $user = $this->model->fill($attributes);
+        $user->save();
         $user->syncRoles($roles);
 
         return $user;
@@ -72,8 +74,12 @@ class EloquentRepository extends BaseRepository implements RepositoryInterface
 
     public function updateAccount($id, $account, $roles)
     {
-        $user = $this->skipPresenter()->update($account, $id);
-        $user->roles()->sync($roles);
+        $user = $this->findById($id);
+        $user->update($account);
+
+        if (config('laravolt.epicentrum.role.editable')) {
+            $user->roles()->sync($roles);
+        }
 
         return $user;
     }
@@ -88,21 +94,14 @@ class EloquentRepository extends BaseRepository implements RepositoryInterface
 
     public function delete($id)
     {
-        $model = $this->skipPresenter()->find($id);
-        $model->email = sprintf("[deleted-%s]%s", $model->id, $model->email);
-        $model->save();
+        $model = $this->model->query()->findOrFail($id);
 
-        return parent::delete($id);
-    }
-
-    public function forceDelete($id)
-    {
-        $model = $this->makeModel()->withTrashed()->find($id);
-        if ($model) {
-            return $model->forceDelete();
+        if (in_array(SoftDeletes::class, class_uses($this->model))) {
+            $model->email = sprintf("[deleted-%s]%s", $model->id, $model->email);
+            $model->save();
         }
 
-        return false;
+        return $model->delete($id);
     }
 
     public function availableStatus()

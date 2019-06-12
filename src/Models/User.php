@@ -3,7 +3,6 @@
 namespace Laravolt\Epicentrum\Models;
 
 use Illuminate\Contracts\Auth\CanResetPassword;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravolt\Acl\Contracts\HasRoleAndPermission as HasRoleAndPermissionContract;
 use Laravolt\Acl\Traits\HasRoleAndPermission;
@@ -11,16 +10,13 @@ use Laravolt\Auth\Traits\CanResetPassword as CanResetPasswordTrait;
 use Laravolt\Avatar\Facade as Avatar;
 use Laravolt\Password\CanChangePassword;
 use Laravolt\Password\CanChangePasswordContract;
-use Prettus\Repository\Contracts\Presentable;
-use Prettus\Repository\Traits\PresentableTrait;
 
 class User extends Authenticatable implements
     CanResetPassword,
     CanChangePasswordContract,
-    Presentable,
     HasRoleAndPermissionContract
 {
-    use CanChangePassword, PresentableTrait, HasRoleAndPermission, SoftDeletes, CanResetPasswordTrait;
+    use CanChangePassword, HasRoleAndPermission, CanResetPasswordTrait;
 
     /**
      * The database table used by the model.

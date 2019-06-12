@@ -14,13 +14,14 @@ class AccountController extends UserController
      */
     public function edit($id)
     {
-        $user = $this->repository->skipPresenter()->find($id);
+        $user = $this->repository->findById($id);
         $statuses = $this->repository->availableStatus();
         $timezones = $this->timezone->lists();
         $roles = app('laravolt.epicentrum.role')->all();
         $multipleRole = config('laravolt.epicentrum.role.multiple');
+        $roleEditable = config('laravolt.epicentrum.role.editable');
 
-        return view('epicentrum::account.edit', compact('user', 'statuses', 'timezones', 'roles', 'multipleRole'));
+        return view('epicentrum::account.edit', compact('user', 'statuses', 'timezones', 'roles', 'multipleRole', 'roleEditable'));
     }
 
     /**

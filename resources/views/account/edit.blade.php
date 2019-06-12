@@ -12,18 +12,6 @@
         {!! SemanticForm::text('email', old('email', $user['email'])) !!}
     </div>
 
-    <div class="grouped fields">
-        <label>Role</label>
-        @foreach($roles as $role)
-            <div class="field">
-                <div class="ui checkbox {{ $multipleRole?'':'radio' }}">
-                    <input type="{{ $multipleRole?'checkbox':'radio' }}" name="roles[]" value="{{ $role->id }}" {{ ($user->hasRole($role))?'checked=checked':'' }}>
-                    <label>{{ $role->name }}</label>
-                </div>
-            </div>
-        @endforeach
-    </div>
-
     <div class="field">
         <label>@lang('epicentrum::users.status')</label>
         {!! SemanticForm::select('status', $statuses, old('status', $user['status']))->addClass('search') !!}
@@ -31,6 +19,29 @@
     <div class="field">
         <label>@lang('epicentrum::users.timezone')</label>
         {!! SemanticForm::select('timezone', $timezones, old('timezone', $user['timezone']))->addClass('search') !!}
+    </div>
+
+    <div class="ui segments">
+        <div class="ui segment">
+            <div class="grouped fields">
+                <label>@lang('epicentrum::users.roles')</label>
+                @foreach($roles as $role)
+                    <div class="field {{ $roleEditable ? '' : 'disabled' }}">
+                        <div class="ui checkbox {{ $multipleRole?'':'radio' }}">
+                            <input type="{{ $multipleRole?'checkbox':'radio' }}" name="roles[]"
+                                   value="{{ $role->id }}" {{ ($user->hasRole($role))?'checked=checked':'' }}>
+                            <label>{{ $role->name }}</label>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        @unless($roleEditable)
+            <div class="ui secondary segment">
+
+                <span class="ui grey text"><i>Editing role are disabled by system</i></span>
+            </div>
+        @endif
     </div>
 
     <div class="ui divider hidden"></div>
@@ -49,7 +60,8 @@
             <div class="ui message warning">@lang('epicentrum::message.cannot_delete_yourself')</div>
         @else
             {!! SemanticForm::open()->delete()->action(route('epicentrum::users.destroy', $user['id'])) !!}
-            <button class="ui button red" type="submit" name="submit" value="1" onclick="return confirm('@lang('epicentrum::message.account_deletion_confirmation')')">@lang('epicentrum::action.delete')</button>
+            <button class="ui button red" type="submit" name="submit" value="1"
+                    onclick="return confirm('@lang('epicentrum::message.account_deletion_confirmation')')">@lang('epicentrum::action.delete')</button>
             {!! SemanticForm::close() !!}
         @endif
     </div>
