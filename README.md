@@ -2,8 +2,7 @@
 # laravolt/epicentrum
 
 ## Installation
-* Run `composer require laravolt/epicentrum`
-* For Laravel 5.4 or below, add `Laravolt\Epicentrum\ServiceProvider::class` as service providers
+`composer require laravolt/epicentrum`
 
 ## Configuration
 publish configuration file
@@ -30,6 +29,7 @@ return [
 	// allow user to has multiple role
 	'role' => [
 		'multiple' => true,
+		'editable' => true,
 	],
 	// list repository that you can modify
 	'repository' => [
@@ -42,10 +42,7 @@ return [
 			\Prettus\Repository\Criteria\RequestCriteria::class,
 		],
 		// specify column that can searchable
-		'searchable' => [
-			'name' => 'like',
-			'email' => 'like',
-		],
+		'searchable' => ['name', 'email', 'status'],
 	],
 	'requests' => [
 		// modify validation of store data crud

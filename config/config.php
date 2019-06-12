@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Set specific configuration variables here
  */
@@ -19,16 +20,13 @@ return [
         'editable' => false,
     ],
     'repository'            => [
-        'user' => \Laravolt\Epicentrum\Repositories\EloquentRepository::class,
-        'timezone' => \Laravolt\Epicentrum\Repositories\DefaultTimezoneRepository::class,
-        'criteria' => [
-            \Prettus\Repository\Criteria\RequestCriteria::class,
-        ],
+        'user'       => \Laravolt\Epicentrum\Repositories\EloquentRepository::class,
+        'timezone'   => \Laravolt\Epicentrum\Repositories\DefaultTimezoneRepository::class,
         'searchable' => ['name', 'email', 'status'],
     ],
-    'requests' => [
+    'requests'              => [
         'account' => [
-            'store' => \Laravolt\Epicentrum\Http\Requests\Account\Store::class,
+            'store'  => \Laravolt\Epicentrum\Http\Requests\Account\Store::class,
             'update' => \Laravolt\Epicentrum\Http\Requests\Account\Update::class,
             'delete' => \Laravolt\Epicentrum\Http\Requests\Account\Delete::class,
         ],
@@ -37,7 +35,7 @@ return [
         'PENDING' => 'PENDING',
         'ACTIVE'  => 'ACTIVE',
     ],
-    'models' => [
-        'role'  => \Laravolt\Acl\Models\Role::class,
+    'models'                => [
+        'role' => \Laravolt\Acl\Models\Role::class,
     ],
 ];
