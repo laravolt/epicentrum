@@ -18,7 +18,5 @@ interface RepositoryInterface extends BaseInterface
 
     public function delete($id);
 
-    public function forceDelete($id);
-
     public function availableStatus();
 }

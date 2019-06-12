@@ -73,7 +73,9 @@ class EloquentRepository extends BaseRepository implements RepositoryInterface
     public function updateAccount($id, $account, $roles)
     {
         $user = $this->skipPresenter()->update($account, $id);
-        $user->roles()->sync($roles);
+        if (config('laravolt.epicentrum.role.editable')) {
+            $user->roles()->sync($roles);
+        }
 
         return $user;
     }
@@ -93,16 +95,6 @@ class EloquentRepository extends BaseRepository implements RepositoryInterface
         $model->save();
 
         return parent::delete($id);
-    }
-
-    public function forceDelete($id)
-    {
-        $model = $this->makeModel()->withTrashed()->find($id);
-        if ($model) {
-            return $model->forceDelete();
-        }
-
-        return false;
     }
 
     public function availableStatus()
