@@ -10,16 +10,13 @@ use Laravolt\Auth\Traits\CanResetPassword as CanResetPasswordTrait;
 use Laravolt\Avatar\Facade as Avatar;
 use Laravolt\Password\CanChangePassword;
 use Laravolt\Password\CanChangePasswordContract;
-use Prettus\Repository\Contracts\Presentable;
-use Prettus\Repository\Traits\PresentableTrait;
 
 class User extends Authenticatable implements
     CanResetPassword,
     CanChangePasswordContract,
-    Presentable,
     HasRoleAndPermissionContract
 {
-    use CanChangePassword, PresentableTrait, HasRoleAndPermission, CanResetPasswordTrait;
+    use CanChangePassword, HasRoleAndPermission, CanResetPasswordTrait;
 
     /**
      * The database table used by the model.
