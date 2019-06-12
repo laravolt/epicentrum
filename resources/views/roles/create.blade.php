@@ -21,17 +21,19 @@
                         <label><strong>@lang('epicentrum::label.permissions')</strong></label>
                     </div>
                 </th>
+                <th>@lang('epicentrum::permissions.description')</th>
             </tr>
             </thead>
             <tbody>
             @foreach($permissions as $permission)
                 <tr>
-                    <td>
+                    <td style="width: 300px">
                         <div class="ui checkbox" data-type="check-all-child">
                             <input type="checkbox" name="permissions[]" value="{{ $permission->id }}" {{ (false)?'checked=checked':'' }}>
                             <label>{{ $permission->name }}</label>
                         </div>
                     </td>
+                    <td>{{ $permission->description }}</td>
                 </tr>
             @endforeach
             </tbody>
