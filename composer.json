@@ -23,7 +23,7 @@
         "laravolt/password": "^1.0",
         "laravolt/acl": "^4.1",
         "laravolt/avatar": "^2.0",
-        "laravolt/suitable": "^3.0",
+        "laravolt/suitable": "^3.3.6",
         "laravolt/semantic-form": "^2.0",
         "laravolt/ui": "~0.4",
         "bensampo/laravel-enum": "^1.19"
