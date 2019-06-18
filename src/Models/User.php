@@ -10,13 +10,15 @@ use Laravolt\Auth\Traits\CanResetPassword as CanResetPasswordTrait;
 use Laravolt\Avatar\Facade as Avatar;
 use Laravolt\Password\CanChangePassword;
 use Laravolt\Password\CanChangePasswordContract;
+use Laravolt\Suitable\AutoFilter;
+use Laravolt\Suitable\AutoSort;
 
 class User extends Authenticatable implements
     CanResetPassword,
     CanChangePasswordContract,
     HasRoleAndPermissionContract
 {
-    use CanChangePassword, HasRoleAndPermission, CanResetPasswordTrait;
+    use CanChangePassword, HasRoleAndPermission, CanResetPasswordTrait, AutoSort, AutoFilter;
 
     /**
      * The database table used by the model.

@@ -40,7 +40,7 @@ class EloquentRepository implements RepositoryInterface
 
     public function paginate(Request $request)
     {
-        $query = $this->model->latest();
+        $query = $this->model->autoSort()->autoFilter()->latest();
         if (($search = $request->get('search')) !== null) {
             $query->whereLike($this->fieldSearchable, $search);
         }

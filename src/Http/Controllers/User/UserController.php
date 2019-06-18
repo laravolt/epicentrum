@@ -11,6 +11,7 @@ use Laravolt\Epicentrum\Mail\AccountInformation;
 use Laravolt\Epicentrum\Repositories\RepositoryInterface;
 use Illuminate\Support\Facades\Mail;
 use Laravolt\Epicentrum\Repositories\TimezoneRepository;
+use Laravolt\Epicentrum\Table\UserTable;
 
 class UserController extends Controller
 {
@@ -44,7 +45,7 @@ class UserController extends Controller
     {
         $users = $this->repository->paginate($request);
 
-        return view('epicentrum::index', compact('users'));
+        return UserTable::make($users)->view('epicentrum::index');
     }
 
     /**
