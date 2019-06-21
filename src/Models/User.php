@@ -6,10 +6,10 @@ use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravolt\Acl\Contracts\HasRoleAndPermission as HasRoleAndPermissionContract;
 use Laravolt\Acl\Traits\HasRoleAndPermission;
-use Laravolt\Auth\Traits\CanResetPassword as CanResetPasswordTrait;
 use Laravolt\Avatar\Facade as Avatar;
 use Laravolt\Password\CanChangePassword;
 use Laravolt\Password\CanChangePasswordContract;
+use Laravolt\Password\CanResetPassword as CanResetPasswordTrait;
 use Laravolt\Suitable\AutoFilter;
 use Laravolt\Suitable\AutoSort;
 
