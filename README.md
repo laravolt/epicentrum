@@ -64,7 +64,7 @@ return [
 ];
 ```
 ## Custom View File
-You can modify the view located in `resources/views/vendor/auth/*`
+You can modify the view located in `resources/views/vendor/epicentrum/*`
 The structure of epicentrum view file : 
 ```
 |-- account
