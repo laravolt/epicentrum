@@ -61,6 +61,10 @@ class ServiceProvider extends BaseServiceProvider
     public function boot()
     {
         $this->loadViewsFrom(realpath(__DIR__.'/../resources/views'), 'epicentrum');
+        $this->publishes(
+            [realpath(__DIR__.'/../resources/views') => base_path('resources/views/vendor/epicentrum')],
+            'views'
+        );
 
         $this->loadTranslationsFrom(realpath(__DIR__.'/../resources/lang'), 'epicentrum');
 
