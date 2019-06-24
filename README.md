@@ -5,9 +5,14 @@
 `composer require laravolt/epicentrum`
 
 ## Configuration
-publish configuration file
-`php artisan vendor:publish --provider='Laravolt\Epicentrum\ServiceProvider'`
-there will be file `config/laravolt/epicentrum.php` and example code inside it.
+
+Publish configuration file using command:
+
+```bash
+php artisan vendor:publish --tag=migrations --provider='Laravolt\Epicentrum\ServiceProvider
+```
+
+And there will be file `config/laravolt/epicentrum.php` and preconfigured config inside it:
 
 ```php
 <?php
@@ -64,8 +69,17 @@ return [
 ];
 ```
 ## Custom View File
-You can modify the view located in `resources/views/vendor/auth/*`
-The structure of epicentrum view file : 
+
+You can publish views file using:
+
+```bash
+php artisan vendor:publish --tag=views --provider='Laravolt\Epicentrum\ServiceProvider'
+```
+
+And then, you can modify the view located in `resources/views/vendor/epicentrum/*`.
+
+The structure of epicentrum view file :
+
 ```
 |-- account
 |	|-- edit.blade.php
@@ -90,4 +104,4 @@ The structure of epicentrum view file :
 * **How to override the controller ?**
 Override the controller is not best practice. If you want to pass data into view, you need to use [Laravel Blade Service Injection](https://laravel.com/docs/5.8/blade#service-injection).
 If you need to change the **redirect**, you must override the view and make custom route and controller by yourself. And then extends that controller to Epicentrum Controller.
-	
+
