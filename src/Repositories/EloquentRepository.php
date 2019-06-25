@@ -101,7 +101,7 @@ class EloquentRepository implements RepositoryInterface
             $model->save();
         }
 
-        return $model->delete($id);
+        return $model->delete();
     }
 
     public function availableStatus()
