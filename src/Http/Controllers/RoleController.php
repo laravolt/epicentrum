@@ -57,7 +57,7 @@ class RoleController extends Controller
      */
     public function store(Store $request)
     {
-        $role = $this->repository->create($request);
+        $role = $this->repository->create($request->all());
 
         return redirect()->route('epicentrum::roles.index')->withSuccess(trans('epicentrum::message.role_created'));
     }
@@ -86,7 +86,7 @@ class RoleController extends Controller
      */
     public function update(Update $request, $id)
     {
-        $role = $this->repository->update($id, $request);
+        $role = $this->repository->update($id, $request->all());
 
         return redirect()->route('epicentrum::roles.index')->withSuccess(trans('epicentrum::message.role_updated'));
     }

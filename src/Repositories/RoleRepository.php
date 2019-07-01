@@ -4,7 +4,6 @@ namespace Laravolt\Epicentrum\Repositories;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 
 /**
  * Class UserRepositoryEloquent
@@ -49,19 +48,19 @@ class RoleRepository implements RoleRepositoryInterface
      * @return mixed
      * @throws \Exception
      */
-    public function create(Request $request)
+    public function create(array $attributes)
     {
-        $role = $this->model->create($request->all());
-        $role->syncPermission($request->get('permissions', []));
+        $role = $this->model->create($attributes);
+        $role->syncPermission($attributes['permissions'] ?? []);
 
         return $role;
     }
 
-    public function update($id, Request $request)
+    public function update($id, array $attributes)
     {
         $role = $this->findById($id);
-        $role->update($request->all());
-        $role->syncPermission($request->get('permissions', []));
+        $role->update($attributes);
+        $role->syncPermission($attributes['permissions'] ?? []);
 
         return $role;
     }
