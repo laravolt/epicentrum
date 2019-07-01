@@ -6,9 +6,25 @@ use Illuminate\Routing\Controller;
 use Laravolt\Acl\Models\Permission;
 use Laravolt\Epicentrum\Http\Requests\Role\Store;
 use Laravolt\Epicentrum\Http\Requests\Role\Update;
+use Laravolt\Epicentrum\Repositories\RoleRepository;
+use Laravolt\Epicentrum\Repositories\RoleRepositoryInterface;
 
 class RoleController extends Controller
 {
+    /**
+     * @var RoleRepositorye
+     */
+    protected $repository;
+
+    /**
+     * UserController constructor.
+     * @param  RoleRepository  $repository
+     */
+    public function __construct(RoleRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +32,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = app('laravolt.epicentrum.role')->all();
+        $roles = $this->repository->all();
 
         return view('epicentrum::roles.index', compact('roles'));
     }
@@ -41,8 +57,7 @@ class RoleController extends Controller
      */
     public function store(Store $request)
     {
-        $role = app('laravolt.epicentrum.role')->create($request->only('name'));
-        $role->syncPermission($request->get('permissions', []));
+        $role = $this->repository->create($request->all());
 
         return redirect()->route('epicentrum::roles.index')->withSuccess(trans('epicentrum::message.role_created'));
     }
@@ -55,7 +70,7 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $role = app('laravolt.epicentrum.role')->findOrFail($id);
+        $role = $this->repository->findById($id);
         $permissions = Permission::all();
         $assignedPermissions = old('permissions', $role->permissions()->pluck('id')->toArray());
 
@@ -71,11 +86,7 @@ class RoleController extends Controller
      */
     public function update(Update $request, $id)
     {
-        $role = app('laravolt.epicentrum.role')->findOrFail($id);
-        $role->name = $request->get('name');
-        $role->save();
-
-        $role->syncPermission($request->get('permissions', []));
+        $role = $this->repository->update($id, $request->all());
 
         return redirect()->route('epicentrum::roles.index')->withSuccess(trans('epicentrum::message.role_updated'));
     }
@@ -88,7 +99,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        app('laravolt.epicentrum.role')->findOrFail($id)->delete();
+        $this->repository->delete($id);
 
         return redirect()->route('epicentrum::roles.index')->withSuccess(trans('epicentrum::message.role_deleted'));
     }
