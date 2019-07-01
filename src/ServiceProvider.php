@@ -41,6 +41,11 @@ class ServiceProvider extends BaseServiceProvider
         );
 
         $this->app->bind(
+            \Laravolt\Epicentrum\Repositories\RoleRepositoryInterface::class,
+            config('laravolt.epicentrum.repository.role')
+        );
+
+        $this->app->bind(
             \Laravolt\Epicentrum\Repositories\TimezoneRepository::class,
             config('laravolt.epicentrum.repository.timezone')
         );

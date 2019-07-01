@@ -21,6 +21,7 @@ return [
     ],
     'repository'            => [
         'user'       => \Laravolt\Epicentrum\Repositories\EloquentRepository::class,
+        'role'       => \Laravolt\Epicentrum\Repositories\RoleRepository::class,
         'timezone'   => \Laravolt\Epicentrum\Repositories\DefaultTimezoneRepository::class,
         'searchable' => ['name', 'email', 'status'],
     ],
