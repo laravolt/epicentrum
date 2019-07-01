@@ -5,7 +5,6 @@ namespace Laravolt\Epicentrum\Repositories;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Http\Request;
 
 /**
@@ -101,7 +100,7 @@ class EloquentRepository implements RepositoryInterface
             $model->save();
         }
 
-        return $model->delete($id);
+        return $model->delete();
     }
 
     public function availableStatus()
