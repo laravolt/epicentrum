@@ -11,6 +11,7 @@ use Laravolt\Epicentrum\Mail\AccountInformation;
 use Laravolt\Epicentrum\Repositories\RepositoryInterface;
 use Illuminate\Support\Facades\Mail;
 use Laravolt\Epicentrum\Repositories\TimezoneRepository;
+use Laravolt\Suitable\TableView;
 
 class UserController extends Controller
 {
@@ -39,10 +40,15 @@ class UserController extends Controller
      * Display a listing of the resource.
      *
      * @return Response
+     * @throws \Exception
      */
     public function index(Request $request)
     {
         $users = $this->repository->paginate($request);
+
+        if (!is_subclass_of(config('laravolt.epicentrum.table_view'), TableView::class)) {
+            throw new \Exception("Table View config must extend Laravolt\Suitable\TableView");
+        }
 
         return config('laravolt.epicentrum.table_view')::make($users)->view('epicentrum::index');
     }
