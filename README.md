@@ -66,6 +66,11 @@ return [
 	'models' => [
 		'role' => \Laravolt\Acl\Models\Role::class,
 	],
+	// Whether to auto load migrations or not.
+    	// If set to false, then you must publish the migration files first before running the migrate command
+    	'migrations' => true,
+	// modify table view on user list page
+    	'table_view' => \Laravolt\Epicentrum\Table\UserTable::class
 ];
 ```
 ## Custom View File
