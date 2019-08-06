@@ -63,8 +63,9 @@ class UserController extends Controller
         $statuses = $this->repository->availableStatus();
         $roles = app('laravolt.epicentrum.role')->all()->pluck('name', 'id');
         $multipleRole = config('laravolt.epicentrum.role.multiple');
+        $timezones = $this->timezone->lists();
 
-        return view('epicentrum::create', compact('statuses', 'roles', 'multipleRole'));
+        return view('epicentrum::create', compact('statuses', 'roles', 'multipleRole', 'timezones'));
     }
 
     /**

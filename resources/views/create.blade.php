@@ -30,6 +30,10 @@
             <label>@lang('epicentrum::users.status')</label>
             {!! SemanticForm::select('status', $statuses, old('status')) !!}
         </div>
+        <div class="field">
+            <label>@lang('epicentrum::users.timezone')</label>
+            {!! SemanticForm::select('timezone', $timezones, old('timezone', config('app.timezone')))->addClass('search') !!}
+        </div>
 
         <div class="ui divider hidden"></div>
         <div class="field">
