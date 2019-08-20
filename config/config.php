@@ -37,7 +37,8 @@ return [
         'ACTIVE'  => 'ACTIVE',
     ],
     'models'                => [
-        'role' => \Laravolt\Acl\Models\Role::class,
+        'role'       => \Laravolt\Acl\Models\Role::class,
+        'permission' => \Laravolt\Acl\Models\Permission::class
     ],
 
     // Whether to auto load migrations or not.
