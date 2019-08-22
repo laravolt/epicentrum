@@ -3,7 +3,6 @@
 namespace Laravolt\Epicentrum\Http\Controllers;
 
 use Illuminate\Routing\Controller;
-use Laravolt\Acl\Models\Permission;
 use Laravolt\Epicentrum\Http\Requests\Role\Store;
 use Laravolt\Epicentrum\Http\Requests\Role\Update;
 use Laravolt\Epicentrum\Repositories\RoleRepository;
@@ -44,7 +43,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $permissions = Permission::all();
+        $permissions = config('laravolt.epicentrum.models.permission')::all();
 
         return view('epicentrum::roles.create', compact('permissions'));
     }
@@ -71,7 +70,7 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = $this->repository->findById($id);
-        $permissions = Permission::all();
+        $permissions = config('laravolt.epicentrum.models.permission')::all();
         $assignedPermissions = old('permissions', $role->permissions()->pluck('id')->toArray());
 
         return view('epicentrum::roles.edit', compact('role', 'permissions', 'assignedPermissions'));

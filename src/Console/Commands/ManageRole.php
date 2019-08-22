@@ -4,7 +4,6 @@ namespace Laravolt\Epicentrum\Console\Commands;
 
 use Illuminate\Console\Command;
 use Laravolt\Acl\Models\Role;
-use Laravolt\Acl\Models\Permission;
 
 class ManageRole extends Command
 {
@@ -78,7 +77,7 @@ class ManageRole extends Command
 
     protected function actionChangePermission($role)
     {
-        $permissions = Permission::pluck('name', 'id')->sortKeys();
+        $permissions = config('laravolt.epicentrum.models.permission')::pluck('name', 'id')->sortKeys();
         $options = (clone $permissions)->prepend('all', 0);
 
         $selected = $this->choice('Type permission ID, separate by comma', $options->toArray(), null, null, true);
