@@ -8,7 +8,7 @@ class PermissionController extends Controller
 {
     public function edit()
     {
-        $permissions = config('laravolt.epicentrum.models.permission')::all()->sortBy(function ($item) {
+        $permissions = (new \PermissionRepo())->all()->sortBy(function ($item) {
             return strtolower($item->name);
         });
 
@@ -18,7 +18,7 @@ class PermissionController extends Controller
     public function update()
     {
         foreach (request('permission', []) as $key => $description) {
-            config('laravolt.epicentrum.models.permission')::whereId($key)->update(['description' => $description]);
+            (new \PermissionRepo())->updateAll($key, $description);
         }
 
         return redirect()->back()->withSuccess('Permission updated');

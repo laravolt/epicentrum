@@ -43,7 +43,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $permissions = config('laravolt.epicentrum.models.permission')::all();
+        $permissions = (new \PermissionRepo())->all();
 
         return view('epicentrum::roles.create', compact('permissions'));
     }
@@ -70,7 +70,7 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = $this->repository->findById($id);
-        $permissions = config('laravolt.epicentrum.models.permission')::all();
+        $permissions = (new \PermissionRepo())->all();
         $assignedPermissions = old('permissions', $role->permissions()->pluck('id')->toArray());
 
         return view('epicentrum::roles.edit', compact('role', 'permissions', 'assignedPermissions'));

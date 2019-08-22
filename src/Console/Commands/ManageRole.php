@@ -77,7 +77,7 @@ class ManageRole extends Command
 
     protected function actionChangePermission($role)
     {
-        $permissions = config('laravolt.epicentrum.models.permission')::pluck('name', 'id')->sortKeys();
+        $permissions = (new \PermissionRepo())->all()->pluck('name', 'id')->sortKeys();
         $options = (clone $permissions)->prepend('all', 0);
 
         $selected = $this->choice('Type permission ID, separate by comma', $options->toArray(), null, null, true);
