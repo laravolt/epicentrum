@@ -56,6 +56,10 @@ class ServiceProvider extends BaseServiceProvider
             return app(config('laravolt.epicentrum.models.role'));
         });
 
+        $this->app->bind('laravolt.epicentrum.permission', function(){
+            return app(config('laravolt.epicentrum.models.permission'));
+        });
+
         $this->app->bind(Store::class, config('laravolt.epicentrum.requests.account.store'));
         $this->app->bind(Update::class, config('laravolt.epicentrum.requests.account.update'));
         $this->app->bind(Delete::class, config('laravolt.epicentrum.requests.account.delete'));

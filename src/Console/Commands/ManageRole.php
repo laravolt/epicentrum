@@ -3,7 +3,6 @@
 namespace Laravolt\Epicentrum\Console\Commands;
 
 use Illuminate\Console\Command;
-use Laravolt\Acl\Models\Role;
 
 class ManageRole extends Command
 {
@@ -46,10 +45,10 @@ class ManageRole extends Command
             $identifier = $this->ask('ID or role name');
         }
 
-        $role = Role::find($identifier);
+        $role = app('laravolt.epicentrum.role')->find($identifier);
 
         if (!$role) {
-            $role = Role::whereName($identifier)->first();
+            $role = app('laravolt.epicentrum.role')->whereName($identifier)->first();
         }
 
         if(!$role) {
@@ -77,7 +76,7 @@ class ManageRole extends Command
 
     protected function actionChangePermission($role)
     {
-        $permissions = config('laravolt.epicentrum.models.permission')::pluck('name', 'id')->sortKeys();
+        $permissions = app('laravolt.epicentrum.permission')->pluck('name', 'id')->sortKeys();
         $options = (clone $permissions)->prepend('all', 0);
 
         $selected = $this->choice('Type permission ID, separate by comma', $options->toArray(), null, null, true);

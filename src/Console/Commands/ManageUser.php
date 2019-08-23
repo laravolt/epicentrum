@@ -3,7 +3,6 @@
 namespace Laravolt\Epicentrum\Console\Commands;
 
 use Illuminate\Console\Command;
-use Laravolt\Acl\Models\Role;
 use Laravolt\Epicentrum\Repositories\RepositoryInterface;
 
 class ManageUser extends Command
@@ -65,14 +64,13 @@ class ManageUser extends Command
         }
 
         if (!$user) {
-
             $this->warn('User not found');
 
             if ($this->confirm('Do you want to creaate new user?')) {
                 $user = $this->repository->createByAdmin(
                     [
-                        'email'    => $this->ask('Email', $identifier),
-                        'name'     => $this->ask('Name', 'Fulan'),
+                        'email' => $this->ask('Email', $identifier),
+                        'name' => $this->ask('Name', 'Fulan'),
                         'password' => $this->ask('Password', 'asdf1234'),
                     ]
                 );
@@ -92,7 +90,7 @@ class ManageUser extends Command
 
     protected function actionChangeRole($user)
     {
-        $roles = Role::pluck('name', 'id')->sortKeys();
+        $roles = app('laravolt.epicentrum.role')->pluck('name', 'id')->sortKeys();
         $options = (clone $roles)->prepend('all', 0);
 
         $selected = $this->choice('Type roles ID, separate by comma', $options->toArray(), null, null, true);
