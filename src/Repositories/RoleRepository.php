@@ -30,7 +30,7 @@ class RoleRepository implements RoleRepositoryInterface
         $this->fieldSearchable = config('laravolt.epicentrum.repository.searchable', []);
     }
 
-    public function findById(int $id)
+    public function findById($id)
     {
         return $this->model->query()->findOrFail($id);
     }
