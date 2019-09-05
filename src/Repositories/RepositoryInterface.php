@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
  */
 interface RepositoryInterface
 {
-    public function findById(int $id);
+    public function findById($id);
 
     public function paginate(Request $request);
 
