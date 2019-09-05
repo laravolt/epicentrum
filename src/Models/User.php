@@ -12,6 +12,7 @@ use Laravolt\Password\CanChangePasswordContract;
 use Laravolt\Password\CanResetPassword as CanResetPasswordTrait;
 use Laravolt\Suitable\AutoFilter;
 use Laravolt\Suitable\AutoSort;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 
 class User extends Authenticatable implements
     CanResetPassword,
@@ -44,6 +45,11 @@ class User extends Authenticatable implements
 
     public function getAvatarAttribute()
     {
-        return Avatar::create($this->name)->toBase64();
+        $url = null;
+        if ($this instanceof HasMedia) {
+            $url = $this->getFirstMediaUrl('avatar');
+        }
+
+        return $url ?: Avatar::create($this->name)->toBase64();
     }
 }
