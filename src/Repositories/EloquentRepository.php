@@ -57,14 +57,13 @@ class EloquentRepository implements RepositoryInterface
      */
     public function createByAdmin(array $attributes, $roles = null)
     {
-        $attributes['password_last_set'] = new Carbon();
+        $attributes['password'] = bcrypt($attributes['password']);
+        $user = $this->model->fill($attributes);
+
         if (array_has($attributes, 'must_change_password')) {
-            $attributes['password_last_set'] = null;
+            $user->password_last_set = null;
         }
 
-        $attributes['password'] = bcrypt($attributes['password']);
-
-        $user = $this->model->fill($attributes);
         $user->save();
         $user->syncRoles($roles);
 
