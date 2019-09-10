@@ -34,7 +34,7 @@ class AccountController extends UserController
     public function update(Update $request, $id)
     {
         try {
-            $this->repository->updateAccount($id, $request->except('_token'), $request->get('roles', []));
+            $this->repository->updateAccount($id, $request->except('_token', '_method'), $request->get('roles', []));
 
             return redirect()->back()->withSuccess(trans('epicentrum::message.account_updated'));
         } catch (\Exception $e) {
