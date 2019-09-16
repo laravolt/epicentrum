@@ -22,7 +22,7 @@
         "illuminate/support": "5.6.*|5.7.*|5.8.*|^6.0",
         "laravolt/password": "^1.5",
         "laravolt/acl": "^4.1",
-        "laravolt/avatar": "^2.0",
+        "laravolt/avatar": "^2.0|^3.0",
         "laravolt/suitable": "^3.3.6",
         "laravolt/semantic-form": "^2.0",
         "laravolt/ui": "~0.4",
