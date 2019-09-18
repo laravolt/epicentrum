@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 /**
  * Class UserRepositoryEloquent
@@ -60,7 +61,7 @@ class EloquentRepository implements RepositoryInterface
         $attributes['password'] = bcrypt($attributes['password']);
         $user = $this->model->fill($attributes);
 
-        if (array_has($attributes, 'must_change_password')) {
+        if (Arr::has($attributes, 'must_change_password')) {
             $user->password_last_set = null;
         }
 
