@@ -3,6 +3,7 @@
 namespace Laravolt\Epicentrum\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class ManageRole extends Command
 {
@@ -69,7 +70,7 @@ class ManageRole extends Command
     protected function chooseAction($role)
     {
         $message = sprintf('What do you want to do with role %s (ID: %s)', $role->name, $role->getKey());
-        $action = camel_case($this->choice($message, $this->menu));
+        $action = Str::camel($this->choice($message, $this->menu));
 
         $this->{'action'.$action}($role);
     }

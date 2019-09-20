@@ -3,6 +3,7 @@
 namespace Laravolt\Epicentrum\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 use Laravolt\Epicentrum\Repositories\RepositoryInterface;
 
 class ManageUser extends Command
@@ -83,7 +84,7 @@ class ManageUser extends Command
     protected function chooseAction($user)
     {
         $message = sprintf('What do you want to do with user %s (ID: %s)', $user->email, $user->getKey());
-        $action = camel_case($this->choice($message, $this->menu));
+        $action = Str::camel($this->choice($message, $this->menu));
 
         $this->{'action'.$action}($user);
     }
