@@ -18,7 +18,7 @@
                         </div>
                         <div class="extra content">
                             <i class="icon users"></i>{{ $role->users->count() }}
-                            <span class="right floated"><i class="icon options"></i> {{ $role->permissions->count() }}</span>
+                            <span class="right floated"><i class="icon options"></i> {{ $role->permissions()->count() }}</span>
                         </div>
                         {{--<div class="extra content">--}}
                         {{--<a href="{{ route('epicentrum::roles.edit', $role['id']) }}" class="ui button fluid"><i class="icon setting"></i> @lang('epicentrum::action.manage')</a>--}}
