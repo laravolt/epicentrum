@@ -13,7 +13,7 @@
             {!! SemanticForm::text('name', old('name', $role['name']))->label(trans('epicentrum::roles.name')) !!}
         </div>
 
-        <table class="ui table">
+        <table class="ui table padded">
             <thead>
             <tr>
                 <th>
@@ -23,20 +23,23 @@
                         <input type="hidden" name="permissions[]" value="0">
                     </div>
                 </th>
-                <th>@lang('epicentrum::permissions.description')</th>
             </tr>
             </thead>
             <tbody>
 
             @foreach($permissions as $permission)
                 <tr>
-                    <td style="width: 300px">
+                    <td>
                         <div class="ui checkbox" data-type="check-all-child">
                             <input type="checkbox" name="permissions[]" value="{{ $permission->id }}" {{ (in_array($permission->id, $assignedPermissions))?'checked=checked':'' }}>
-                            <label>{{ $permission->name }}</label>
+                            <label>
+                                <h5 class="m-y-0 m-l-1">{{ $permission->name }}</h5>
+                                <p class="m-l-1">
+                                    {{ $permission->description ?? "No description" }}
+                                </p>
+                            </label>
                         </div>
                     </td>
-                    <td>{{ $permission->description }}</td>
                 </tr>
             @endforeach
             </tbody>
