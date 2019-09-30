@@ -28,7 +28,7 @@ class UserTable extends TableView
             ),
             Label::make('status', trans('epicentrum::users.status')),
             Date::make('created_at', trans('epicentrum::users.registered_at'))->sortable(),
-            RestfulButton::make('epicentrum::users')->only('edit', 'delete'),
+            RestfulButton::make('epicentrum::users', trans('epicentrum::users.action'))->only('edit', 'delete'),
         ];
     }
 }

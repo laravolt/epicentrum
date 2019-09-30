@@ -13,6 +13,7 @@ return [
     'bio'                                => 'Bio',
     'timezone'                           => 'Zona Waktu',
     'roles'                              => 'Roles',
+    'action'                             => 'Aksi',
     'pages'                              => [
         'index' => [
             'header' => 'Manage Users',

@@ -13,6 +13,7 @@ return [
     'bio'                                => 'Bio',
     'timezone'                           => 'Timezone',
     'roles'                              => 'Roles',
+    'action'                             => 'Action',
     'pages'                              => [
         'index' => [
             'header' => 'Manage Users',
