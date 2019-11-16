@@ -19,6 +19,7 @@ class UserTable extends TableView
             Numbering::make('No'),
             Avatar::make('name', ''),
             Text::make('name', trans('epicentrum::users.name'))->sortable(),
+            Text::make('username', trans('epicentrum::users.username'))->sortable(),
             Text::make('email', trans('epicentrum::users.email'))->sortable(),
             Raw::make(
                 function ($data) {
