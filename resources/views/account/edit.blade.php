@@ -8,6 +8,10 @@
         {!! SemanticForm::text('name', old('name', $user['name'])) !!}
     </div>
     <div class="field">
+        <label>@lang('epicentrum::users.username')</label>
+        {!! SemanticForm::text('username', old('username', $user['name'])) !!}
+    </div>
+    <div class="field">
         <label>@lang('epicentrum::users.email')</label>
         {!! SemanticForm::text('email', old('email', $user['email'])) !!}
     </div>
