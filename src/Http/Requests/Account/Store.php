@@ -25,6 +25,7 @@ class Store extends FormRequest implements \Laravolt\Epicentrum\Contracts\Reques
     {
         return [
             'name'     => 'required|max:255',
+            'username'     => 'required|max:255|unique:users',
             'email'    => 'required|email|unique:users',
             'password' => 'required|min:6|max:255',
             'status'   => 'required'
