@@ -61,6 +61,11 @@ class RoleController extends Controller
         return redirect()->route('epicentrum::roles.index')->withSuccess(trans('epicentrum::message.role_created'));
     }
 
+    public function show($id)
+    {
+        return redirect()->route('epicentrum::roles.edit', $id);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
