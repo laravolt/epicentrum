@@ -1,11 +1,15 @@
 @extends(config('laravolt.epicentrum.view.layout'))
+
+@section('page.title', __('epicentrum::label.edit_user'))
+
+@push('page.actions')
+    <a href="{{ route('epicentrum::users.index') }}" class="ui button">
+        <i class="icon arrow up"></i> Kembali ke Index
+    </a>
+@endpush
+
 @section('content')
-
-
-    <div class="ui menu top attached">
-        <a href="{{ route('epicentrum::users.index') }}" class="item"><i class="icon angle left"></i> @lang('epicentrum::action.back')</a>
-    </div>
-    <div class="ui segment p-0 bottom attached secondary">
+    <div class="ui segment p-0 secondary">
         <div class="p-1">
             <div class="ui list horizontal">
                 <div class="item">
@@ -19,7 +23,6 @@
         <div class="ui tabular menu left attached">
             <a class="item {{ ($tab == 'account')?'active':'' }}" href="{{ route('epicentrum::account.edit', $user['id']) }}">@lang('epicentrum::menu.account')</a>
             <a class="item {{ ($tab == 'password')?'active':'' }}" href="{{ route('epicentrum::password.edit', $user['id']) }}">@lang('epicentrum::menu.password')</a>
-            {{--<a class="item {{ ($tab == 'role')?'active':'' }}" href="{{ route('epicentrum::role.edit', $user['id']) }}">@lang('epicentrum::menu.role')</a>--}}
         </div>
         <div class="ui segment bottom attached p-1 b-0" data-tab="first">
             @yield('content-user-edit')

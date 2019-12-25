@@ -1,68 +1,50 @@
 @extends(config('laravolt.epicentrum.view.layout'))
+
+@section('page.title', __('epicentrum::label.users'))
+
+@push('page.actions')
+    <a href="{{ route('epicentrum::users.index') }}" class="ui button">
+        <i class="icon arrow up"></i> Kembali ke Index
+    </a>
+@endpush
+
 @section('content')
-    <div class="ui menu top attached">
-        <a href="{{ route('epicentrum::users.index') }}" class="item">
-            <i class="icon angle left"></i>
-        </a>
-        <h3 class="ui header item">@lang('epicentrum::menu.add_user')</h3>
-    </div>
-
-    <div class="ui segment very padded bottom attached">
-        {!! SemanticForm::open()->post()->action(route('epicentrum::users.store')) !!}
-        {!! SemanticForm::text('name', old('name'))->label(trans('epicentrum::users.name'))->required() !!}
-        {!! SemanticForm::text('email', old('email'))->label(trans('epicentrum::users.email'))->required() !!}
-
-        <div class="field required">
-            <label>@lang('epicentrum::users.password')</label>
-            <div class="ui action input">
-                {!! SemanticForm::text('password', old('password'))->id('password') !!}
-                <button class="ui button small" type="button" data-role="randomize-password">@lang('epicentrum::action.generate_password')</button>
-            </div>
-        </div>
+    @component('ui::components.panel', ['title' => __('epicentrum::menu.add_user')])
+        {!! form()->open()->post()->action(route('epicentrum::users.store')) !!}
+        {!! form()->text('name')->label(trans('epicentrum::users.name'))->required() !!}
+        {!! form()->text('email')->label(trans('epicentrum::users.email'))->required() !!}
+        {!! form()->input('password')->appendButton(trans('epicentrum::action.generate_password'), 'randomize')->label(trans('epicentrum::users.password'))->required() !!}
 
         @if($multipleRole)
-            {!! SemanticForm::checkboxGroup('roles', $roles)->label(trans('epicentrum::users.roles')) !!}
+            {!! form()->checkboxGroup('roles', $roles)->label(trans('epicentrum::users.roles')) !!}
         @else
-            {!! SemanticForm::radioGroup('roles', $roles)->label(trans('epicentrum::users.roles')) !!}
+            {!! form()->radioGroup('roles', $roles)->label(trans('epicentrum::users.roles')) !!}
         @endif
 
-        <div class="field required">
-            <label>@lang('epicentrum::users.status')</label>
-            {!! SemanticForm::select('status', $statuses, old('status')) !!}
-        </div>
-        <div class="field">
-            <label>@lang('epicentrum::users.timezone')</label>
-            {!! SemanticForm::select('timezone', $timezones, old('timezone', config('app.timezone')))->addClass('search') !!}
-        </div>
+        {!! form()->select('status', $statuses)->label(__('epicentrum::users.status')) !!}
+        {!! form()->select('timezone', $timezones, config('app.timezone'))->label(__('epicentrum::users.timezone')) !!}
 
-        <div class="ui divider hidden"></div>
-        <div class="field">
-            <div class="ui checkbox">
-                <input type="checkbox" name="send_account_information" {{ request()->old('send_account_information')?'checked':'' }}>
-                <label>@lang('epicentrum::users.send_account_information_via_email')</label>
-            </div>
-        </div>
-        <div class="field">
-            <div class="ui checkbox">
-                <input type="checkbox" name="must_change_password" {{ request()->old('must_change_password')?'checked':'' }}>
-                <label>@lang('epicentrum::users.change_password_on_first_login')</label>
-            </div>
-        </div>
-        <div class="ui divider hidden"></div>
+        <div class="ui divider section"></div>
 
-        <button class="ui button primary" type="submit" name="submit" value="1">@lang('epicentrum::action.save')</button>
-        <a href="{{ route('epicentrum::users.index') }}" class="ui button">@lang('epicentrum::action.cancel')</a>
-        {!! SemanticForm::close() !!}
+        {!! form()->checkbox('send_account_information', 1)->label(__('epicentrum::users.send_account_information_via_email')) !!}
+        {!! form()->checkbox('must_change_password', 1)->label(__('epicentrum::users.change_password_on_first_login')) !!}
 
-    </div>
+        <div class="ui divider section"></div>
+
+        {!! form()->action(form()->submit(__('epicentrum::action.save')), form()->link(__('epicentrum::action.back'), route('epicentrum::users.index'))) !!}
+        {!! form()->close() !!}
+
+    @endcomponent
+
 @endsection
 
+
 @push('body')
-<script>
-    $(function(){
-        $('[data-role="randomize-password"]').on('click', function(){
-            document.getElementById('password').setAttribute('value', Math.random().toString(36).substr(2,8));
+    <script>
+      $(function () {
+        $('.randomize').on('click', function (e) {
+          $(e.currentTarget).prev().val(Math.random().toString(36).substr(2, 8));
         });
-    });
-</script>
+      });
+    </script>
 @endpush

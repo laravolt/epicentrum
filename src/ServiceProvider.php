@@ -79,13 +79,6 @@ class ServiceProvider extends BaseServiceProvider
 
         $this->loadTranslationsFrom(realpath(__DIR__.'/../resources/lang'), 'epicentrum');
 
-        if ($this->app->runningInConsole() && config('laravolt.epicentrum.migrations')) {
-            $this->loadMigrationsFrom(realpath(__DIR__.'/../database/migrations'));
-        }
-        $this->publishes([
-            $this->packagePath('database/migrations') => database_path('migrations'),
-        ], 'migrations');
-
         if (config('laravolt.epicentrum.route.enable')) {
             $this->loadRoutes();
         }

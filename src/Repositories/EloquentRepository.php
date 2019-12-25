@@ -62,7 +62,7 @@ class EloquentRepository implements RepositoryInterface
         $user = $this->model->fill($attributes);
 
         if (Arr::has($attributes, 'must_change_password')) {
-            $user->password_last_set = null;
+            $user->password_changed_at = null;
         }
 
         $user->save();

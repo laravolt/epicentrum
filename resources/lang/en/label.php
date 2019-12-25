@@ -2,6 +2,7 @@
 return [
     'roles'                    => 'Roles',
     'users'                    => 'Users',
+    'edit_user'                => 'Edit User',
     'permissions'              => 'Permissions',
     'add_role'                 => 'Create New Role',
     'edit_role'                => 'Edit Role',
