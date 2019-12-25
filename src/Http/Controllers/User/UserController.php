@@ -78,7 +78,7 @@ class UserController extends Controller
     {
         // save to db
         $roles = $request->get('roles', []);
-        $user = $this->repository->createByAdmin($request->except('_token'), $roles);
+        $user = $this->repository->createByAdmin($request->all(), $roles);
         $password = $request->get('password');
 
         // send account info to email

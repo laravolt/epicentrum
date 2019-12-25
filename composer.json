@@ -13,19 +13,17 @@
         {
             "name": "Bayu Hendra Winata",
             "email": "uyab.exe@gmail.com",
-            "homepage": "http://id-laravel.com",
+            "homepage": "https://laravolt.dev",
             "role": "Developer"
         }
     ],
     "require": {
-        "php" : ">=7.1.3",
-        "illuminate/support": "5.6.*|5.7.*|5.8.*|^6.0",
-        "laravolt/password": "^1.5",
-        "laravolt/acl": "^4.1",
-        "laravolt/avatar": "^2.0|^3.0",
-        "laravolt/suitable": "^3.3.6",
-        "laravolt/semantic-form": "^2.0",
-        "laravolt/ui": "~0.4",
+        "php" : ">=7.3",
+        "illuminate/support": "^6.0",
+        "laravolt/avatar": "@dev",
+        "laravolt/platform": "@dev",
+        "laravolt/suitable": "@dev",
+        "laravolt/semantic-form": "@dev",
         "bensampo/laravel-enum": "^1.19"
     },
     "autoload": {
@@ -35,14 +33,14 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "1.0-dev",
+            "dev-develop": "2.0-dev"
         },
         "laravel": {
             "providers": [
                 "Laravolt\\Epicentrum\\ServiceProvider",
                 "Laravolt\\SemanticForm\\ServiceProvider",
-                "Laravolt\\Suitable\\ServiceProvider",
-                "Laravolt\\Password\\ServiceProvider"
+                "Laravolt\\Suitable\\ServiceProvider"
             ],
             "aliases": {
                 "Suitable": "Laravolt\\Suitable\\Facade",

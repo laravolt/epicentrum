@@ -4,7 +4,6 @@ namespace Laravolt\Epicentrum\Http\Controllers\My;
 
 use Illuminate\Routing\Controller;
 use Laravolt\Epicentrum\Http\Requests\My\Password\Update;
-use Laravolt\Password\Password;
 use Laravolt\Epicentrum\Repositories\RepositoryInterface;
 
 class PasswordController extends Controller
@@ -26,7 +25,7 @@ class PasswordController extends Controller
     public function __construct(RepositoryInterface $repository)
     {
         $this->repository = $repository;
-        $this->password = app('password');
+        $this->password = app('laravolt.password');
     }
 
     /**

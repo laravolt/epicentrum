@@ -30,10 +30,10 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom($this->packagePath('config/config.php'), 'laravolt.epicentrum');
+        $this->mergeConfigFrom($this->packagePath('config/epicentrum.php'), 'laravolt.epicentrum');
 
         $this->publishes(
-            [$this->packagePath('config/config.php') => config_path('laravolt/epicentrum.php')],
+            [$this->packagePath('epicentrum/config.php') => config_path('laravolt/epicentrum.php')],
             'config'
         );
 
