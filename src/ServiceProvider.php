@@ -33,7 +33,7 @@ class ServiceProvider extends BaseServiceProvider
         $this->mergeConfigFrom($this->packagePath('config/epicentrum.php'), 'laravolt.epicentrum');
 
         $this->publishes(
-            [$this->packagePath('epicentrum/config.php') => config_path('laravolt/epicentrum.php')],
+            [$this->packagePath('config/epicentrum.php') => config_path('laravolt/epicentrum.php')],
             'config'
         );
 
