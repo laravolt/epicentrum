@@ -10,7 +10,7 @@ use Laravolt\Epicentrum\Contracts\Requests\Account\Store;
 use Laravolt\Epicentrum\Mail\AccountInformation;
 use Laravolt\Epicentrum\Repositories\RepositoryInterface;
 use Illuminate\Support\Facades\Mail;
-use Laravolt\Epicentrum\Repositories\TimezoneRepository;
+use Laravolt\Support\Contracts\TimezoneRepository;
 use Laravolt\Suitable\TableView;
 
 class UserController extends Controller
@@ -63,7 +63,7 @@ class UserController extends Controller
         $statuses = $this->repository->availableStatus();
         $roles = app('laravolt.epicentrum.role')->all()->pluck('name', 'id');
         $multipleRole = config('laravolt.epicentrum.role.multiple');
-        $timezones = $this->timezone->lists();
+        $timezones = $this->timezone->all();
 
         return view('epicentrum::create', compact('statuses', 'roles', 'multipleRole', 'timezones'));
     }

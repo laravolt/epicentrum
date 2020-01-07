@@ -9,6 +9,7 @@ use Laravolt\Epicentrum\Console\Commands\ManageUser;
 use Laravolt\Epicentrum\Contracts\Requests\Account\Delete;
 use Laravolt\Epicentrum\Contracts\Requests\Account\Store;
 use Laravolt\Epicentrum\Contracts\Requests\Account\Update;
+use Laravolt\Support\Contracts\TimezoneRepository;
 
 /**
  * Class PackageServiceProvider
@@ -48,7 +49,7 @@ class ServiceProvider extends BaseServiceProvider
         );
 
         $this->app->bind(
-            \Laravolt\Epicentrum\Repositories\TimezoneRepository::class,
+            TimezoneRepository::class,
             config('laravolt.epicentrum.repository.timezone')
         );
 

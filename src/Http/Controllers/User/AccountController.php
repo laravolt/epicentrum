@@ -16,7 +16,7 @@ class AccountController extends UserController
     {
         $user = $this->repository->findById($id);
         $statuses = $this->repository->availableStatus();
-        $timezones = $this->timezone->lists();
+        $timezones = $this->timezone->all();
         $roles = app('laravolt.epicentrum.role')->all();
         $multipleRole = config('laravolt.epicentrum.role.multiple');
         $roleEditable = config('laravolt.epicentrum.role.editable');

@@ -41,7 +41,7 @@ return [
 		// modify crud of user management
 		'user' => \Laravolt\Epicentrum\Repositories\EloquentRepository::class,
 		// set default time zone that used
-		'timezone' => \Laravolt\Epicentrum\Repositories\DefaultTimezoneRepository::class,
+		'timezone' => \Laravolt\Support\Repositories\TimezoneRepository::class,
 		// change the criteria on searching feature
 		'criteria' => [
 			\Prettus\Repository\Criteria\RequestCriteria::class,

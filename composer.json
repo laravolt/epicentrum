@@ -24,7 +24,8 @@
         "laravolt/platform": "@dev",
         "laravolt/suitable": "@dev",
         "laravolt/semantic-form": "@dev",
-        "bensampo/laravel-enum": "^1.19"
+        "bensampo/laravel-enum": "^1.19",
+        "laravolt/support": "^2.0"
     },
     "autoload": {
         "psr-4": {
