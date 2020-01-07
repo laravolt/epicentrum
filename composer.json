@@ -20,10 +20,10 @@
     "require": {
         "php" : ">=7.2",
         "illuminate/support": "^6.0",
-        "laravolt/avatar": "@dev",
-        "laravolt/platform": "@dev",
-        "laravolt/suitable": "@dev",
-        "laravolt/semantic-form": "@dev",
+        "laravolt/avatar": "^3.0",
+        "laravolt/platform": "~0.13",
+        "laravolt/suitable": "^3.6",
+        "laravolt/semantic-form": "^2.13",
         "bensampo/laravel-enum": "^1.19",
         "laravolt/support": "^2.0"
     },
